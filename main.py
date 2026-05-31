@@ -1,14 +1,9 @@
-"""
-StayChat — Hotel Q&A RAG System
-CLI entry point with multiple operation modes.
-"""
-import argparse
+"""StayChat — Hotel Q&A RAG System CLI entry point."""
 import os
 import sys
 import logging
 from pathlib import Path
 
-# Ensure project root is on the path
 sys.path.insert(0, str(Path(__file__).parent))
 
 BANNER = r"""
@@ -93,38 +88,11 @@ def run_chat_mode(pipeline) -> None:
         print(f"  {THIN_SEP}")
 
 
-def run_all_mode(pipeline) -> None:
-    """Run demo, evaluation, hallucination demo, then interactive chat."""
-    print(f"\n{SEPARATOR}")
-    print("  MODE: ALL — running demo, eval, hallucination, then chat")
-    print(SEPARATOR)
-
-    pipeline.run_demo_queries()
-    pipeline.run_evaluation()
-    pipeline.run_hallucination_demo()
-    run_chat_mode(pipeline)
-
-
-def build_parser() -> argparse.ArgumentParser:
+def main() -> None:
+    import argparse
     parser = argparse.ArgumentParser(
         prog="main.py",
         description="StayChat Hotel Q&A — RAG Pipeline CLI",
-        formatter_class=argparse.RawDescriptionHelpFormatter,
-        epilog=(
-            "Examples:\n"
-            "  python main.py                   # run all modes\n"
-            "  python main.py --mode demo       # run 3 demo queries\n"
-            "  python main.py --mode chat       # interactive Q&A\n"
-            "  python main.py --mode eval       # retrieval evaluation\n"
-            "  python main.py --mode hallucination  # hallucination demo\n"
-            "  python main.py --mode demo --rebuild  # rebuild index first\n"
-        ),
-    )
-    parser.add_argument(
-        "--mode",
-        choices=["demo", "eval", "chat", "hallucination", "all"],
-        default="all",
-        help="Operation mode (default: all)",
     )
     parser.add_argument(
         "--rebuild",
@@ -138,31 +106,20 @@ def build_parser() -> argparse.ArgumentParser:
         default="INFO",
         help="Logging verbosity (default: INFO)",
     )
-    return parser
-
-
-def main() -> None:
-    parser = build_parser()
     args = parser.parse_args()
 
-    # Configure logging
     logging.basicConfig(
         level=getattr(logging, args.log_level),
         format="%(asctime)s — %(name)s — %(levelname)s — %(message)s",
     )
 
-    # Print banner
     print(BANNER)
-
-    # Validate API key before loading anything heavy
     _check_groq_key()
 
-    print(f"  Mode   : {args.mode.upper()}")
     print(f"  Rebuild: {args.rebuild}")
     print(f"  Log    : {args.log_level}")
     print(f"\n{THIN_SEP}")
 
-    # Import here so missing deps surface cleanly after arg parsing
     try:
         from src.pipeline import RAGPipeline
     except ImportError as exc:
@@ -182,21 +139,12 @@ def main() -> None:
     print(SEPARATOR)
 
     try:
-        if args.mode == "demo":
-            pipeline.run_demo_queries()
-        elif args.mode == "eval":
-            pipeline.run_evaluation()
-        elif args.mode == "chat":
-            run_chat_mode(pipeline)
-        elif args.mode == "hallucination":
-            pipeline.run_hallucination_demo()
-        elif args.mode == "all":
-            run_all_mode(pipeline)
+        run_chat_mode(pipeline)
     except KeyboardInterrupt:
         print("\n\n  Interrupted by user. Goodbye!\n")
     except Exception as exc:  # noqa: BLE001
-        print(f"\n[ERROR] Unexpected failure during mode '{args.mode}': {exc}\n")
-        logging.exception("Unhandled exception in mode '%s'", args.mode)
+        print(f"\n[ERROR] Unexpected failure: {exc}\n")
+        logging.exception("Unhandled exception")
         sys.exit(1)
 
     print(f"\n{SEPARATOR}")

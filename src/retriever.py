@@ -1,20 +1,6 @@
-"""
-Hotel chunk retriever — hybrid BM25 + dense FAISS search with RRF merge.
-
-Retrieval strategy:
-    1. Dense (FAISS): cosine similarity via all-MiniLM-L6-v2 embeddings.
-       Catches semantic paraphrases — "complimentary internet" matches
-       "free WiFi" even with zero lexical overlap.
-    2. Sparse (BM25): term-frequency/IDF scoring over tokenised chunk text.
-       Catches exact-match signals — hotel names, room numbers, policy
-       keywords — that dense search may under-weight.
-    3. Reciprocal Rank Fusion (RRF): merges both ranked lists without
-       needing score normalisation. Score = Σ 1/(RRF_K + rank_i).
-
-k=5 final results: balances recall vs. context window length.
-Threshold filtering (dense score gate) removes low-confidence chunks.
-"""
+"""Hotel chunk retriever — hybrid BM25 + dense FAISS search with RRF merge."""
 import logging
+import re
 import sys
 from pathlib import Path
 
@@ -28,48 +14,28 @@ from src.embedder import HotelEmbedder
 logger = logging.getLogger(__name__)
 
 
+def _tokenize(text: str) -> list[str]:
+    """Tokenize text for BM25 while normalizing common hotel-query variants."""
+    normalized = text.lower().replace("wi-fi", "wifi")
+    return re.findall(r"[a-z0-9]+", normalized)
+
+
 class HotelRetriever:
     """Hybrid BM25 + FAISS retriever with Reciprocal Rank Fusion."""
 
     def __init__(self, index, chunks: list, embedder: HotelEmbedder):
-        """
-        Initialize retriever and build the in-memory BM25 index.
-
-        Args:
-            index: Loaded faiss.Index object.
-            chunks: List of chunk dicts in the same order as index vectors.
-            embedder: HotelEmbedder instance for query embedding.
-        """
+        """Initialize retriever and build the in-memory BM25 index."""
         self.index = index
         self.chunks = chunks
         self.embedder = embedder
 
         logger.info("Building BM25 index over %d chunks...", len(chunks))
-        tokenized = [c["text"].lower().split() for c in chunks]
+        tokenized = [_tokenize(c["text"]) for c in chunks]
         self.bm25 = BM25Okapi(tokenized, k1=config.BM25_K1, b=config.BM25_B)
         logger.info("BM25 index ready")
 
-    # ------------------------------------------------------------------
-    # Dense retrieval
-    # ------------------------------------------------------------------
-
-    def retrieve_dense(self, query: str, k: int = None) -> list:
-        """
-        Retrieve top-k chunks by cosine similarity (FAISS).
-
-        Args:
-            query: Natural language query string.
-            k: Number of results. Defaults to config.HYBRID_CANDIDATE_K.
-
-        Returns:
-            List of chunk dicts with 'score' (cosine similarity) added,
-            sorted descending.
-
-        Example:
-            >>> results = retriever.retrieve_dense("free WiFi", k=10)
-            >>> results[0]["score"] >= results[-1]["score"]
-            True
-        """
+    def retrieve_dense(self, query: str, k: int | None = None) -> list:
+        """Retrieve top-k chunks by cosine similarity (FAISS)."""
         if k is None:
             k = config.HYBRID_CANDIDATE_K
 
@@ -89,34 +55,12 @@ class HotelRetriever:
         logger.debug("Dense: %d results for '%s'", len(results), query[:50])
         return results
 
-    # ------------------------------------------------------------------
-    # Sparse retrieval (BM25)
-    # ------------------------------------------------------------------
-
-    def retrieve_bm25(self, query: str, k: int = None) -> list:
-        """
-        Retrieve top-k chunks by BM25 term-frequency scoring.
-
-        Excels at exact keyword matches: hotel names, room types, policy
-        terms, specific numbers (e.g. "48 hour", "room 204").
-
-        Args:
-            query: Natural language query string.
-            k: Number of results. Defaults to config.HYBRID_CANDIDATE_K.
-
-        Returns:
-            List of chunk dicts with 'bm25_score' added, sorted descending.
-            Chunks with score 0 are excluded.
-
-        Example:
-            >>> results = retriever.retrieve_bm25("Coral Bay Suites cancellation", k=10)
-            >>> all("bm25_score" in r for r in results)
-            True
-        """
+    def retrieve_bm25(self, query: str, k: int | None = None) -> list:
+        """Retrieve top-k chunks by BM25 term-frequency scoring."""
         if k is None:
             k = config.HYBRID_CANDIDATE_K
 
-        tokenized_query = query.lower().split()
+        tokenized_query = _tokenize(query)
         scores = self.bm25.get_scores(tokenized_query)
 
         top_indices = np.argsort(scores)[::-1][:k]
@@ -132,32 +76,8 @@ class HotelRetriever:
         logger.debug("BM25: %d results for '%s'", len(results), query[:50])
         return results
 
-    # ------------------------------------------------------------------
-    # Hybrid retrieval (BM25 + Dense + RRF)
-    # ------------------------------------------------------------------
-
-    def retrieve_hybrid(self, query: str, k: int = None) -> list:
-        """
-        Retrieve top-k chunks using hybrid BM25 + FAISS with RRF merge.
-
-        Both systems contribute HYBRID_CANDIDATE_K candidates each. RRF
-        combines the ranked lists without score normalisation:
-            rrf_score(d) = Σ 1 / (RRF_K + rank_i(d))
-
-        Args:
-            query: Natural language query string.
-            k: Final number of results after RRF merge. Defaults to
-               config.DEFAULT_K.
-
-        Returns:
-            List of chunk dicts with 'score' (RRF), 'dense_score', and
-            'bm25_score' populated where available, sorted by RRF score.
-
-        Example:
-            >>> results = retriever.retrieve_hybrid("free WiFi breakfast", k=5)
-            >>> len(results) <= 5
-            True
-        """
+    def retrieve_hybrid(self, query: str, k: int | None = None) -> list:
+        """Retrieve top-k chunks using hybrid BM25 + FAISS with RRF merge."""
         if k is None:
             k = config.DEFAULT_K
 
@@ -192,48 +112,15 @@ class HotelRetriever:
         logger.info("Hybrid RRF: %d results for '%s'", len(final), query[:50])
         return final
 
-    # keep dense-only method as `retrieve` for backwards compat with tests
-    def retrieve(self, query: str, k: int = None) -> list:
-        """
-        Alias for retrieve_dense. Kept for backwards compatibility.
-
-        Args:
-            query: Natural language query string.
-            k: Number of results.
-
-        Returns:
-            Dense retrieval results (see retrieve_dense).
-        """
+    def retrieve(self, query: str, k: int | None = None) -> list:
+        """Alias for retrieve_dense — kept for backwards compatibility with tests."""
         return self.retrieve_dense(query, k=k if k is not None else config.DEFAULT_K)
 
-    # ------------------------------------------------------------------
-    # Threshold filter
-    # ------------------------------------------------------------------
-
-    def filter_by_threshold(self, results: list, min_score: float = None) -> list:
-        """
-        Drop chunks whose 'score' falls below the similarity threshold.
-
-        For dense results 'score' is cosine similarity. For hybrid results
-        it is the RRF score; the threshold is applied as a relative floor
-        (any chunk below 1/(RRF_K*2) is dropped as a near-zero contributor).
-
-        Args:
-            results: List of chunk dicts with 'score' key.
-            min_score: Floor score. Defaults to config.SIMILARITY_THRESHOLD
-                       for dense; auto-scaled for RRF scores.
-
-        Returns:
-            Filtered list.
-
-        Example:
-            >>> filtered = retriever.filter_by_threshold(results)
-            >>> len(filtered) <= len(results)
-            True
-        """
+    def filter_by_threshold(self, results: list, min_score: float | None = None) -> list:
+        """Drop chunks whose score falls below the similarity threshold."""
         if min_score is None:
             if results and results[0].get("rrf_score"):
-                min_score = 1.0 / (config.RRF_K * 2)
+                min_score = 1.0 / (config.RRF_K + 1)  # ~0.0164 — chunk must rank well in at least one system
             else:
                 min_score = config.SIMILARITY_THRESHOLD
 
