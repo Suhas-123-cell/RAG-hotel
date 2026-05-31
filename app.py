@@ -1,11 +1,9 @@
 """
-StayChat Hotel Q&A — Gradio web interface.
+StayChat Hotel Q&A — Chat UI.
 
-Initialises the RAG pipeline once at module level and exposes a
-Gradio Blocks UI with three output panels:
-  1. Answer (with inline citations)
-  2. Retrieved Chunks (formatted text)
-  3. Confidence Score (top chunk similarity)
+A conversational Gradio interface backed by the RAG pipeline.
+Conversation history is kept in-session. Retrieved source chunks
+are shown in a collapsible panel alongside the chat.
 """
 import sys
 import logging
@@ -14,198 +12,150 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent))
 
 import gradio as gr
-
 import config
 from src.pipeline import RAGPipeline
 
-logging.basicConfig(
-    level=getattr(logging, config.LOG_LEVEL),
-    format=config.LOG_FORMAT,
-)
+logging.basicConfig(level=logging.WARNING)
 logger = logging.getLogger(__name__)
 
 # ---------------------------------------------------------------------------
-# Pipeline — initialised once, reused across all UI requests
-# ---------------------------------------------------------------------------
-logger.info("Initialising RAGPipeline for Gradio app…")
-_pipeline: RAGPipeline | None = None
-
-
-def _get_pipeline() -> RAGPipeline:
-    """Lazy singleton so the pipeline is only built once even in reload scenarios."""
-    global _pipeline  # noqa: PLW0603
-    if _pipeline is None:
-        _pipeline = RAGPipeline(force_rebuild=False)
-        logger.info("Pipeline ready — %d chunks indexed.", len(_pipeline.chunks))
-    return _pipeline
-
-
-# ---------------------------------------------------------------------------
-# Interface function
+# Pipeline singleton — built once, reused for every message
 # ---------------------------------------------------------------------------
 
-def _format_chunks(chunks: list) -> str:
-    """Format retrieved chunks into a readable multi-line string."""
-    if not chunks:
-        return "No chunks retrieved."
+print("Loading StayChat… (first run builds the search index, ~30s)")
+_pipeline = RAGPipeline(force_rebuild=False)
+print(f"Ready — {len(_pipeline.chunks)} chunks indexed.\n")
 
-    lines = []
-    for i, chunk in enumerate(chunks, 1):
-        score = chunk.get("score", 0.0)
-        hotel = chunk.get("hotel_name", "Unknown")
-        category = chunk.get("category", "—")
-        chunk_id = chunk.get("chunk_id", "—")
-        text = chunk.get("text", "").strip()
+# ---------------------------------------------------------------------------
+# Chat handler
+# ---------------------------------------------------------------------------
 
-        lines.append(
-            f"[{i}] {chunk_id}\n"
-            f"    Hotel    : {hotel}\n"
-            f"    Category : {category}\n"
-            f"    Score    : {score:.4f}\n"
-            f"    Text     : {text[:300]}{'…' if len(text) > 300 else ''}"
-        )
-        lines.append("")  # blank line between chunks
-
-    return "\n".join(lines).strip()
-
-
-def answer_question(question: str):
+def chat(message: str, history: list):
     """
-    Main handler called by the Gradio UI.
+    Handle one chat turn.
 
     Args:
-        question: The user's hotel question.
+        message: Latest user message string.
+        history: List of [user, assistant] string pairs (Gradio Chatbot state).
 
     Returns:
-        Tuple of (answer_with_sources, formatted_chunks, confidence_score_str).
+        Tuple of (updated_history, sources_markdown_string).
     """
-    question = question.strip()
-    if not question:
-        return (
-            "Please enter a question about our hotels.",
-            "No question provided.",
-            "N/A",
-        )
+    message = message.strip()
+    if not message:
+        history = history + [[message, "Please type a question about our hotels."]]
+        return history, ""
 
     try:
-        pipeline = _get_pipeline()
-        result = pipeline.query(question)
-    except Exception as exc:  # noqa: BLE001
-        logger.exception("Pipeline query failed")
-        return (
-            f"An error occurred while processing your question:\n{exc}",
-            "Retrieval unavailable.",
-            "N/A",
-        )
+        result = _pipeline.query(message)
+    except Exception as exc:
+        history = history + [[message, f"Sorry, something went wrong: {exc}"]]
+        return history, ""
 
-    # --- Answer panel ---
     answer = result["answer"]
+
     sources = result.get("sources_cited", [])
     if sources:
-        answer += f"\n\nSources cited: {', '.join(sources)}"
+        answer += "\n\n**Sources:** " + " · ".join(f"`{s}`" for s in sources)
 
-    # --- Chunks panel ---
-    chunks_text = _format_chunks(result.get("retrieved_chunks", []))
+    history = history + [[message, answer]]
 
-    # --- Confidence panel ---
-    top_score = result.get("top_score", 0.0)
-    threshold = config.SIMILARITY_THRESHOLD
-    passed = len(result.get("filtered_chunks", []))
-    total = len(result.get("retrieved_chunks", []))
-    confidence_str = (
-        f"{top_score:.4f}  "
-        f"(threshold={threshold}, {passed}/{total} chunks passed filter)"
-    )
+    chunks = result.get("retrieved_chunks", [])
+    if chunks:
+        lines = ["### Retrieved chunks\n"]
+        for i, c in enumerate(chunks, 1):
+            score = c.get("rrf_score") or c.get("score", 0.0)
+            text_preview = c["text"][:200].replace("\n", " ")
+            lines.append(
+                f"**[{i}] {c['chunk_id']}**  \n"
+                f"`{c['hotel_name']}` · `{c['category']}` · score `{score:.4f}`  \n"
+                f"{text_preview}…\n"
+            )
+        sources_md = "\n---\n".join(lines)
+    else:
+        sources_md = "No chunks retrieved."
 
-    return answer, chunks_text, confidence_str
+    return history, sources_md
 
 
 # ---------------------------------------------------------------------------
-# Gradio Blocks layout
+# UI layout
 # ---------------------------------------------------------------------------
 
-with gr.Blocks(
-    title=config.GRADIO_TITLE,
-    theme=gr.themes.Soft(),
-) as demo:
+EXAMPLES = [
+    "Which hotels have free WiFi and complimentary breakfast?",
+    "What is the cancellation policy of Coral Bay Suites?",
+    "Suggest a hotel with excellent reviews near the beach.",
+    "What spa and wellness facilities does Serenity Palms offer?",
+    "Is The Azure Grand pet friendly?",
+    "How far is Sunrise Boutique Resort from the airport?",
+]
 
-    gr.Markdown(f"# {config.GRADIO_TITLE}")
+with gr.Blocks(title="StayChat", theme=gr.themes.Soft(), css="""
+    #chatbot { height: 500px; }
+    #sources-panel { height: 500px; overflow-y: auto; }
+    footer { display: none !important; }
+""") as demo:
+
+    gr.Markdown("# StayChat — Hotel Q&A")
     gr.Markdown(
-        "Ask any question about our hotels — policies, amenities, reviews, "
-        "location, and more. The system retrieves relevant passages from our "
-        "hotel knowledge base and generates a grounded answer."
+        "Ask anything about **The Azure Grand**, **Sunrise Boutique Resort**, "
+        "**Coral Bay Suites**, **The Pinnacle Hotel**, or **Serenity Palms Resort**."
     )
 
     with gr.Row():
+
         with gr.Column(scale=3):
-            question_input = gr.Textbox(
-                label="Ask a hotel question",
-                placeholder=(
-                    "e.g. Which hotels have free WiFi and complimentary breakfast?"
-                ),
-                lines=2,
+            chatbot = gr.Chatbot(
+                elem_id="chatbot",
+                bubble_full_width=False,
+                show_label=False,
             )
-            submit_btn = gr.Button("Ask", variant="primary")
+            with gr.Row():
+                msg_box = gr.Textbox(
+                    placeholder="Ask a hotel question and press Enter…",
+                    show_label=False,
+                    scale=5,
+                    container=False,
+                )
+                send_btn = gr.Button("Send", variant="primary", scale=1)
 
-        with gr.Column(scale=1):
-            gr.Markdown("**Example questions**")
             gr.Examples(
-                examples=[
-                    ["Which hotels have free WiFi and complimentary breakfast?"],
-                    ["What is the cancellation policy of Coral Bay Suites?"],
-                    ["Suggest a hotel with excellent reviews near the beach."],
-                    ["What wellness amenities does Serenity Palms offer?"],
-                    ["Does The Azure Grand have a restaurant?"],
-                ],
-                inputs=question_input,
+                examples=[[e] for e in EXAMPLES],
+                inputs=msg_box,
+                label="Example questions",
             )
 
-    with gr.Row():
-        answer_output = gr.Textbox(
-            label="Answer",
-            lines=8,
-            interactive=False,
-        )
+            clear_btn = gr.Button("Clear chat", size="sm", variant="secondary")
 
-    with gr.Row():
-        with gr.Column():
-            chunks_output = gr.Textbox(
-                label="Retrieved Chunks",
-                lines=14,
-                interactive=False,
-            )
-        with gr.Column(scale=1):
-            confidence_output = gr.Textbox(
-                label="Confidence Score",
-                lines=2,
-                interactive=False,
-            )
+        with gr.Column(scale=2):
+            with gr.Accordion("Retrieved sources (last query)", open=True):
+                sources_box = gr.Markdown(
+                    value="*Ask a question to see which hotel documents were retrieved.*",
+                    elem_id="sources-panel",
+                )
 
-    submit_btn.click(
-        fn=answer_question,
-        inputs=question_input,
-        outputs=[answer_output, chunks_output, confidence_output],
-    )
-    question_input.submit(
-        fn=answer_question,
-        inputs=question_input,
-        outputs=[answer_output, chunks_output, confidence_output],
-    )
+    send_btn.click(
+        fn=chat,
+        inputs=[msg_box, chatbot],
+        outputs=[chatbot, sources_box],
+    ).then(fn=lambda: "", outputs=msg_box)
 
-    gr.Markdown(
-        "---\n*StayChat is a demonstration RAG system. "
-        "Answers are grounded in retrieved hotel documents only.*"
-    )
+    msg_box.submit(
+        fn=chat,
+        inputs=[msg_box, chatbot],
+        outputs=[chatbot, sources_box],
+    ).then(fn=lambda: "", outputs=msg_box)
 
-# ---------------------------------------------------------------------------
-# Launch
-# ---------------------------------------------------------------------------
+    clear_btn.click(fn=lambda: ([], ""), outputs=[chatbot, sources_box])
+
+    gr.Markdown("---\n*Answers are grounded in the hotel knowledge base only.*")
+
 
 if __name__ == "__main__":
-    # Pre-warm the pipeline so the first request isn't slow
-    _get_pipeline()
     demo.launch(
         share=False,
         server_port=config.GRADIO_PORT,
         server_name="0.0.0.0",
+        show_error=True,
     )
