@@ -1,3 +1,12 @@
+---
+title: StayChat RAG
+sdk: gradio
+sdk_version: 5.50.0
+app_file: app.py
+pinned: false
+license: mit
+---
+
 # StayChat - Hotel Q&A RAG System
 
 StayChat is a Retrieval-Augmented Generation (RAG) system for answering natural-language questions about hotels. It cleans and chunks a hotel knowledge base, embeds the chunks locally, stores them in FAISS, retrieves relevant context with hybrid search, and asks an LLM to answer only from the retrieved hotel data.
