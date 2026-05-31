@@ -1,18 +1,4 @@
-"""
-Hotel document preprocessor — cleaning and true semantic chunking.
-
-Chunking strategy:
-    Each sentence is embedded and windowed (SEMANTIC_WINDOW_SIZE sentences
-    of context). Cosine similarity is computed between adjacent windows.
-    Chunk boundaries are placed at similarity drops below the
-    SEMANTIC_BREAKPOINT_PERCENTILE threshold — i.e. where the topic
-    actually changes. A hard token cap (SEMANTIC_MAX_CHUNK_TOKENS) prevents
-    oversized chunks when topics are long.
-
-    Fallback: if no embedder is supplied (e.g. during testing), the
-    preprocessor falls back to sentence-aware fixed-size chunking with
-    CHUNK_SIZE / CHUNK_OVERLAP.
-"""
+"""Hotel document preprocessor — cleaning and semantic chunking with fixed-size fallback."""
 import re
 import logging
 import sys
@@ -34,20 +20,7 @@ class HotelPreprocessor:
     # ------------------------------------------------------------------
 
     def clean_text(self, text: str) -> str:
-        """
-        Clean raw hotel document text.
-
-        Args:
-            text: Raw string, may contain HTML, special chars, extra whitespace.
-
-        Returns:
-            Cleaned lowercase string with preserved sentence boundaries.
-
-        Example:
-            >>> p = HotelPreprocessor()
-            >>> p.clean_text("<b>Hello  World!</b>")
-            'hello world!'
-        """
+        """Strip HTML, normalize whitespace, and lowercase."""
         text = re.sub(r'<[^>]+>', ' ', text)
         text = re.sub(r'[^\w\s.,!?;:\'-]', ' ', text)
         text = re.sub(r'\s+', ' ', text).strip()
@@ -67,16 +40,7 @@ class HotelPreprocessor:
     # ------------------------------------------------------------------
 
     def _build_windows(self, sentences: list) -> list:
-        """
-        Wrap each sentence with SEMANTIC_WINDOW_SIZE neighbours for richer
-        context when computing inter-sentence similarity.
-
-        Args:
-            sentences: List of sentence strings.
-
-        Returns:
-            List of windowed strings, one per sentence.
-        """
+        """Wrap each sentence with SEMANTIC_WINDOW_SIZE neighbours for similarity computation."""
         half = config.SEMANTIC_WINDOW_SIZE // 2
         windows = []
         for i in range(len(sentences)):
@@ -86,19 +50,7 @@ class HotelPreprocessor:
         return windows
 
     def _find_breakpoints(self, similarities: list) -> list:
-        """
-        Return sentence indices where a chunk boundary should be placed.
-
-        A boundary is placed after sentence i when the similarity between
-        window i and window i+1 falls below the SEMANTIC_BREAKPOINT_PERCENTILE
-        of all similarities in the document.
-
-        Args:
-            similarities: List of floats, one per consecutive sentence pair.
-
-        Returns:
-            List of integer indices (into sentences list) where new chunks start.
-        """
+        """Return sentence indices where similarity drops below the breakpoint percentile."""
         if not similarities:
             return []
         threshold = float(np.percentile(similarities, config.SEMANTIC_BREAKPOINT_PERCENTILE))
@@ -117,18 +69,7 @@ class HotelPreprocessor:
         }
 
     def _split_oversized(self, sentences: list, doc: dict, start_index: int) -> list:
-        """
-        Split a sentence group that exceeds SEMANTIC_MAX_CHUNK_TOKENS using
-        the fixed-size fallback strategy.
-
-        Args:
-            sentences: Sentence list for one semantic segment.
-            doc: Original document dict.
-            start_index: Starting chunk_index counter.
-
-        Returns:
-            List of chunk dicts.
-        """
+        """Split a segment exceeding SEMANTIC_MAX_CHUNK_TOKENS using fixed-size chunking."""
         chunks = []
         current_sents = []
         current_tokens = 0
@@ -152,26 +93,7 @@ class HotelPreprocessor:
         return chunks
 
     def semantic_chunk_document(self, doc: dict, embedder) -> list:
-        """
-        Chunk a document using semantic boundary detection.
-
-        Embeds sentence windows, computes consecutive cosine similarities,
-        places boundaries at the lowest-similarity gaps (percentile-based),
-        then enforces a hard token cap on each resulting segment.
-
-        Args:
-            doc: Dict with keys id, hotel_name, category, text.
-            embedder: HotelEmbedder instance with an encode-capable .model.
-
-        Returns:
-            List of chunk dicts with chunk_id, hotel_name, category, text,
-            source_doc_id, token_count.
-
-        Example:
-            >>> chunks = p.semantic_chunk_document(doc, embedder)
-            >>> all("chunk_id" in c for c in chunks)
-            True
-        """
+        """Chunk a document using semantic boundary detection (percentile-based similarity drops)."""
         cleaned = self.clean_text(doc["text"])
         sentences = self._split_into_sentences(cleaned)
 
@@ -219,21 +141,7 @@ class HotelPreprocessor:
     # ------------------------------------------------------------------
 
     def chunk_document(self, doc: dict) -> list:
-        """
-        Sentence-aware fixed-size chunking fallback (no embedder required).
-
-        Args:
-            doc: Dict with keys id, category, hotel_name, text.
-
-        Returns:
-            List of chunk dicts.
-
-        Example:
-            >>> p = HotelPreprocessor()
-            >>> chunks = p.chunk_document({"id": "hotel_001", "hotel_name": "Test", "category": "description", "text": "Some text."})
-            >>> len(chunks) >= 1
-            True
-        """
+        """Sentence-aware fixed-size chunking fallback (no embedder required)."""
         cleaned = self.clean_text(doc["text"])
         sentences = self._split_into_sentences(cleaned)
 
@@ -278,26 +186,7 @@ class HotelPreprocessor:
     # ------------------------------------------------------------------
 
     def process_all(self, documents: list, embedder=None) -> list:
-        """
-        Process all hotel documents into chunks.
-
-        Uses semantic chunking when embedder is provided, falls back to
-        fixed-size sentence-aware chunking otherwise.
-
-        Args:
-            documents: List of raw hotel document dicts.
-            embedder: Optional HotelEmbedder instance. If supplied, semantic
-                      boundary detection is used. If None, falls back to
-                      fixed-size chunking.
-
-        Returns:
-            Flat list of all chunk dicts across all documents.
-
-        Example:
-            >>> chunks = p.process_all(documents, embedder=embedder)
-            >>> len(chunks) > len(documents)
-            True
-        """
+        """Process all documents into chunks. Uses semantic chunking when embedder is given, else fixed-size."""
         mode = "semantic" if embedder is not None else "fixed-size"
         logger.info("Chunking %d documents using %s strategy", len(documents), mode)
 

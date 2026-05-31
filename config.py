@@ -35,10 +35,11 @@ BM25_B = 0.75
 
 # Hybrid retrieval (BM25 + Dense → RRF)
 RRF_K = 60              # RRF constant; higher = less rank-gap impact
-HYBRID_CANDIDATE_K = 20 # candidates fetched from each system before merge
+HYBRID_CANDIDATE_K = 50 # candidates fetched from each system before merge
 
 # Retrieval
 DEFAULT_K = 5           # final top-k after RRF merge
+GENERATION_CONTEXT_K = 14  # broader hidden context for answer generation
 SIMILARITY_THRESHOLD = 0.3  # min cosine similarity score (dense gate)
 
 # Prompt injection guard patterns
@@ -52,10 +53,22 @@ INJECTION_PATTERNS = [
     r"do\s+not\s+(follow|use)\s+(the\s+)?context",
     r"new\s+instruction|updated\s+instruction",
     r"</?system>|</?user>|</?assistant>",
+    # "ignore all (the) system commands/prompts/rules/constraints"
+    r"ignore\s+(all\s+)?(the\s+)?(system\s+)?(commands?|prompts?|rules?|constraints?)",
+    # broader: "ignore (all) (the) instructions/commands/rules" without requiring "system"
+    r"ignore\s+(all\s+)?(the\s+)(instructions?|commands?|rules?)",
+    # data exfiltration phrasing: "give me all the information you have"
+    r"give\s+me\s+(all\s+)?(the\s+)?information\s+(you\s+have|that\s+you\s+have)",
+    # bypass attempts
+    r"bypass\s+(the\s+)?(system|filter|restriction|guard)",
+    # classic DAN jailbreak
+    r"\bDAN\b|do\s+anything\s+now",
+    # role injection via plain text labels
+    r"(?:system|user|assistant)\s*:\s",
 ]
 
 # LLM
-GROQ_MODEL = "llama3-8b-8192"
+GROQ_MODEL = "llama-3.1-8b-instant"
 GROQ_API_BASE = "https://api.groq.com/openai/v1"
 MAX_TOKENS = 1024
 TEMPERATURE = 0.1       # low for faithfulness

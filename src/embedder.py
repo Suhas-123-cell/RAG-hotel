@@ -26,22 +26,7 @@ class HotelEmbedder:
         logger.info("Embedding model loaded successfully")
 
     def embed_chunks(self, chunks: list) -> np.ndarray:
-        """
-        Embed a list of chunk dicts.
-
-        Args:
-            chunks: List of chunk dicts, each with a 'text' key.
-
-        Returns:
-            2D numpy float32 array of shape (n_chunks, EMBEDDING_DIM).
-
-        Example:
-            >>> embedder = HotelEmbedder()
-            >>> chunks = [{"text": "Sample hotel text"}, {"text": "Another chunk"}]
-            >>> embs = embedder.embed_chunks(chunks)
-            >>> embs.shape[1] == config.EMBEDDING_DIM
-            True
-        """
+        """Embed a list of chunk dicts. Returns float32 array of shape (n_chunks, EMBEDDING_DIM)."""
         texts = [c["text"] for c in chunks]
         logger.info("Embedding %d chunks...", len(texts))
         embeddings = self.model.encode(
@@ -54,41 +39,12 @@ class HotelEmbedder:
         return embeddings.astype(np.float32)
 
     def embed_query(self, query: str) -> np.ndarray:
-        """
-        Embed a single query string.
-
-        Args:
-            query: The query string to embed.
-
-        Returns:
-            2D numpy float32 array of shape (1, EMBEDDING_DIM) for FAISS search.
-
-        Example:
-            >>> embedder = HotelEmbedder()
-            >>> vec = embedder.embed_query("What amenities do you have?")
-            >>> vec.shape == (1, config.EMBEDDING_DIM)
-            True
-        """
+        """Embed a single query. Returns float32 array of shape (1, EMBEDDING_DIM)."""
         vec = self.model.encode([query], normalize_embeddings=True)
         return vec.astype(np.float32)
 
     def build_faiss_index(self, embeddings: np.ndarray) -> faiss.Index:
-        """
-        Build a FAISS IndexFlatIP (inner product = cosine for normalized vectors).
-
-        Args:
-            embeddings: 2D float32 array of shape (n, EMBEDDING_DIM).
-
-        Returns:
-            Populated faiss.Index ready for searching.
-
-        Example:
-            >>> embedder = HotelEmbedder()
-            >>> embs = np.random.rand(10, config.EMBEDDING_DIM).astype(np.float32)
-            >>> idx = embedder.build_faiss_index(embs)
-            >>> idx.ntotal == 10
-            True
-        """
+        """Build a FAISS IndexFlatIP (inner product = cosine for normalized vectors)."""
         dim = embeddings.shape[1]
         index = faiss.IndexFlatIP(dim)
         index.add(embeddings)
@@ -96,19 +52,7 @@ class HotelEmbedder:
         return index
 
     def save_index(self, index: faiss.Index, chunks: list) -> None:
-        """
-        Save FAISS index and chunks list to disk.
-
-        Args:
-            index: Populated FAISS index.
-            chunks: List of chunk dicts in the same order as index vectors.
-
-        Returns:
-            None. Writes to FAISS_INDEX_PATH and CHUNKS_PICKLE_PATH.
-
-        Example:
-            >>> embedder.save_index(index, chunks)
-        """
+        """Save FAISS index and chunks list to FAISS_INDEX_PATH and CHUNKS_PICKLE_PATH."""
         config.FAISS_INDEX_PATH.parent.mkdir(parents=True, exist_ok=True)
         faiss.write_index(index, str(config.FAISS_INDEX_PATH))
         with open(config.CHUNKS_PICKLE_PATH, "wb") as f:
@@ -117,18 +61,7 @@ class HotelEmbedder:
         logger.info("Chunks saved to %s", config.CHUNKS_PICKLE_PATH)
 
     def load_index(self) -> tuple:
-        """
-        Load FAISS index and chunks list from disk.
-
-        Returns:
-            Tuple of (faiss.Index, list[dict]).
-
-        Raises:
-            FileNotFoundError: If index files don't exist on disk.
-
-        Example:
-            >>> index, chunks = embedder.load_index()
-        """
+        """Load FAISS index and chunks list from disk. Raises FileNotFoundError if missing."""
         if not config.FAISS_INDEX_PATH.exists():
             raise FileNotFoundError(f"FAISS index not found at {config.FAISS_INDEX_PATH}")
         if not config.CHUNKS_PICKLE_PATH.exists():

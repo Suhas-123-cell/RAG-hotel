@@ -1,0 +1,5 @@
+project-includes = ["**/*.py"]
+search-path = ["."]
+python-interpreter-path = ".venv/bin/python"
+python-version = "3.11"
+preset = "basic"
