@@ -162,23 +162,26 @@ pytest tests/ -v -m "not slow"   # fast tests only (no model needed)
 
 ## 7. Chunking Strategy and Justification
 
-**Strategy**: Sentence-aware sliding window chunking
+**Strategy**: True semantic chunking via embedding similarity (with fixed-size fallback)
 
-**Parameters** (from `config.py`):
-- `CHUNK_SIZE = 200` tokens
-- `CHUNK_OVERLAP = 40` tokens
-- `MIN_CHUNK_TOKENS = 30` (drops micro-fragments)
+**How it works**:
+1. Each sentence is embedded using all-MiniLM-L6-v2 within a `SEMANTIC_WINDOW_SIZE=3`
+   sentence context window to capture local discourse
+2. Cosine similarity is computed between adjacent sentence windows
+3. Chunk boundaries are placed at the bottom `SEMANTIC_BREAKPOINT_PERCENTILE=25`
+   of similarities — i.e. where topics genuinely shift
+4. A hard cap of `SEMANTIC_MAX_CHUNK_TOKENS=300` splits any oversized semantic chunks
 
-**Justification**:
-- *Sentence-aware*: Splitting at sentence boundaries preserves the semantic
-  completeness of policy clauses and review opinions. Word-level splitting
-  would break mid-clause, losing the predicate that makes a policy meaningful.
-- *200 tokens*: Long enough to contain a complete fact (e.g., cancellation
-  terms) without drowning retrieval in noise. Short enough that multiple
-  relevant chunks can fit in the LLM context window.
-- *40-token overlap*: Prevents information loss at chunk boundaries. A policy
-  clause that spans two sentences (common in hotel T&Cs) is fully captured by
-  at least one chunk.
+**Why this beats fixed-size chunking**:
+
+| Scenario | Fixed-size | Semantic |
+|----------|-----------|---------|
+| Long cancellation policy | May cut mid-clause | Keeps whole policy clause together |
+| Review with topic shift | Mixed sentiment in one chunk | Splits at positive/negative boundary |
+| Short factual doc | Same | Same |
+
+**Fallback**: When no embedder is available (e.g. unit tests), the preprocessor
+falls back to sentence-aware fixed-size chunking (`CHUNK_SIZE=200`, `CHUNK_OVERLAP=40`).
 
 ---
 
@@ -196,45 +199,78 @@ pytest tests/ -v -m "not slow"   # fast tests only (no model needed)
 
 ---
 
-## 9. Retrieval Design
+## 9. Retrieval Design — Hybrid BM25 + Dense + RRF
 
-**k = 5**: Chosen to balance recall (enough context for multi-hotel questions)
-against context window length (5 x ~200 tokens = ~1,000 tokens of context,
-well within the 8K context of llama3-8b-8192).
+**Why hybrid**: Dense-only retrieval misses exact keyword matches (hotel names,
+room numbers, policy terms). BM25-only misses paraphrases and synonyms.
+Hybrid combines both signals without needing score normalisation.
 
-**Similarity threshold = 0.3**: The cosine similarity distribution for
-off-topic queries (e.g., stock prices, general trivia) peaks below 0.3 when
-tested against hotel documents. Setting the threshold here catches
-out-of-domain queries before they reach the LLM, without over-filtering
-legitimate low-similarity but relevant chunks (e.g., amenities asked about
-via indirect phrasing).
+**Pipeline**:
+```
+query
+ ├── FAISS dense search  → top-20 by cosine similarity (semantic matches)
+ ├── BM25 sparse search  → top-20 by TF-IDF term score (keyword matches)
+ └── RRF merge           → score = Σ 1/(RRF_K=60 + rank_i)  → top-5 final
+```
+
+**Key parameters** (`config.py`):
+- `DEFAULT_K = 5` — final results after RRF merge
+- `HYBRID_CANDIDATE_K = 20` — candidates fetched from each system before merge
+- `RRF_K = 60` — RRF constant; higher value flattens rank differences
+- `BM25_K1 = 1.5`, `BM25_B = 0.75` — standard Okapi BM25 tuning values
+- `SIMILARITY_THRESHOLD = 0.3` — post-RRF floor to drop near-zero contributors
 
 ---
 
 ## 10. Hallucination Control Methods
 
-### Method 1 — Strict Context-Only Prompting
+### Method 1 — Prompt Injection Guard (input + output)
 
-The system prompt instructs the LLM:
+Every query is scanned against `INJECTION_PATTERNS` in `config.py` before
+reaching the LLM. Patterns include:
 
-> "Answer ONLY using the provided context. If the answer is not in the
-> context, respond exactly with: 'I don't have enough information to answer
-> this from the available hotel data.' For every fact you state, cite the
-> source document ID in brackets like [hotel_003_chunk_2]."
+- `ignore (all) previous instructions`
+- `you are now / act as / pretend to be`
+- `reveal your system prompt`
+- `override / jailbreak`
+- Raw XML tags (`<system>`, `<user>`) injected in the query
 
-This removes the model's fallback to parametric memory (i.e., general hotel
-knowledge baked into the model weights), forcing grounded answers.
+Flagged queries are rejected with an error message — the LLM is never called.
+The output is also validated to catch edge cases where the model echoed
+injected instructions through.
 
-### Method 2 — Confidence Gate
+### Method 2 — XML-Delimited Prompt Structure
 
-Before calling the LLM, the maximum retrieval similarity score is checked
-against `SIMILARITY_THRESHOLD = 0.3`. If no chunk exceeds the threshold, the
-system returns:
+Context and the user question are wrapped in distinct XML tags:
+
+```
+<context>
+[chunk_id] (hotel — category)
+...chunk text...
+</context>
+
+<question>user query here</question>
+```
+
+The system prompt explicitly instructs the model to ignore anything inside
+`<question>` that tries to change its behaviour. XML delimiters make the
+boundary structurally unambiguous, not just semantically instructed.
+
+### Method 3 — Strict Context-Only System Prompt
+
+The LLM is instructed to answer ONLY from `<context>`. If the answer is not
+there, it must respond with a fixed refusal string. Every fact must cite a
+`[chunk_id]`. This removes fallback to parametric memory.
+
+### Method 4 — Confidence Gate
+
+If the highest retrieval score after RRF is below `1/(RRF_K * 2)`, generation
+is blocked entirely:
 
 > "Insufficient context confidence. Cannot answer reliably."
 
-This catches out-of-domain questions (e.g., "What is the stock price of
-Marriott?") that would otherwise receive a hallucinated answer.
+Catches out-of-domain queries (e.g., stock prices, general trivia) before
+they reach the LLM with weakly-related hotel context.
 
 ---
 

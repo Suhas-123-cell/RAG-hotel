@@ -11,10 +11,15 @@ INDEX_DIR = BASE_DIR / "index"
 # Dataset
 DOCUMENTS_FILE = DATA_DIR / "hotel_documents.json"
 
-# Chunking
+# Chunking — sentence-aware fallback (used when embedder not available)
 CHUNK_SIZE = 200        # tokens
 CHUNK_OVERLAP = 40      # tokens
 MIN_CHUNK_TOKENS = 30   # drop chunks smaller than this
+
+# Semantic chunking (true topic-boundary detection via embedding similarity)
+SEMANTIC_BREAKPOINT_PERCENTILE = 25   # bottom 25% similarity scores → chunk boundaries
+SEMANTIC_WINDOW_SIZE = 3              # sentences either side when embedding for context
+SEMANTIC_MAX_CHUNK_TOKENS = 300       # hard cap — splits oversized semantic chunks
 
 # Embedding
 EMBEDDING_MODEL = "sentence-transformers/all-MiniLM-L6-v2"
@@ -24,9 +29,30 @@ EMBEDDING_DIM = 384
 FAISS_INDEX_PATH = INDEX_DIR / "hotel_faiss.index"
 CHUNKS_PICKLE_PATH = INDEX_DIR / "hotel_chunks.pkl"
 
+# BM25 sparse retrieval
+BM25_K1 = 1.5
+BM25_B = 0.75
+
+# Hybrid retrieval (BM25 + Dense → RRF)
+RRF_K = 60              # RRF constant; higher = less rank-gap impact
+HYBRID_CANDIDATE_K = 20 # candidates fetched from each system before merge
+
 # Retrieval
-DEFAULT_K = 5           # top-k chunks to retrieve
-SIMILARITY_THRESHOLD = 0.3  # min cosine similarity score
+DEFAULT_K = 5           # final top-k after RRF merge
+SIMILARITY_THRESHOLD = 0.3  # min cosine similarity score (dense gate)
+
+# Prompt injection guard patterns
+INJECTION_PATTERNS = [
+    r"ignore\s+(all\s+)?(previous|prior|above)\s+instructions?",
+    r"forget\s+(you\s+are|your\s+role|everything)",
+    r"you\s+are\s+now|act\s+as\s+|pretend\s+(to\s+be|you\s+are)",
+    r"reveal\s+(your\s+)?(system\s+prompt|instructions?|prompt)",
+    r"disregard\s+(the\s+)?context",
+    r"override|jailbreak",
+    r"do\s+not\s+(follow|use)\s+(the\s+)?context",
+    r"new\s+instruction|updated\s+instruction",
+    r"</?system>|</?user>|</?assistant>",
+]
 
 # LLM
 GROQ_MODEL = "llama3-8b-8192"

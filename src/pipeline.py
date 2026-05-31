@@ -61,7 +61,7 @@ class RAGPipeline:
             documents = json.load(f)
         logger.info("Loaded %d documents from %s", len(documents), config.DOCUMENTS_FILE)
 
-        self.chunks = self.preprocessor.process_all(documents)
+        self.chunks = self.preprocessor.process_all(documents, self.embedder)
         embeddings = self.embedder.embed_chunks(self.chunks)
         self.index = self.embedder.build_faiss_index(embeddings)
         self.embedder.save_index(self.index, self.chunks)
@@ -88,7 +88,7 @@ class RAGPipeline:
             >>> "answer" in result
             True
         """
-        retrieved = self.retriever.retrieve(question, k=config.DEFAULT_K)
+        retrieved = self.retriever.retrieve_hybrid(question, k=config.DEFAULT_K)
         filtered = self.retriever.filter_by_threshold(retrieved)
         generation = self.generator.generate(question, filtered)
 
