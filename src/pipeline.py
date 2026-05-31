@@ -3,6 +3,7 @@ import json
 import logging
 import re
 import sys
+import time
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent.parent))
@@ -149,22 +150,34 @@ class RAGPipeline:
             candidates.append((overlap + category_bonus + canonical_bonus, chunk))
 
         added = []
-        seen_hotels = set()
+        per_hotel_counts: dict[str, int] = {}
         for _, chunk in sorted(candidates, key=lambda item: item[0], reverse=True):
-            if len(added) >= 10:
+            if len(added) >= 6:
                 break
             # Keep list-style answers diverse instead of flooding context with one hotel.
-            hotel_seen = chunk["hotel_name"] in seen_hotels
-            if hotel_seen and len(seen_hotels) >= 3:
+            hotel_count = per_hotel_counts.get(chunk["hotel_name"], 0)
+            if hotel_count >= 1 and len(per_hotel_counts) >= 3:
                 continue
             enriched = dict(chunk)
             enriched["score"] = 0.0
             enriched["support_score"] = 0.0
             added.append(enriched)
-            seen_hotels.add(enriched["hotel_name"])
+            per_hotel_counts[enriched["hotel_name"]] = hotel_count + 1
             current_ids.add(enriched["chunk_id"])
 
         return added
+
+    def _dedupe_and_cap_chunks(self, chunks: list) -> list:
+        """Remove duplicate chunks and cap prompt context size."""
+        deduped = []
+        seen = set()
+        for chunk in chunks:
+            cid = chunk["chunk_id"]
+            if cid in seen:
+                continue
+            deduped.append(chunk)
+            seen.add(cid)
+        return deduped[:config.MAX_GENERATION_CHUNKS]
 
     def query(self, question: str) -> dict:
         """Run a full RAG query: retrieve → filter → generate.
@@ -172,16 +185,28 @@ class RAGPipeline:
         Returns a dict with keys: question, retrieved_chunks, filtered_chunks,
         answer, sources_cited, top_score.
         """
+        start = time.perf_counter()
         retrieved = self.retriever.retrieve_hybrid(question, k=config.GENERATION_CONTEXT_K)
         filtered = self.retriever.filter_by_threshold(retrieved, min_score=0.0)
-        filtered.extend(self._supporting_chunks_for_topic_terms(question, filtered))
-        filtered.extend(self._supporting_chunks_for_named_hotels(question, filtered))
-        generation = self.generator.generate(question, filtered)
+        support_start = time.perf_counter()
+        support_chunks = self._supporting_chunks_for_topic_terms(question, filtered)
+        support_chunks.extend(self._supporting_chunks_for_named_hotels(question, filtered + support_chunks))
+        generation_chunks = self._dedupe_and_cap_chunks(support_chunks + filtered)
+        generation = self.generator.generate(question, generation_chunks)
+        elapsed = time.perf_counter() - start
+        logger.info(
+            "Query completed in %.2fs (retrieved=%d, support=%d, generation_chunks=%d, support_time=%.2fs)",
+            elapsed,
+            len(retrieved),
+            len(support_chunks),
+            len(generation_chunks),
+            time.perf_counter() - support_start,
+        )
 
         return {
             "question": question,
             "retrieved_chunks": retrieved,
-            "filtered_chunks": filtered,
+            "filtered_chunks": generation_chunks,
             "answer": generation["answer"],
             "sources_cited": generation["sources_cited"],
             "top_score": retrieved[0]["score"] if retrieved else 0.0,
