@@ -333,6 +333,150 @@ zip -r RAG-hotel-submission.zip RAG-hotel \
   -x "RAG-hotel/.pytest_cache/*"
 ```
 
+## Deploy on Hugging Face Spaces
+
+You can deploy the Gradio app on a free Hugging Face account using **Spaces**.
+
+### Option A - Deploy from the Hugging Face Website
+
+1. Create or log in to your Hugging Face account.
+
+2. Go to:
+
+   ```text
+   https://huggingface.co/new-space
+   ```
+
+3. Create a new Space:
+
+   ```text
+   Space name: staychat-rag
+   License: MIT or other
+   SDK: Gradio
+   Hardware: CPU basic - free
+   Visibility: Public or Private
+   ```
+
+4. Upload or push these project files to the Space:
+
+   ```text
+   app.py
+   main.py
+   config.py
+   requirements.txt
+   README.md
+   .env.example
+   data/hotel_documents.json
+   outputs/sample_outputs.md
+   src/
+   tests/
+   pytest.ini
+   ```
+
+5. Do not upload:
+
+   ```text
+   .env
+   .venv/
+   index/
+   __pycache__/
+   .pytest_cache/
+   ```
+
+6. Add your Groq API key as a Space secret:
+
+   - Open your Space on Hugging Face
+   - Go to **Settings**
+   - Go to **Variables and secrets**
+   - Add a new **Secret**
+
+   ```text
+   Name: GROQ_API_KEY
+   Value: gsk_your_actual_key_here
+   ```
+
+   Do not put the real key in `app.py`, `README.md`, or `.env`.
+
+7. Wait for the Space to build.
+
+   The first build can take several minutes because it installs dependencies and downloads the embedding model. The first app startup can also take time because the FAISS index is built from `data/hotel_documents.json`.
+
+8. Once it says **Running**, open the public Space URL:
+
+   ```text
+   https://huggingface.co/spaces/<your-username>/staychat-rag
+   ```
+
+### Option B - Deploy from Terminal with Git
+
+Install the Hugging Face CLI if needed:
+
+```bash
+pip install -U huggingface_hub
+```
+
+Log in:
+
+```bash
+huggingface-cli login
+```
+
+Create a Space from the website first, then clone it:
+
+```bash
+git clone https://huggingface.co/spaces/<your-username>/staychat-rag
+cd staychat-rag
+```
+
+Copy this project into the Space folder, excluding local generated files:
+
+```bash
+rsync -av --exclude ".git" --exclude ".venv" --exclude ".env" --exclude "index" \
+  --exclude "__pycache__" --exclude ".pytest_cache" \
+  /path/to/RAG-hotel/ ./
+```
+
+Commit and push:
+
+```bash
+git add .
+git commit -m "Deploy StayChat RAG Gradio app"
+git push
+```
+
+Then add the `GROQ_API_KEY` secret in the Space settings.
+
+### Option C - Deploy with `gradio deploy`
+
+Gradio also supports direct deployment:
+
+```bash
+source .venv/bin/activate
+gradio deploy
+```
+
+Follow the prompts. The deploy command uploads the app to Hugging Face Spaces and respects `.gitignore`.
+
+### Hugging Face Space Notes
+
+- The Space must have `requirements.txt` at the repo root.
+- The main file should be named `app.py`.
+- This project reads `GROQ_API_KEY` from environment variables, which is how Hugging Face exposes Space secrets.
+- `app.py` is configured to use the server host/port provided by Spaces.
+- The free CPU Space is enough for a small demo, but startup may be slow because `sentence-transformers` and FAISS run on CPU.
+- If the Space fails with an API key error, check that `GROQ_API_KEY` is added as a **Secret**, not as plain text in the code.
+- If the Space rebuilds repeatedly, check the build logs from the Space page.
+
+Recommended Space demo questions:
+
+```text
+Which hotels have free WiFi and complimentary breakfast?
+Compare bathroom essentials at The Azure Grand and Northstar Capsule Lodge.
+Which hotels do not have televisions in the rooms?
+Which properties are best for late-night airport layovers?
+What is the stock price of Apple?
+```
+
 ## Known Limitations
 
 - The dataset is synthetic, not scraped from real hotel websites.

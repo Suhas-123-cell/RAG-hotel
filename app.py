@@ -5,6 +5,7 @@ A conversational Gradio interface backed by the RAG pipeline.
 Conversation history is kept in-session. Retrieval sources stay internal.
 """
 import re
+import os
 import sys
 import logging
 from pathlib import Path
@@ -204,9 +205,19 @@ with gr.Blocks(title="StayChat", theme=gr.themes.Soft(), css=CSS) as demo:
 
 
 if __name__ == "__main__":
+    server_name = os.getenv("GRADIO_SERVER_NAME")
+    if server_name is None:
+        server_name = "0.0.0.0" if os.getenv("SPACE_ID") else "127.0.0.1"
+
+    server_port = int(
+        os.getenv("GRADIO_SERVER_PORT")
+        or os.getenv("PORT")
+        or config.GRADIO_PORT
+    )
+
     demo.launch(
         share=False,
-        server_port=config.GRADIO_PORT,
-        server_name="127.0.0.1",
+        server_port=server_port,
+        server_name=server_name,
         show_error=True,
     )
