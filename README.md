@@ -10,29 +10,105 @@ license: mit
 
 # StayChat - Hotel Q&A RAG System
 
-StayChat is a Retrieval-Augmented Generation (RAG) system for answering natural-language questions about hotels. It cleans and chunks a hotel knowledge base, embeds the chunks locally, stores them in FAISS, retrieves relevant context with hybrid search, and asks an LLM to answer only from the retrieved hotel data.
+StayChat is a hotel question-answering system built with Retrieval-Augmented Generation (RAG). It answers questions from a curated hotel knowledge base instead of relying on the language model's memory.
 
-This project was built for the StayChat AI / ML developer assessment.
+The system cleans hotel documents, chunks them, creates local embeddings, stores vectors in FAISS, retrieves relevant context with hybrid search, and uses a Groq-hosted Llama model to generate grounded answers.
 
-## What This Project Includes
+Live demo:
 
-- A synthetic hotel knowledge base in `data/hotel_documents.json`
-- Text cleaning and chunking in `src/preprocessor.py`
-- Local embeddings with `sentence-transformers/all-MiniLM-L6-v2`
-- FAISS vector search in `src/embedder.py`
-- Hybrid retrieval using dense FAISS search plus BM25 in `src/retriever.py`
-- Context-grounded answer generation with Groq Llama in `src/generator.py`
-- End-to-end orchestration in `src/pipeline.py`
-- Gradio demo app in `app.py`
-- CLI chat entry point in `main.py`
-- Unit tests in `tests/`
-- Sample assessment outputs in `outputs/sample_outputs.md`
+```text
+https://huggingface.co/spaces/suhas20sh/staychat-rag
+```
 
-## Current Dataset
+GitHub repository:
 
-The dataset currently contains **140 hotel documents** across **15 hotels**. It is intentionally uneven to stress-test retrieval with a more realistic corpus: some hotels have many detailed records, while others have sparse or niche records.
+```text
+https://github.com/Suhas-123-cell/RAG-hotel
+```
 
-Hotel examples include:
+## 1. Project Objective
+
+The goal is to build a RAG-based hotel assistant that can answer natural-language questions about hotel properties, amenities, policies, reviews, and locations.
+
+The system is designed to:
+
+- Retrieve relevant hotel information from a static knowledge base
+- Answer only from retrieved context
+- Refuse questions that require live booking data or external knowledge
+- Reduce hallucination with strict prompting and guardrails
+- Provide a browser demo through Gradio
+- Include tests and reproducible setup instructions
+
+## 2. Key Features
+
+- **140 synthetic hotel documents** across **15 hotels**
+- Five required document categories: `description`, `amenities`, `reviews`, `policies`, `location`
+- Sentence-aware chunking with semantic chunking support
+- Local `sentence-transformers/all-MiniLM-L6-v2` embeddings
+- FAISS vector index using inner-product search over normalized embeddings
+- BM25 keyword retrieval for exact hotel names and policy terms
+- Reciprocal Rank Fusion to combine dense and sparse results
+- Extra support chunks for named-hotel comparisons and common multi-condition queries
+- Groq Llama answer generation with strict context-only prompting
+- Prompt-injection detection before LLM calls
+- Gradio web app for demo
+- CLI chat mode
+- Unit tests for preprocessing and retrieval
+
+## 3. Repository Structure
+
+```text
+RAG-hotel/
+  app.py                         # Gradio web UI
+  main.py                        # CLI chat entry point
+  config.py                      # Central configuration
+  requirements.txt               # Python dependencies
+  README.md                      # Project documentation
+  .env.example                   # API key placeholder
+  data/
+    hotel_documents.json         # Hotel knowledge base
+  outputs/
+    sample_outputs.md            # Sample answers and evaluation notes
+  src/
+    preprocessor.py              # Cleaning and chunking
+    embedder.py                  # SentenceTransformer + FAISS index
+    retriever.py                 # Dense + BM25 + RRF retrieval
+    generator.py                 # Groq LLM generation and guardrails
+    pipeline.py                  # End-to-end RAG orchestration
+    __init__.py
+  tests/
+    test_preprocessor.py
+    test_retriever.py
+    test_pipeline.py
+  pytest.ini
+  pyrefly.toml
+```
+
+Generated/local files such as `.venv/`, `.env`, `index/`, `__pycache__/`, and `.pytest_cache/` are intentionally ignored.
+
+## 4. Dataset
+
+The assessment asks for 30-50 hotel documents across five categories. This project intentionally expands beyond the minimum to stress-test retrieval on a harder, uneven dataset.
+
+Current dataset summary:
+
+| Item | Count |
+|---|---:|
+| Total documents | 140 |
+| Hotels | 15 |
+| Chunked records | About 296 on current semantic chunking |
+
+Category coverage:
+
+| Required category | Dataset category | Current count |
+|---|---|---:|
+| Hotel descriptions | `description` | 23 |
+| Amenities | `amenities` | 47 |
+| Guest reviews | `reviews` | 28 |
+| Policies | `policies` | 30 |
+| Location details | `location` | 12 |
+
+Hotel examples:
 
 - The Azure Grand
 - Sunrise Boutique Resort
@@ -50,31 +126,36 @@ Hotel examples include:
 - Neon Arcade Hotel
 - Silent Monastery Guesthouse
 
-Document categories:
+The dataset covers:
 
-- `description`
-- `amenities`
-- `reviews`
-- `policies`
-- `location`
+- Wi-Fi and internet speeds
+- Breakfast inclusions
+- TVs and in-room entertainment
+- Bathroom essentials and toiletries
+- Spa, pool, gym, dining, concierge services
+- Check-in and check-out policies
+- Cancellation and refund rules
+- Pet and accessibility policies
+- Airport transfers and local transport
+- Guest reviews with positive, neutral, and negative sentiment
+- Edge cases such as capsule hotels, off-grid lodges, quiet retreats, and airport layovers
 
-The data covers Wi-Fi, breakfast, room amenities, TVs, bathroom essentials, check-in/check-out rules, cancellation policies, pet policies, accessibility, airport transfers, family suitability, wellness retreats, capsule/shared bathrooms, off-grid stays, convention hotels, and edge cases.
-
-## Architecture
+## 5. Architecture
 
 ```text
-hotel_documents.json
+data/hotel_documents.json
         |
         v
 HotelPreprocessor
-  - clean text
-  - sentence-aware chunking
-  - semantic chunking when embedder is available
+  - cleans HTML/special characters
+  - normalizes whitespace
+  - lowercases text
+  - chunks documents
         |
         v
 HotelEmbedder
   - sentence-transformers/all-MiniLM-L6-v2
-  - 384-dimensional embeddings
+  - 384-dimensional normalized vectors
         |
         v
 FAISS IndexFlatIP
@@ -82,39 +163,157 @@ FAISS IndexFlatIP
         v
 HotelRetriever
   - dense FAISS retrieval
-  - BM25 sparse retrieval
+  - BM25 keyword retrieval
   - Reciprocal Rank Fusion
-  - extra support chunks for named-hotel and multi-condition queries
+  - support chunks for named comparisons
         |
         v
 HotelGenerator
   - strict context-only prompt
   - prompt-injection checks
-  - no public source/chunk IDs in the UI answer
+  - no public chunk/source IDs in UI
         |
         v
 Gradio UI / CLI
 ```
 
-## Tech Stack
+## 6. Preprocessing and Chunking
 
-| Component | Library / Service | Purpose |
-|---|---|---|
-| Python | 3.11 recommended | Runtime |
-| Embeddings | `sentence-transformers` | Local semantic embeddings |
-| Vector store | `faiss-cpu` | Similarity search |
-| Sparse retrieval | `rank-bm25` | Keyword retrieval |
-| LLM | Groq API | Answer generation |
-| UI | Gradio | Browser demo |
-| Tests | pytest | Unit tests |
-| Env loading | python-dotenv | API key loading |
+Implementation: `src/preprocessor.py`
 
-## Setup
+Cleaning steps:
 
-Use Python 3.11 if possible. Some ML packages may not support the newest Python versions immediately.
+- Remove HTML tags
+- Remove unsupported special characters
+- Normalize whitespace
+- Lowercase text
+- Preserve useful sentence punctuation
+
+Chunking:
+
+- Fallback chunking is sentence-aware and uses:
+  - `CHUNK_SIZE = 200`
+  - `CHUNK_OVERLAP = 40`
+  - `MIN_CHUNK_TOKENS = 30`
+- Semantic chunking uses sentence-window embeddings and breakpoints:
+  - `SEMANTIC_WINDOW_SIZE = 3`
+  - `SEMANTIC_BREAKPOINT_PERCENTILE = 25`
+  - `SEMANTIC_MAX_CHUNK_TOKENS = 300`
+
+Why this fits hotel data:
+
+- Hotel policies and amenities are often sentence-level facts.
+- Sentence-aware chunking avoids cutting cancellation rules or amenity descriptions mid-thought.
+- Overlap preserves context across boundaries.
+- Semantic chunking helps split long documents when the topic changes from, for example, room features to spa facilities.
+
+## 7. Embeddings and Vector Store
+
+Implementation: `src/embedder.py`
+
+Embedding model:
+
+```text
+sentence-transformers/all-MiniLM-L6-v2
+```
+
+Reasons for selection:
+
+- Free and open source
+- Runs locally on CPU
+- Produces compact 384-dimensional embeddings
+- Good semantic matching for short factual text
+- Works well with FAISS for small-to-medium retrieval tasks
+
+Vector store:
+
+```text
+FAISS IndexFlatIP
+```
+
+Embeddings are normalized, so inner product behaves like cosine similarity.
+
+Index files are generated locally in:
+
+```text
+index/
+```
+
+The `index/` directory is not committed. The app rebuilds the index automatically when needed.
+
+## 8. Retrieval Design
+
+Implementation: `src/retriever.py` and `src/pipeline.py`
+
+The retriever uses a hybrid strategy:
+
+1. Dense retrieval with FAISS
+2. Sparse keyword retrieval with BM25
+3. Reciprocal Rank Fusion to merge ranked lists
+4. Extra support chunks for:
+   - named hotel comparisons
+   - multi-condition questions such as Wi-Fi + breakfast
+   - topics like televisions, bathrooms, pets, children, airport, and layovers
+
+Important configuration:
+
+```text
+RRF_K = 60
+HYBRID_CANDIDATE_K = 30
+DEFAULT_K = 5
+GENERATION_CONTEXT_K = 8
+MAX_GENERATION_CHUNKS = 10
+```
+
+Why hybrid retrieval:
+
+- Dense retrieval captures semantic matches such as "internet" and "Wi-Fi".
+- BM25 captures exact names such as "Northstar Capsule Lodge" and policy terms.
+- RRF avoids manually normalizing FAISS and BM25 scores.
+- Support chunks improve comparison questions where both named hotels must appear in context.
+
+## 9. Generation and Hallucination Control
+
+Implementation: `src/generator.py`
+
+The generator uses Groq's Llama model:
+
+```text
+GROQ_MODEL = "llama-3.1-8b-instant"
+```
+
+The system prompt instructs the model to:
+
+- Answer only from `<context>`
+- Refuse when information is not present
+- Avoid chunk IDs and source IDs in public answers
+- Compare all explicitly named hotels when context exists
+- Ignore prompt-injection attempts inside user questions
+
+Hallucination controls:
+
+- Strict context-only prompt
+- Fixed refusal message for unavailable facts
+- Prompt-injection regex checks before calling the LLM
+- Output validation for suspicious injection artifacts
+- Index freshness check to avoid stale answers
+- Gradio UI hides raw retrieval chunks and source IDs
+
+Example refusal behavior:
+
+```text
+Question: which rooms are vacant right now?
+Answer: I don't have enough information to answer this from the available hotel data.
+```
+
+This is correct because live room availability requires a booking/PMS API, not a static RAG dataset.
+
+## 10. Setup
+
+Python 3.11 is recommended.
 
 ```bash
-git clone https://github.com/<your-username>/RAG-hotel.git
+git clone https://github.com/Suhas-123-cell/RAG-hotel.git
 cd RAG-hotel
 
 python3.11 -m venv .venv
@@ -123,19 +322,23 @@ source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
-Create a `.env` file:
+Create a local environment file:
 
 ```bash
 cp .env.example .env
 ```
 
-Then edit `.env`:
+Set your Groq API key in `.env`:
 
 ```text
 GROQ_API_KEY=gsk_your_key_here
 ```
 
-## Run the Gradio Demo
+Do not commit `.env`.
+
+## 11. Running Locally
+
+### Gradio App
 
 ```bash
 source .venv/bin/activate
@@ -148,140 +351,132 @@ Open:
 http://127.0.0.1:7860
 ```
 
-On first launch, the system builds the FAISS index. If `data/hotel_documents.json` is newer than the cached index, the app rebuilds automatically.
-
-To force a rebuild from the CLI:
+If port `7860` is busy:
 
 ```bash
-python main.py --rebuild
+GRADIO_SERVER_PORT=7861 python app.py
 ```
 
-## Demo Script
-
-Use the Gradio UI for the live demo. A good 3-5 minute demo flow:
-
-1. Start the app:
-
-   ```bash
-   python app.py
-   ```
-
-2. Open `http://127.0.0.1:7860`.
-
-3. Ask a greeting:
-
-   ```text
-   hi
-   ```
-
-   This shows the assistant is conversational and does not call retrieval for simple greetings.
-
-4. Ask the required assessment query:
-
-   ```text
-   Which hotels have free WiFi and complimentary breakfast?
-   ```
-
-5. Ask a comparison query:
-
-   ```text
-   Compare bathroom essentials at The Azure Grand and Northstar Capsule Lodge.
-   ```
-
-6. Ask an edge-case query:
-
-   ```text
-   Which hotels do not have televisions in the rooms?
-   ```
-
-7. Ask an out-of-domain query:
-
-   ```text
-   What is the stock price of Apple?
-   ```
-
-   The expected behavior is a refusal or "not enough information" answer because the knowledge base is only about hotels.
-
-Recommended screen recording:
-
-- Show terminal running `python app.py`
-- Show browser at `http://127.0.0.1:7860`
-- Ask the four demo questions above
-- Briefly show `data/hotel_documents.json`, `src/pipeline.py`, and `outputs/sample_outputs.md`
-
-## Run CLI Chat
+### CLI Chat
 
 ```bash
 source .venv/bin/activate
 python main.py
 ```
 
-Then type questions interactively. Use `quit`, `exit`, or `q` to stop.
-
-## Run Tests
+To force rebuild the FAISS index:
 
 ```bash
-source .venv/bin/activate
+python main.py --rebuild
+```
+
+## 12. Demo Script
+
+Use these questions for a short demo:
+
+```text
+hi
+Which hotels have free WiFi and complimentary breakfast?
+What is the cancellation policy of Coral Bay Suites?
+Suggest a hotel with excellent reviews near the beach.
+Compare bathroom essentials at The Azure Grand and Northstar Capsule Lodge.
+Which hotels do not have televisions in the rooms?
+What is the stock price of Apple?
+which rooms are vacant right now?
+```
+
+Expected behavior:
+
+- Hotel facts should be answered from context.
+- Out-of-domain questions should be refused.
+- Live availability questions should be refused because the app has no booking inventory API.
+
+For screen recording:
+
+1. Show the terminal running `python app.py`
+2. Open the Gradio UI
+3. Ask the assessment queries
+4. Ask one edge case
+5. Briefly show `data/hotel_documents.json`, `src/pipeline.py`, and `outputs/sample_outputs.md`
+
+## 13. Tests
+
+Run all tests:
+
+```bash
 pytest tests/ -v
 ```
 
-Fast focused test run:
+Fast focused tests:
 
 ```bash
 pytest tests/test_preprocessor.py tests/test_retriever.py -q
 ```
 
-## Retrieval Design
+Current focused test status:
 
-The retriever combines:
+```text
+30 passed
+```
 
-- Dense semantic search over FAISS
-- BM25 keyword search
-- Reciprocal Rank Fusion (RRF)
+## 14. Evaluation and Sample Outputs
 
-This helps with both semantic questions and exact-match hotel details. For example, dense retrieval helps with paraphrases like "internet access" versus "Wi-Fi", while BM25 helps with exact hotel names, policies, and terms like "Northstar Capsule Lodge".
-
-Important config values are in `config.py`:
-
-- `EMBEDDING_MODEL = "sentence-transformers/all-MiniLM-L6-v2"`
-- `EMBEDDING_DIM = 384`
-- `HYBRID_CANDIDATE_K = 50`
-- `GENERATION_CONTEXT_K = 14`
-- `RRF_K = 60`
-- `DEFAULT_K = 5`
-
-## Hallucination Control
-
-The system uses several controls:
-
-- Strict context-only system prompt
-- Fixed refusal when the answer is not in retrieved context
-- Prompt-injection pattern checks before calling the LLM
-- Output validation for suspicious prompt-injection artifacts
-- Hidden retrieval context instead of public chunk IDs in the Gradio UI
-- Automatic index freshness check so the app does not accidentally answer from stale data
-
-The Gradio UI intentionally does not show raw chunk IDs or retrieved source chunks to end users. The sample-output file still documents retrieval behavior for assessment review.
-
-## Sample Outputs and Evaluation
-
-Assessment sample outputs are in:
+Sample assessment outputs are in:
 
 ```text
 outputs/sample_outputs.md
 ```
 
-That file should include:
+This file contains:
 
-- The three required example queries
+- Required example queries
 - Retrieved chunks or summaries
-- Final LLM answers
-- Retrieval metric results such as Precision@k or MRR
-- A short qualitative analysis and at least one edge case
+- Final answers
+- Retrieval metric results
+- Qualitative analysis
+- Failure or edge-case notes
 
-## GitHub Submission
+The assessment asked for at least one retrieval metric such as Precision@k, Recall@k, or MRR. This project reports Precision@k and MRR-style analysis in the sample outputs.
 
-Before pushing, make sure these files are included:
+## 15. Hugging Face Spaces Deployment
+
+The project is configured for Hugging Face Spaces with the YAML metadata at the top of this README:
+
+```yaml
+sdk: gradio
+sdk_version: 5.50.0
+python_version: 3.11
+app_file: app.py
+```
+
+The live Space is:
+
+```text
+https://huggingface.co/spaces/suhas20sh/staychat-rag
+```
+
+Required Space secret:
+
+```text
+GROQ_API_KEY = gsk_your_actual_key
+```
+
+Add it in:
+
+```text
+Settings -> Variables and secrets -> New secret
+```
+
+Notes:
+
+- Free CPU Spaces may take a few minutes to start.
+- First startup downloads the embedding model and builds the FAISS index.
+- The app reads the Hugging Face-provided host and port automatically.
+- Python is pinned to 3.11 to avoid slow source builds for ML dependencies.
+
+## 16. GitHub Submission
+
+Files that should be included:
 
 ```text
 app.py
@@ -295,218 +490,68 @@ outputs/sample_outputs.md
 src/
 tests/
 pytest.ini
+pyrefly.toml
 ```
 
-Do not commit these:
+Files that should not be committed:
 
 ```text
 .env
 .venv/
+index/
 __pycache__/
 .pytest_cache/
-index/
 ```
 
-Push to GitHub:
+Submit either:
 
-```bash
-git init
-git add .
-git commit -m "Add StayChat hotel RAG system"
-git branch -M main
-git remote add origin https://github.com/<your-username>/RAG-hotel.git
-git push -u origin main
-```
+- GitHub repository link
+- ZIP archive of the project
 
-If the repo already exists locally and has a remote:
-
-```bash
-git add .
-git commit -m "Finalize StayChat RAG submission"
-git push
-```
-
-Submission options from the assessment:
-
-- Submit the GitHub repository link, or
-- Submit a single ZIP archive containing the project
-
-To create a ZIP:
-
-```bash
-cd ..
-zip -r RAG-hotel-submission.zip RAG-hotel \
-  -x "RAG-hotel/.venv/*" \
-  -x "RAG-hotel/.env" \
-  -x "RAG-hotel/index/*" \
-  -x "RAG-hotel/__pycache__/*" \
-  -x "RAG-hotel/.pytest_cache/*"
-```
-
-## Deploy on Hugging Face Spaces
-
-You can deploy the Gradio app on a free Hugging Face account using **Spaces**.
-
-### Option A - Deploy from the Hugging Face Website
-
-1. Create or log in to your Hugging Face account.
-
-2. Go to:
-
-   ```text
-   https://huggingface.co/new-space
-   ```
-
-3. Create a new Space:
-
-   ```text
-   Space name: staychat-rag
-   License: MIT or other
-   SDK: Gradio
-   Hardware: CPU basic - free
-   Visibility: Public or Private
-   ```
-
-4. Upload or push these project files to the Space:
-
-   ```text
-   app.py
-   main.py
-   config.py
-   requirements.txt
-   README.md
-   .env.example
-   data/hotel_documents.json
-   outputs/sample_outputs.md
-   src/
-   tests/
-   pytest.ini
-   ```
-
-5. Do not upload:
-
-   ```text
-   .env
-   .venv/
-   index/
-   __pycache__/
-   .pytest_cache/
-   ```
-
-6. Add your Groq API key as a Space secret:
-
-   - Open your Space on Hugging Face
-   - Go to **Settings**
-   - Go to **Variables and secrets**
-   - Add a new **Secret**
-
-   ```text
-   Name: GROQ_API_KEY
-   Value: gsk_your_actual_key_here
-   ```
-
-   Do not put the real key in `app.py`, `README.md`, or `.env`.
-
-7. Wait for the Space to build.
-
-   The first build can take several minutes because it installs dependencies and downloads the embedding model. The first app startup can also take time because the FAISS index is built from `data/hotel_documents.json`.
-
-8. Once it says **Running**, open the public Space URL:
-
-   ```text
-   https://huggingface.co/spaces/<your-username>/staychat-rag
-   ```
-
-### Option B - Deploy from Terminal with Git
-
-Install the Hugging Face CLI if needed:
-
-```bash
-pip install -U huggingface_hub
-```
-
-Log in:
-
-```bash
-huggingface-cli login
-```
-
-Create a Space from the website first, then clone it:
-
-```bash
-git clone https://huggingface.co/spaces/<your-username>/staychat-rag
-cd staychat-rag
-```
-
-Copy this project into the Space folder, excluding local generated files:
-
-```bash
-rsync -av --exclude ".git" --exclude ".venv" --exclude ".env" --exclude "index" \
-  --exclude "__pycache__" --exclude ".pytest_cache" \
-  /path/to/RAG-hotel/ ./
-```
-
-Commit and push:
-
-```bash
-git add .
-git commit -m "Deploy StayChat RAG Gradio app"
-git push
-```
-
-Then add the `GROQ_API_KEY` secret in the Space settings.
-
-### Option C - Deploy with `gradio deploy`
-
-Gradio also supports direct deployment:
-
-```bash
-source .venv/bin/activate
-gradio deploy
-```
-
-Follow the prompts. The deploy command uploads the app to Hugging Face Spaces and respects `.gitignore`.
-
-### Hugging Face Space Notes
-
-- The Space must have `requirements.txt` at the repo root.
-- The main file should be named `app.py`.
-- This project reads `GROQ_API_KEY` from environment variables, which is how Hugging Face exposes Space secrets.
-- `app.py` is configured to use the server host/port provided by Spaces.
-- The free CPU Space is enough for a small demo, but startup may be slow because `sentence-transformers` and FAISS run on CPU.
-- If the Space fails with an API key error, check that `GROQ_API_KEY` is added as a **Secret**, not as plain text in the code.
-- If the Space rebuilds repeatedly, check the build logs from the Space page.
-
-Recommended Space demo questions:
+Suggested email:
 
 ```text
-Which hotels have free WiFi and complimentary breakfast?
-Compare bathroom essentials at The Azure Grand and Northstar Capsule Lodge.
-Which hotels do not have televisions in the rooms?
-Which properties are best for late-night airport layovers?
-What is the stock price of Apple?
+Subject: StayChat AI Developer Assessment Submission - Suhas
+
+Hi [Name],
+
+Please find my StayChat RAG assessment submission below:
+
+GitHub Repository:
+https://github.com/Suhas-123-cell/RAG-hotel
+
+Live Gradio Demo:
+https://huggingface.co/spaces/suhas20sh/staychat-rag
+
+The project includes source code, dataset, README, requirements.txt, tests, sample outputs, and a live Gradio demo. The Hugging Face Space may take a minute to wake up on the free CPU tier.
+
+Thank you,
+Suhas
 ```
 
-## Known Limitations
+## 17. Known Limitations
 
-- The dataset is synthetic, not scraped from real hotel websites.
-- Groq requires an API key in `.env`.
-- The first run may take time because embeddings and the FAISS index are built locally.
-- If the embedding model is not cached, the machine needs internet access on first run to download it.
-- The UI hides source chunks for user experience, but sample outputs still document retrieval details for assessment.
-- Multi-hop retrieval is improved with support chunks, but a production system should add query decomposition or a cross-encoder re-ranker.
+- The hotel dataset is synthetic.
+- The app does not connect to a live booking engine or property management system.
+- It cannot answer current room vacancy, live pricing, or booking-confirmation questions.
+- Groq API access requires `GROQ_API_KEY`.
+- The first run can be slow while the embedding model downloads and the FAISS index builds.
+- Free Hugging Face Spaces can sleep and may need time to restart.
+- The UI hides raw chunks for end users, although sample outputs document retrieval behavior for assessment.
+- A production system should add query decomposition, reranking, monitoring, and real hotel data integrations.
 
-## Assessment Checklist
+## 18. Assessment Checklist
 
-- [x] Source code included
-- [x] Dataset included
-- [x] README included
-- [x] `requirements.txt` included
-- [x] Gradio demo included
-- [x] Preprocessing implemented
-- [x] Vector embeddings and FAISS implemented
-- [x] Hybrid retrieval implemented
-- [x] LLM generation implemented
-- [x] Hallucination controls implemented
-- [x] Tests included
-- [x] Sample outputs included
+- [x] Source code
+- [x] Dataset
+- [x] README
+- [x] `requirements.txt`
+- [x] Gradio demo
+- [x] Preprocessing
+- [x] Embeddings
+- [x] FAISS vector store
+- [x] Hybrid retrieval
+- [x] LLM generation
+- [x] Hallucination controls
+- [x] Tests
+- [x] Sample outputs
