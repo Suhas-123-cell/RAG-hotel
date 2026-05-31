@@ -35,11 +35,12 @@ BM25_B = 0.75
 
 # Hybrid retrieval (BM25 + Dense → RRF)
 RRF_K = 60              # RRF constant; higher = less rank-gap impact
-HYBRID_CANDIDATE_K = 50 # candidates fetched from each system before merge
+HYBRID_CANDIDATE_K = 30 # candidates fetched from each system before merge
 
 # Retrieval
 DEFAULT_K = 5           # final top-k after RRF merge
-GENERATION_CONTEXT_K = 14  # broader hidden context for answer generation
+GENERATION_CONTEXT_K = 8  # hidden context for answer generation
+MAX_GENERATION_CHUNKS = 10  # cap prompt size for live demo latency
 SIMILARITY_THRESHOLD = 0.3  # min cosine similarity score (dense gate)
 
 # Prompt injection guard patterns
@@ -70,7 +71,7 @@ INJECTION_PATTERNS = [
 # LLM
 GROQ_MODEL = "llama-3.1-8b-instant"
 GROQ_API_BASE = "https://api.groq.com/openai/v1"
-MAX_TOKENS = 1024
+MAX_TOKENS = 512
 TEMPERATURE = 0.1       # low for faithfulness
 
 # Gradio
