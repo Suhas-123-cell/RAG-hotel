@@ -119,14 +119,14 @@ class TestPreprocessorProcessesDocuments:
         with open(config.DOCUMENTS_FILE, "r", encoding="utf-8") as fh:
             documents = json.load(fh)
 
-        assert len(documents) == 40, (
-            f"Expected 40 documents in hotel_documents.json, got {len(documents)}"
+        assert len(documents) == 140, (
+            f"Expected 140 documents in hotel_documents.json, got {len(documents)}"
         )
 
         preprocessor = HotelPreprocessor()
         all_chunks = preprocessor.process_all(documents)
 
-        assert len(all_chunks) >= 40, (
+        assert len(all_chunks) >= 140, (
             "Should produce at least as many chunks as there are documents"
         )
 
