@@ -35,7 +35,7 @@ METHODS = {
     "rrf": "RRF hybrid (k=60)",
     "rrf_support": "RRF + support chunks (pipeline context)",
 }
-METRICS = ["recall@5", "recall@10", "hit@5", "mrr@10", "ndcg@10"]
+METRICS = ["recall@5", "recall@10", "hit@5", "hit@10", "mrr@10", "ndcg@10"]
 TYPE_ORDER = ["exact_name", "paraphrase", "multi_condition", "comparison", "policy"]
 
 
@@ -67,6 +67,7 @@ def score_ranking(ranked_docs: list[str], relevant: set[str]) -> dict:
         "recall@5": recall_at_k(ranked_docs, relevant, 5),
         "recall@10": recall_at_k(ranked_docs, relevant, 10),
         "hit@5": hit_at_k(ranked_docs, relevant, 5),
+        "hit@10": hit_at_k(ranked_docs, relevant, 10),
         "mrr@10": reciprocal_rank(ranked_docs, relevant, 10),
         "ndcg@10": ndcg_at_k(ranked_docs, relevant, 10),
     }
@@ -121,8 +122,8 @@ def _row(label: str, scores: dict) -> str:
 
 
 def _table(title_col: str, rows: list[tuple[str, dict]]) -> str:
-    header = f"| {title_col} | Recall@5 | Recall@10 | Hit@5 | MRR@10 | NDCG@10 |"
-    sep = "|---|---:|---:|---:|---:|---:|"
+    header = f"| {title_col} | Recall@5 | Recall@10 | Hit@5 | Hit@10 | MRR@10 | NDCG@10 |"
+    sep = "|---|---:|---:|---:|---:|---:|---:|"
     return "\n".join([header, sep] + [_row(label, s) for label, s in rows])
 
 
@@ -185,7 +186,9 @@ def render_markdown(results: dict) -> str:
         "- The `RRF + support` row scores the context the pipeline actually hands to the LLM: "
         f"{meta['generation_context_k']} RRF chunks plus support chunks, support first, capped at "
         f"{meta['max_generation_chunks']}. Support chunks come first, so rank-based metrics "
-        "(MRR, NDCG) are penalised when a support chunk is irrelevant. Recall@10 is order-independent.",
+        "(Recall@5, Hit@5, MRR, NDCG) are penalised when a support chunk is irrelevant, and the cap can "
+        "push RRF chunks out of the context. Recall@10 and Hit@10 do not depend on order and are the "
+        "right columns for what the LLM sees.",
         "- BM25 and dense scores are not comparable; RRF ignores them and uses ranks only.",
         "- Answer quality is not measured here: that needs a live LLM and is not part of this script.",
         "",

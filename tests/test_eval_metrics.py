@@ -55,7 +55,7 @@ def test_labels_file_is_valid():
 
 def test_aggregate_splits_tuned_queries():
     def entry(qid, tuned, hit):
-        s = {"recall@5": hit, "recall@10": hit, "hit@5": hit, "mrr@10": hit, "ndcg@10": hit}
+        s = {"recall@5": hit, "recall@10": hit, "hit@5": hit, "hit@10": hit, "mrr@10": hit, "ndcg@10": hit}
         return {"id": qid, "type": "policy", "tuned_on": tuned,
                 "scores": {m: s for m in ("dense", "bm25", "rrf", "rrf_support")}}
 
@@ -67,4 +67,4 @@ def test_aggregate_splits_tuned_queries():
 
 def test_score_ranking_has_all_metrics():
     scores = score_ranking(["a", "b"], {"a"})
-    assert set(scores) == {"recall@5", "recall@10", "hit@5", "mrr@10", "ndcg@10"}
+    assert set(scores) == {"recall@5", "recall@10", "hit@5", "hit@10", "mrr@10", "ndcg@10"}
