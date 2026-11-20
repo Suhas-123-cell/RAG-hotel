@@ -16,14 +16,17 @@ logger = logging.getLogger(__name__)
 class RAGPipeline:
     """End-to-end RAG pipeline: ingest → embed → retrieve → generate."""
 
-    def __init__(self, force_rebuild: bool = False):
-        """Initialize the pipeline. Loads cached index if available, else builds it."""
+    def __init__(self, force_rebuild: bool = False, load_generator: bool = True):
+        """Initialize the pipeline. Loads cached index if available, else builds it.
+
+        Pass load_generator=False to run retrieval only (no GROQ_API_KEY needed).
+        """
         self._setup_logging()
         logger.info("Initializing StayChat RAG Pipeline...")
 
         self.preprocessor = HotelPreprocessor()
         self.embedder = HotelEmbedder()
-        self.generator = HotelGenerator()
+        self.generator = HotelGenerator() if load_generator else None
 
         if not force_rebuild and self._index_is_current():
             logger.info("Loading cached FAISS index...")
@@ -176,28 +179,45 @@ class RAGPipeline:
             seen.add(cid)
         return deduped[:config.MAX_GENERATION_CHUNKS]
 
+    def build_context(self, question: str) -> dict:
+        """Run retrieval, support-chunk expansion and capping without calling the LLM.
+
+        Returns the RRF results, the support chunks added, and the final
+        generation context (support chunks first, then RRF results, deduped
+        and capped at MAX_GENERATION_CHUNKS).
+        """
+        retrieved = self.retriever.retrieve_hybrid(question, k=config.GENERATION_CONTEXT_K)
+        filtered = self.retriever.filter_by_threshold(retrieved, min_score=0.0)
+        support_chunks = self._supporting_chunks_for_topic_terms(question, filtered)
+        support_chunks.extend(self._supporting_chunks_for_named_hotels(question, filtered + support_chunks))
+        generation_chunks = self._dedupe_and_cap_chunks(support_chunks + filtered)
+        return {
+            "retrieved": retrieved,
+            "support_chunks": support_chunks,
+            "generation_chunks": generation_chunks,
+        }
+
     def query(self, question: str) -> dict:
         """Run a full RAG query: retrieve → filter → generate.
 
         Returns a dict with keys: question, retrieved_chunks, filtered_chunks,
         answer, sources_cited, top_score.
         """
+        if self.generator is None:
+            raise RuntimeError("Pipeline was created with load_generator=False; query() needs the generator.")
         start = time.perf_counter()
-        retrieved = self.retriever.retrieve_hybrid(question, k=config.GENERATION_CONTEXT_K)
-        filtered = self.retriever.filter_by_threshold(retrieved, min_score=0.0)
-        support_start = time.perf_counter()
-        support_chunks = self._supporting_chunks_for_topic_terms(question, filtered)
-        support_chunks.extend(self._supporting_chunks_for_named_hotels(question, filtered + support_chunks))
-        generation_chunks = self._dedupe_and_cap_chunks(support_chunks + filtered)
+        context = self.build_context(question)
+        retrieved = context["retrieved"]
+        support_chunks = context["support_chunks"]
+        generation_chunks = context["generation_chunks"]
         generation = self.generator.generate(question, generation_chunks)
         elapsed = time.perf_counter() - start
         logger.info(
-            "Query completed in %.2fs (retrieved=%d, support=%d, generation_chunks=%d, support_time=%.2fs)",
+            "Query completed in %.2fs (retrieved=%d, support=%d, generation_chunks=%d)",
             elapsed,
             len(retrieved),
             len(support_chunks),
             len(generation_chunks),
-            time.perf_counter() - support_start,
         )
 
         return {
