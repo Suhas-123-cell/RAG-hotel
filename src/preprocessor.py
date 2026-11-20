@@ -66,28 +66,54 @@ class HotelPreprocessor:
         }
 
     def _split_oversized(self, sentences: list, doc: dict, start_index: int) -> list:
-        """Split a segment exceeding SEMANTIC_MAX_CHUNK_TOKENS using fixed-size chunking."""
-        chunks = []
-        current_sents = []
+        """Split a segment exceeding SEMANTIC_MAX_CHUNK_TOKENS into sentence groups.
+
+        A group is closed only once it holds MIN_CHUNK_TOKENS, and a short tail is
+        merged into the previous group, so no sentence is dropped.
+        """
+        groups = []
+        current = []
         current_tokens = 0
-        idx = start_index
 
         for sent in sentences:
             n = len(self._tokenize_words(sent))
-            if current_tokens + n > config.SEMANTIC_MAX_CHUNK_TOKENS and current_sents:
-                if current_tokens >= config.MIN_CHUNK_TOKENS:
-                    chunks.append(self._sentences_to_chunk(current_sents, doc, idx))
-                    idx += 1
-                current_sents = [sent]
+            if current and current_tokens >= config.MIN_CHUNK_TOKENS and current_tokens + n > config.SEMANTIC_MAX_CHUNK_TOKENS:
+                groups.append(current)
+                current = [sent]
                 current_tokens = n
             else:
-                current_sents.append(sent)
+                current.append(sent)
                 current_tokens += n
 
-        if current_sents and current_tokens >= config.MIN_CHUNK_TOKENS:
-            chunks.append(self._sentences_to_chunk(current_sents, doc, idx))
+        if current:
+            if current_tokens < config.MIN_CHUNK_TOKENS and groups:
+                groups[-1].extend(current)
+            else:
+                groups.append(current)
 
-        return chunks
+        return [self._sentences_to_chunk(g, doc, start_index + i) for i, g in enumerate(groups)]
+
+    def _merge_short_segments(self, segments: list) -> list:
+        """Merge segments under MIN_CHUNK_TOKENS into a neighbour instead of discarding them.
+
+        A short segment is prepended to the next one; a short final segment is
+        appended to the previous one.
+        """
+        merged = []
+        carry = []
+        for seg in segments:
+            seg = carry + seg
+            carry = []
+            if len(self._tokenize_words(" ".join(seg))) < config.MIN_CHUNK_TOKENS:
+                carry = seg
+            else:
+                merged.append(seg)
+        if carry:
+            if merged:
+                merged[-1].extend(carry)
+            else:
+                merged.append(carry)
+        return merged
 
     def semantic_chunk_document(self, doc: dict, embedder) -> list:
         """Chunk a document using semantic boundary detection (percentile-based similarity drops)."""
@@ -116,19 +142,15 @@ class HotelPreprocessor:
 
         chunks = []
         idx = 0
-        for seg in segments:
+        for seg in self._merge_short_segments(segments):
             token_count = len(self._tokenize_words(" ".join(seg)))
             if token_count <= config.SEMANTIC_MAX_CHUNK_TOKENS:
-                if token_count >= config.MIN_CHUNK_TOKENS:
-                    chunks.append(self._sentences_to_chunk(seg, doc, idx))
-                    idx += 1
+                chunks.append(self._sentences_to_chunk(seg, doc, idx))
+                idx += 1
             else:
                 sub = self._split_oversized(seg, doc, idx)
                 chunks.extend(sub)
                 idx += len(sub)
-
-        if not chunks:
-            chunks.append(self._sentences_to_chunk(sentences, doc, 0))
 
         logger.debug("Semantic chunked %s → %d chunks", doc["id"], len(chunks))
         return chunks

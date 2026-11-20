@@ -5,9 +5,8 @@ Runs without any external services (no GPU, no API key required).
 """
 import json
 
+import numpy as np
 import pytest
-
-# Make sure the project root is importable regardless of how pytest is invoked
 
 import config
 from src.preprocessor import HotelPreprocessor
@@ -215,3 +214,50 @@ class TestAllDocsProduceChunks:
         all_chunks = preprocessor.process_all(hotel_documents)
         assert len(all_chunks) >= 40, "Fewer chunks than documents — something is wrong"
         assert len(all_chunks) <= 2000, "Unexpectedly large number of chunks"
+
+
+# ---------------------------------------------------------------------------
+# Semantic chunking keeps all text
+# ---------------------------------------------------------------------------
+
+class _RandomEmbedder:
+    """Stand-in embedder: seeded random unit vectors, so breakpoints land in odd places."""
+
+    def __init__(self, seed):
+        self.model = self
+        self._rng = np.random.default_rng(seed)
+
+    def encode(self, texts, normalize_embeddings=True, show_progress_bar=False):
+        vecs = self._rng.normal(size=(len(texts), 16))
+        return vecs / np.linalg.norm(vecs, axis=1, keepdims=True)
+
+
+class TestSemanticChunkingKeepsText:
+    @pytest.mark.parametrize("seed", [0, 1, 2])
+    def test_no_sentence_is_dropped(self, preprocessor, hotel_documents, seed):
+        """Short segments must be merged into a neighbour, never discarded."""
+        embedder = _RandomEmbedder(seed)
+        for doc in hotel_documents:
+            chunks = preprocessor.semantic_chunk_document(doc, embedder)
+            covered = " ".join(c["text"] for c in chunks)
+            sentences = preprocessor._split_into_sentences(preprocessor.clean_text(doc["text"]))
+            missing = [s for s in sentences if s not in covered]
+            assert not missing, f"{doc['id']} lost sentences: {missing[:1]}"
+
+    def test_short_leading_segment_is_merged_forward(self, preprocessor):
+        long_tail = [f"sentence {i} " + "word " * 12 + "ends here." for i in range(3)]
+        segments = [["short title."], long_tail]
+        merged = preprocessor._merge_short_segments(segments)
+        assert len(merged) == 1
+        assert merged[0][0] == "short title."
+
+    def test_short_final_segment_is_merged_back(self, preprocessor):
+        long_head = ["word " * 40 + "ends here."]
+        merged = preprocessor._merge_short_segments([long_head, ["tiny tail."]])
+        assert merged == [long_head + ["tiny tail."]]
+
+    def test_oversized_split_keeps_every_sentence(self, preprocessor, long_doc):
+        sentences = preprocessor._split_into_sentences(preprocessor.clean_text(long_doc["text"]))
+        chunks = preprocessor._split_oversized(sentences, long_doc, 0)
+        assert len(chunks) > 1
+        assert " ".join(c["text"] for c in chunks) == " ".join(sentences)
