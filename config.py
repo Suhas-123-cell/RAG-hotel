@@ -82,13 +82,7 @@ GRADIO_TITLE = "StayChat Hotel Q&A — RAG Demo"
 LOG_LEVEL = "INFO"
 LOG_FORMAT = "%(asctime)s — %(name)s — %(levelname)s — %(message)s"
 
-# Evaluation — ground truth chunk IDs for each mandatory query
-# These are manually set after building the dataset; update after indexing
-EVAL_GROUND_TRUTH = {
-    "Which hotels have free WiFi and complimentary breakfast?": [],  # filled at runtime
-    "What is the cancellation policy of Coral Bay Suites?": [],
-    "Suggest a hotel with excellent reviews near the beach.": [],
-}
+# Labelled evaluation queries live in eval/labels.jsonl (see eval/retrieval_eval.py)
 
 # Mandatory demo queries
 DEMO_QUERIES = [

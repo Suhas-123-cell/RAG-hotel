@@ -11,7 +11,7 @@ BANNER = r"""
  ___) | || (_| | |_| |___) | | | | (_| | |_
 |____/ \__\__,_|\__, |____/|_| |_|\__,_|\__|
                 |___/
-  Hotel Q&A — Powered by RAG + Groq LLaMA-3
+  Hotel Q&A — RAG + Groq Llama 3.1
 """
 
 SEPARATOR = "=" * 70
