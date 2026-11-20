@@ -12,7 +12,9 @@ license: mit
 
 StayChat is a hotel question-answering system built with Retrieval-Augmented Generation (RAG). It answers questions from a curated hotel knowledge base instead of relying on the language model's memory.
 
-The system cleans hotel documents, chunks them, creates local embeddings, stores vectors in FAISS, retrieves relevant context with hybrid search, and uses a Groq-hosted Llama model to generate grounded answers.
+The system cleans hotel documents, chunks them, creates local embeddings, stores vectors in FAISS, retrieves relevant context with hybrid search (dense + BM25, merged with Reciprocal Rank Fusion), and uses a Groq-hosted Llama 3.1 8B model (`llama-3.1-8b-instant`) to generate grounded answers.
+
+Retrieval is evaluated on 63 hand-labelled queries; see [Evaluation](#14-evaluation).
 
 Live demo:
 
@@ -37,23 +39,24 @@ The system is designed to:
 - Refuse questions that require live booking data or external knowledge
 - Reduce hallucination with strict prompting and guardrails
 - Provide a browser demo through Gradio
-- Include tests and reproducible setup instructions
+- Include tests and a retrieval evaluation that can be re-run without an LLM key
 
 ## 2. Key Features
 
 - **140 synthetic hotel documents** across **15 hotels**
-- Five required document categories: `description`, `amenities`, `reviews`, `policies`, `location`
+- Five document categories: `description`, `amenities`, `reviews`, `policies`, `location`
 - Sentence-aware chunking with semantic chunking support
 - Local `sentence-transformers/all-MiniLM-L6-v2` embeddings
 - FAISS vector index using inner-product search over normalized embeddings
 - BM25 keyword retrieval for exact hotel names and policy terms
 - Reciprocal Rank Fusion to combine dense and sparse results
-- Extra support chunks for named-hotel comparisons and common multi-condition queries
-- Groq Llama answer generation with strict context-only prompting
+- Extra support chunks (hand-written keyword rules) for named-hotel comparisons and common multi-condition queries
+- Groq Llama 3.1 8B answer generation with strict context-only prompting
 - Prompt-injection detection before LLM calls
 - Gradio web app for demo
 - CLI chat mode
-- Unit tests for preprocessing and retrieval
+- Unit tests for preprocessing, retrieval, the pipeline and the evaluation metrics
+- Retrieval evaluation (Recall, Hit rate, MRR, NDCG) over labelled queries, no API key needed
 
 ## 3. Repository Structure
 
@@ -67,8 +70,16 @@ RAG-hotel/
   .env.example                   # API key placeholder
   data/
     hotel_documents.json         # Hotel knowledge base
+  eval/
+    labels.jsonl                 # 63 hand-labelled queries with relevant document ids
+    retrieval_eval.py            # Recall@k / Hit@k / MRR / NDCG for each retrieval method
+    metrics.py                   # Ranking metric functions
+    chunk_coverage.py            # Checks that chunking keeps every sentence
+    sample_retrieval.py          # Regenerates outputs/sample_outputs.md
+    results.md, results.json     # Output of the last evaluation run
+    results_before_chunk_fix.json # Metrics before the chunking bug fix (baseline)
   outputs/
-    sample_outputs.md            # Sample answers and evaluation notes
+    sample_outputs.md            # Retrieval-only sample output (no LLM answers)
   src/
     preprocessor.py              # Cleaning and chunking
     embedder.py                  # SentenceTransformer + FAISS index
@@ -80,7 +91,8 @@ RAG-hotel/
     test_preprocessor.py
     test_retriever.py
     test_pipeline.py
-  pytest.ini
+    test_eval_metrics.py
+  pytest.ini                     # pytest config (adds the repo root to the import path)
   pyrefly.toml
 ```
 
@@ -88,7 +100,7 @@ Generated/local files such as `.venv/`, `.env`, `index/`, `__pycache__/`, and `.
 
 ## 4. Dataset
 
-The assessment asks for 30-50 hotel documents across five categories. This project intentionally expands beyond the minimum to stress-test retrieval on a harder, uneven dataset.
+The knowledge base has five document categories and is deliberately uneven: five hotels have 20 or more documents each, the other ten have three or four, and several are edge cases (capsule hotel, airport transit hotel, off-grid lodge) that stress retrieval.
 
 Current dataset summary:
 
@@ -96,11 +108,11 @@ Current dataset summary:
 |---|---:|
 | Total documents | 140 |
 | Hotels | 15 |
-| Chunked records | About 296 on current semantic chunking |
+| Chunks | 306 with the current semantic chunking (`python -m eval.chunk_coverage`) |
 
 Category coverage:
 
-| Required category | Dataset category | Current count |
+| Content | Dataset category | Count |
 |---|---|---:|
 | Hotel descriptions | `description` | 23 |
 | Amenities | `amenities` | 47 |
@@ -165,7 +177,11 @@ HotelRetriever
   - dense FAISS retrieval
   - BM25 keyword retrieval
   - Reciprocal Rank Fusion
-  - support chunks for named comparisons
+        |
+        v
+RAGPipeline
+  - support chunks for named-hotel and multi-condition questions
+  - dedupe and cap the generation context
         |
         v
 HotelGenerator
@@ -191,21 +207,18 @@ Cleaning steps:
 
 Chunking:
 
-- Fallback chunking is sentence-aware and uses:
-  - `CHUNK_SIZE = 200`
-  - `CHUNK_OVERLAP = 40`
-  - `MIN_CHUNK_TOKENS = 30`
-- Semantic chunking uses sentence-window embeddings and breakpoints:
+- The pipeline uses semantic chunking. It embeds sentence windows, cuts where similarity to the next window falls in the bottom quartile, and splits segments above the size cap:
   - `SEMANTIC_WINDOW_SIZE = 3`
   - `SEMANTIC_BREAKPOINT_PERCENTILE = 25`
   - `SEMANTIC_MAX_CHUNK_TOKENS = 300`
+  - Segments shorter than `MIN_CHUNK_TOKENS = 30` are merged into a neighbouring chunk, never dropped.
+- A sentence-aware fixed-size chunker with overlap is used only when no embedder is supplied (the unit tests); it uses `CHUNK_SIZE = 200`, `CHUNK_OVERLAP = 40` and `MIN_CHUNK_TOKENS = 30`.
 
 Why this fits hotel data:
 
 - Hotel policies and amenities are often sentence-level facts.
-- Sentence-aware chunking avoids cutting cancellation rules or amenity descriptions mid-thought.
-- Overlap preserves context across boundaries.
-- Semantic chunking helps split long documents when the topic changes from, for example, room features to spa facilities.
+- Chunks are built from whole sentences, so a cancellation rule or amenity description is not cut mid-sentence.
+- Semantic chunking splits long documents where the topic changes, for example from room features to spa facilities. It adds no overlap between chunks.
 
 ## 7. Embeddings and Vector Store
 
@@ -395,48 +408,58 @@ For screen recording:
 
 1. Show the terminal running `python app.py`
 2. Open the Gradio UI
-3. Ask the assessment queries
+3. Ask the demo queries
 4. Ask one edge case
-5. Briefly show `data/hotel_documents.json`, `src/pipeline.py`, and `outputs/sample_outputs.md`
+5. Briefly show `data/hotel_documents.json`, `src/pipeline.py`, and `eval/results.md`
 
 ## 13. Tests
 
-Run all tests:
+```bash
+pytest tests/ -q
+```
+
+Current status: `59 passed`. Preprocessor, retriever and metric tests run offline against synthetic data or mocks. The pipeline integration tests load the real MiniLM model (downloaded on first use) and build an index over the corpus. No test calls the LLM.
+
+`pytest.ini` puts the repo root on the import path, so there are no `sys.path` edits in the code or tests.
+
+## 14. Evaluation
+
+Retrieval is scored against 63 hand-labelled queries in `eval/labels.jsonl` (12 exact-name, 18 paraphrase, 10 multi-condition, 9 comparison, 14 policy lookups; 190 relevant documents in total). Labels were written by reading the corpus, not by looking at retriever output, and relevance is judged per source document. Rankings are chunk lists mapped to their documents; a document counts once, at its best-ranked chunk.
 
 ```bash
-pytest tests/ -v
+python -m eval.retrieval_eval            # uses the cached index if it is current
+python -m eval.retrieval_eval --rebuild  # rebuild chunks and index first
 ```
 
-Fast focused tests:
+No API key is needed. The run writes `eval/results.json` (per-query rankings and scores) and `eval/results.md` (tables by query type, held-out view, misses).
 
-```bash
-pytest tests/test_preprocessor.py tests/test_retriever.py -q
-```
+Results from the committed run (140 documents, 306 chunks, commit `b24e691`):
 
-Current focused test status:
+| Method | Recall@5 | Recall@10 | Hit@5 | Hit@10 | MRR@10 | NDCG@10 |
+|---|---:|---:|---:|---:|---:|---:|
+| Dense only (MiniLM + FAISS) | 0.701 | 0.831 | 0.889 | 0.968 | 0.776 | 0.741 |
+| BM25 only | 0.692 | 0.783 | 0.905 | 0.968 | 0.763 | 0.698 |
+| RRF hybrid (k=60) | 0.750 | 0.856 | 0.968 | 1.000 | 0.835 | 0.774 |
+| RRF + support chunks (pipeline context) | 0.595 | 0.854 | 0.809 | 1.000 | 0.556 | 0.606 |
 
-```text
-30 passed
-```
+Hit@k = at least one relevant document in the top k. The last row scores the context the pipeline actually sends to the LLM: 8 RRF chunks plus support chunks, support chunks first, capped at 10.
 
-## 14. Evaluation and Sample Outputs
+What the numbers say:
 
-Sample assessment outputs are in:
+- Hybrid retrieval beats either retriever alone on the headline metrics: Recall@5 0.750 vs 0.701 (dense) and 0.692 (BM25), and a relevant document is in the top 10 for every query (Hit@10 1.000). BM25 is stronger on multi-condition queries, dense on exact-name and policy queries; RRF is close to the better of the two in each type.
+- The hand-written support-chunk rules did not show a measurable benefit on these labels. Recall@10 is 0.854 with them vs 0.856 without, and rank-based metrics drop because support chunks are placed first and push RRF chunks out of the 10-chunk cap. The rules are kept because they were built for list and comparison questions, but this evaluation does not demonstrate that they help.
+- Those rules were tuned by hand on a few demo queries, and 7 of the labelled queries are the same ones (flagged `tuned_on`). `eval/results.md` has a table without them: on the other 56 queries the support row has Recall@10 0.893 vs 0.906 for plain RRF.
 
-```text
-outputs/sample_outputs.md
-```
+Bug found by the evaluation: the semantic chunker silently discarded every segment shorter than `MIN_CHUNK_TOKENS`. On the old code `python -m eval.chunk_coverage` reported 101 of 140 documents missing at least one sentence (9.4% of tokens), including the free-cancellation sentence for Coral Bay Suites. Short segments are now merged into a neighbouring chunk (0 of 140 documents affected). Same labels, RRF hybrid, before and after: Recall@5 0.615 to 0.750, MRR@10 0.769 to 0.835, NDCG@10 0.677 to 0.774. The baseline is kept in `eval/results_before_chunk_fix.json`.
 
-This file contains:
+Limits of this evaluation:
 
-- Required example queries
-- Retrieved chunks or summaries
-- Final answers
-- Retrieval metric results
-- Qualitative analysis
-- Failure or edge-case notes
+- 63 queries labelled by one person is a small set; differences of a few points are noise.
+- List queries with many relevant documents (for example "which hotels have no televisions") cannot reach Recall@5 = 1.0; use Hit@k and Recall@10 for those.
+- It measures retrieval only. Answer quality and faithfulness need a live LLM and are not measured here.
+- The corpus is synthetic and small (140 documents), so absolute numbers will not transfer to a real hotel catalogue.
 
-The assessment asked for at least one retrieval metric such as Precision@k, Recall@k, or MRR. This project reports Precision@k and MRR-style analysis in the sample outputs.
+`outputs/sample_outputs.md` shows the retrieved and support chunks for the demo queries. It is regenerated by `python -m eval.sample_retrieval` and contains no LLM answers.
 
 ## 15. Hugging Face Spaces Deployment
 
@@ -474,62 +497,7 @@ Notes:
 - The app reads the Hugging Face-provided host and port automatically.
 - Python is pinned to 3.11 to avoid slow source builds for ML dependencies.
 
-## 16. GitHub Submission
-
-Files that should be included:
-
-```text
-app.py
-main.py
-config.py
-requirements.txt
-README.md
-.env.example
-data/hotel_documents.json
-outputs/sample_outputs.md
-src/
-tests/
-pytest.ini
-pyrefly.toml
-```
-
-Files that should not be committed:
-
-```text
-.env
-.venv/
-index/
-__pycache__/
-.pytest_cache/
-```
-
-Submit either:
-
-- GitHub repository link
-- ZIP archive of the project
-
-Suggested email:
-
-```text
-Subject: StayChat AI Developer Assessment Submission - Suhas
-
-Hi [Name],
-
-Please find my StayChat RAG assessment submission below:
-
-GitHub Repository:
-https://github.com/Suhas-123-cell/RAG-hotel
-
-Live Gradio Demo:
-https://huggingface.co/spaces/suhas20sh/staychat-rag
-
-The project includes source code, dataset, README, requirements.txt, tests, sample outputs, and a live Gradio demo. The Hugging Face Space may take a minute to wake up on the free CPU tier.
-
-Thank you,
-Suhas
-```
-
-## 17. Known Limitations
+## 16. Known Limitations
 
 - The hotel dataset is synthetic.
 - The app does not connect to a live booking engine or property management system.
@@ -537,21 +505,7 @@ Suhas
 - Groq API access requires `GROQ_API_KEY`.
 - The first run can be slow while the embedding model downloads and the FAISS index builds.
 - Free Hugging Face Spaces can sleep and may need time to restart.
-- The UI hides raw chunks for end users, although sample outputs document retrieval behavior for assessment.
+- The UI hides raw chunks and sources from end users; retrieval output is shown in `outputs/sample_outputs.md` and `eval/results.json`.
+- The support-chunk keyword rules in `src/pipeline.py` are hand-written and tuned on a few demo queries; see the evaluation for how little they add.
+- Answer quality has not been measured; only retrieval is evaluated.
 - A production system should add query decomposition, reranking, monitoring, and real hotel data integrations.
-
-## 18. Assessment Checklist
-
-- [x] Source code
-- [x] Dataset
-- [x] README
-- [x] `requirements.txt`
-- [x] Gradio demo
-- [x] Preprocessing
-- [x] Embeddings
-- [x] FAISS vector store
-- [x] Hybrid retrieval
-- [x] LLM generation
-- [x] Hallucination controls
-- [x] Tests
-- [x] Sample outputs
