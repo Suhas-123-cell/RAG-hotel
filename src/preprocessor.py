@@ -1,12 +1,9 @@
 """Hotel document preprocessor — cleaning and semantic chunking with fixed-size fallback."""
 import re
 import logging
-import sys
-from pathlib import Path
 
 import numpy as np
 
-sys.path.insert(0, str(Path(__file__).parent.parent))
 import config
 
 logger = logging.getLogger(__name__)

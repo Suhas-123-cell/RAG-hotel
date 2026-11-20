@@ -14,14 +14,12 @@ embeddings and do not require sentence_transformers or groq.
 import importlib
 import json
 import sys
-from pathlib import Path
 from unittest.mock import MagicMock, patch
 
 import numpy as np
 import pytest
 import faiss
 
-sys.path.insert(0, str(Path(__file__).parent.parent))
 
 # ---------------------------------------------------------------------------
 # Detect whether optional heavy dependencies are available.

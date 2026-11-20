@@ -2,13 +2,10 @@
 import logging
 import os
 import re
-import sys
-from pathlib import Path
 
 from groq import Groq
 from dotenv import load_dotenv
 
-sys.path.insert(0, str(Path(__file__).parent.parent))
 import config
 
 load_dotenv()

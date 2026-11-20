@@ -9,13 +9,11 @@ test environment; they are mocked at the sys.modules level before the
 project modules are imported so that the heavy model is never loaded.
 """
 import sys
-from pathlib import Path
-from unittest.mock import MagicMock, patch
+from unittest.mock import MagicMock
 
 import numpy as np
 import pytest
 
-sys.path.insert(0, str(Path(__file__).parent.parent))
 
 # ---------------------------------------------------------------------------
 # Stub out heavy optional dependencies before any project module is imported.

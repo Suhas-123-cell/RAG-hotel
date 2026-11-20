@@ -1,13 +1,10 @@
 """Hotel chunk retriever — hybrid BM25 + dense FAISS search with RRF merge."""
 import logging
 import re
-import sys
-from pathlib import Path
 
 import numpy as np
 from rank_bm25 import BM25Okapi
 
-sys.path.insert(0, str(Path(__file__).parent.parent))
 import config
 from src.embedder import HotelEmbedder
 

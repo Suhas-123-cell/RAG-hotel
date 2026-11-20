@@ -2,11 +2,8 @@
 import json
 import logging
 import re
-import sys
 import time
-from pathlib import Path
 
-sys.path.insert(0, str(Path(__file__).parent.parent))
 import config
 from src.preprocessor import HotelPreprocessor
 from src.embedder import HotelEmbedder

@@ -6,11 +6,8 @@ Conversation history is kept in-session. Retrieval sources stay internal.
 """
 import re
 import os
-import sys
 import logging
-from pathlib import Path
 
-sys.path.insert(0, str(Path(__file__).parent))
 
 import gradio as gr
 import config

@@ -4,13 +4,10 @@ Tests for HotelPreprocessor — cleaning and chunking logic.
 Runs without any external services (no GPU, no API key required).
 """
 import json
-import sys
-from pathlib import Path
 
 import pytest
 
 # Make sure the project root is importable regardless of how pytest is invoked
-sys.path.insert(0, str(Path(__file__).parent.parent))
 
 import config
 from src.preprocessor import HotelPreprocessor
