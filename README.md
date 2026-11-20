@@ -16,12 +16,6 @@ The system cleans hotel documents, chunks them, creates local embeddings, stores
 
 Retrieval is evaluated on 63 hand-labelled queries; see [Evaluation](#14-evaluation).
 
-Live demo:
-
-```text
-https://huggingface.co/spaces/suhas20sh/staychat-rag
-```
-
 GitHub repository:
 
 ```text
@@ -463,19 +457,13 @@ Limits of this evaluation:
 
 ## 15. Hugging Face Spaces Deployment
 
-The project is configured for Hugging Face Spaces with the YAML metadata at the top of this README:
+The project can run as a Gradio Space using the YAML metadata at the top of this README. There is no hosted demo at the moment; run it locally with `python app.py`.
 
 ```yaml
 sdk: gradio
 sdk_version: 5.50.0
 python_version: 3.11
 app_file: app.py
-```
-
-The live Space is:
-
-```text
-https://huggingface.co/spaces/suhas20sh/staychat-rag
 ```
 
 Required Space secret:
@@ -504,7 +492,6 @@ Notes:
 - It cannot answer current room vacancy, live pricing, or booking-confirmation questions.
 - Groq API access requires `GROQ_API_KEY`.
 - The first run can be slow while the embedding model downloads and the FAISS index builds.
-- Free Hugging Face Spaces can sleep and may need time to restart.
 - The UI hides raw chunks and sources from end users; retrieval output is shown in `outputs/sample_outputs.md` and `eval/results.json`.
 - The support-chunk keyword rules in `src/pipeline.py` are hand-written and tuned on a few demo queries; see the evaluation for how little they add.
 - Answer quality has not been measured; only retrieval is evaluated.
