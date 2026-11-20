@@ -1,0 +1,6201 @@
+{
+  "meta": {
+    "generated_at": "2026-11-20",
+    "git_commit": "9dc769d",
+    "n_queries": 63,
+    "n_tuned_on": 7,
+    "n_relevant_total": 190,
+    "n_documents": 140,
+    "n_chunks": 296,
+    "embedding_model": "sentence-transformers/all-MiniLM-L6-v2",
+    "rrf_k": 60,
+    "hybrid_candidate_k": 30,
+    "generation_context_k": 8,
+    "max_generation_chunks": 10,
+    "top_k": 10
+  },
+  "aggregate": {
+    "dense": {
+      "overall": {
+        "recall@5": 0.5975,
+        "recall@10": 0.7084,
+        "hit@5": 0.8413,
+        "hit@10": 0.9365,
+        "mrr@10": 0.7239,
+        "ndcg@10": 0.631
+      },
+      "not_tuned_on": {
+        "recall@5": 0.6571,
+        "recall@10": 0.7625,
+        "hit@5": 0.8929,
+        "hit@10": 0.9464,
+        "mrr@10": 0.763,
+        "ndcg@10": 0.6817
+      },
+      "by_type": {
+        "exact_name": {
+          "recall@5": 0.55,
+          "recall@10": 0.65,
+          "hit@5": 0.6667,
+          "hit@10": 0.75,
+          "mrr@10": 0.5708,
+          "ndcg@10": 0.549
+        },
+        "paraphrase": {
+          "recall@5": 0.6996,
+          "recall@10": 0.8149,
+          "hit@5": 0.9444,
+          "hit@10": 1.0,
+          "mrr@10": 0.8843,
+          "ndcg@10": 0.7543
+        },
+        "multi_condition": {
+          "recall@5": 0.32,
+          "recall@10": 0.4576,
+          "hit@5": 0.8,
+          "hit@10": 1.0,
+          "mrr@10": 0.5671,
+          "ndcg@10": 0.4043
+        },
+        "comparison": {
+          "recall@5": 0.5556,
+          "recall@10": 0.7037,
+          "hit@5": 0.8889,
+          "hit@10": 1.0,
+          "mrr@10": 0.6472,
+          "ndcg@10": 0.5748
+        },
+        "policy": {
+          "recall@5": 0.7321,
+          "recall@10": 0.8036,
+          "hit@5": 0.8571,
+          "hit@10": 0.9286,
+          "mrr@10": 0.8102,
+          "ndcg@10": 0.741
+        }
+      }
+    },
+    "bm25": {
+      "overall": {
+        "recall@5": 0.6102,
+        "recall@10": 0.6933,
+        "hit@5": 0.8413,
+        "hit@10": 0.9048,
+        "mrr@10": 0.6995,
+        "ndcg@10": 0.6182
+      },
+      "not_tuned_on": {
+        "recall@5": 0.6527,
+        "recall@10": 0.7357,
+        "hit@5": 0.875,
+        "hit@10": 0.9107,
+        "mrr@10": 0.7286,
+        "ndcg@10": 0.6552
+      },
+      "by_type": {
+        "exact_name": {
+          "recall@5": 0.4667,
+          "recall@10": 0.6083,
+          "hit@5": 0.6667,
+          "hit@10": 0.75,
+          "mrr@10": 0.5292,
+          "ndcg@10": 0.4829
+        },
+        "paraphrase": {
+          "recall@5": 0.6394,
+          "recall@10": 0.7048,
+          "hit@5": 0.9444,
+          "hit@10": 0.9444,
+          "mrr@10": 0.8444,
+          "ndcg@10": 0.6832
+        },
+        "multi_condition": {
+          "recall@5": 0.4833,
+          "recall@10": 0.661,
+          "hit@5": 0.8,
+          "hit@10": 1.0,
+          "mrr@10": 0.6768,
+          "ndcg@10": 0.5873
+        },
+        "comparison": {
+          "recall@5": 0.6389,
+          "recall@10": 0.7037,
+          "hit@5": 0.8889,
+          "hit@10": 1.0,
+          "mrr@10": 0.6111,
+          "ndcg@10": 0.5814
+        },
+        "policy": {
+          "recall@5": 0.7679,
+          "recall@10": 0.7679,
+          "hit@5": 0.8571,
+          "hit@10": 0.8571,
+          "mrr@10": 0.7321,
+          "ndcg@10": 0.6965
+        }
+      }
+    },
+    "rrf": {
+      "overall": {
+        "recall@5": 0.615,
+        "recall@10": 0.773,
+        "hit@5": 0.873,
+        "hit@10": 0.9524,
+        "mrr@10": 0.7694,
+        "ndcg@10": 0.677
+      },
+      "not_tuned_on": {
+        "recall@5": 0.6601,
+        "recall@10": 0.8247,
+        "hit@5": 0.875,
+        "hit@10": 0.9643,
+        "mrr@10": 0.7995,
+        "ndcg@10": 0.7216
+      },
+      "by_type": {
+        "exact_name": {
+          "recall@5": 0.5083,
+          "recall@10": 0.7333,
+          "hit@5": 0.6667,
+          "hit@10": 0.8333,
+          "mrr@10": 0.5628,
+          "ndcg@10": 0.5358
+        },
+        "paraphrase": {
+          "recall@5": 0.7196,
+          "recall@10": 0.8284,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 0.9444,
+          "ndcg@10": 0.8063
+        },
+        "multi_condition": {
+          "recall@5": 0.411,
+          "recall@10": 0.6152,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 0.7283,
+          "ndcg@10": 0.5471
+        },
+        "comparison": {
+          "recall@5": 0.6481,
+          "recall@10": 0.7315,
+          "hit@5": 0.8889,
+          "hit@10": 1.0,
+          "mrr@10": 0.7659,
+          "ndcg@10": 0.6581
+        },
+        "policy": {
+          "recall@5": 0.6964,
+          "recall@10": 0.875,
+          "hit@5": 0.7857,
+          "hit@10": 0.9286,
+          "mrr@10": 0.753,
+          "ndcg@10": 0.7366
+        }
+      }
+    },
+    "rrf_support": {
+      "overall": {
+        "recall@5": 0.5152,
+        "recall@10": 0.8,
+        "hit@5": 0.746,
+        "hit@10": 0.9683,
+        "mrr@10": 0.5594,
+        "ndcg@10": 0.5713
+      },
+      "not_tuned_on": {
+        "recall@5": 0.561,
+        "recall@10": 0.8512,
+        "hit@5": 0.7857,
+        "hit@10": 0.9821,
+        "mrr@10": 0.5815,
+        "ndcg@10": 0.6035
+      },
+      "by_type": {
+        "exact_name": {
+          "recall@5": 0.6,
+          "recall@10": 0.9,
+          "hit@5": 0.75,
+          "hit@10": 0.9167,
+          "mrr@10": 0.5212,
+          "ndcg@10": 0.5996
+        },
+        "paraphrase": {
+          "recall@5": 0.6565,
+          "recall@10": 0.7737,
+          "hit@5": 0.8333,
+          "hit@10": 1.0,
+          "mrr@10": 0.8294,
+          "ndcg@10": 0.74
+        },
+        "multi_condition": {
+          "recall@5": 0.361,
+          "recall@10": 0.6343,
+          "hit@5": 0.9,
+          "hit@10": 1.0,
+          "mrr@10": 0.725,
+          "ndcg@10": 0.5585
+        },
+        "comparison": {
+          "recall@5": 0.287,
+          "recall@10": 0.787,
+          "hit@5": 0.5556,
+          "hit@10": 1.0,
+          "mrr@10": 0.3515,
+          "ndcg@10": 0.4573
+        },
+        "policy": {
+          "recall@5": 0.5179,
+          "recall@10": 0.875,
+          "hit@5": 0.6429,
+          "hit@10": 0.9286,
+          "mrr@10": 0.2605,
+          "ndcg@10": 0.4126
+        }
+      }
+    }
+  },
+  "per_query": [
+    {
+      "id": "e01",
+      "type": "exact_name",
+      "query": "How much does parking cost at The Azure Grand?",
+      "tuned_on": false,
+      "relevant_docs": [
+        "hotel_045",
+        "hotel_001"
+      ],
+      "rankings": {
+        "dense": [
+          "hotel_045",
+          "hotel_001",
+          "hotel_034",
+          "hotel_052",
+          "hotel_073",
+          "hotel_093",
+          "hotel_001",
+          "hotel_029",
+          "hotel_088",
+          "hotel_070"
+        ],
+        "bm25": [
+          "hotel_045",
+          "hotel_070",
+          "hotel_096",
+          "hotel_093",
+          "hotel_093",
+          "hotel_006",
+          "hotel_034",
+          "hotel_113",
+          "hotel_052",
+          "hotel_001"
+        ],
+        "rrf": [
+          "hotel_045",
+          "hotel_034",
+          "hotel_093",
+          "hotel_001",
+          "hotel_070",
+          "hotel_052",
+          "hotel_096",
+          "hotel_006",
+          "hotel_093",
+          "hotel_083"
+        ],
+        "rrf_support": [
+          "hotel_009",
+          "hotel_014",
+          "hotel_045",
+          "hotel_034",
+          "hotel_093",
+          "hotel_001",
+          "hotel_070",
+          "hotel_052",
+          "hotel_096",
+          "hotel_006"
+        ]
+      },
+      "scores": {
+        "dense": {
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 1.0,
+          "ndcg@10": 1.0
+        },
+        "bm25": {
+          "recall@5": 0.5,
+          "recall@10": 1.0,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 1.0,
+          "ndcg@10": 0.7903864795495061
+        },
+        "rrf": {
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 1.0,
+          "ndcg@10": 0.8772153153380493
+        },
+        "rrf_support": {
+          "recall@5": 0.5,
+          "recall@10": 1.0,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 0.3333333333333333,
+          "ndcg@10": 0.5249810332008933
+        }
+      }
+    },
+    {
+      "id": "e02",
+      "type": "exact_name",
+      "query": "What time is breakfast served at Sunrise Boutique Resort?",
+      "tuned_on": false,
+      "relevant_docs": [
+        "hotel_010",
+        "hotel_048"
+      ],
+      "rankings": {
+        "dense": [
+          "hotel_089",
+          "hotel_072",
+          "hotel_074",
+          "hotel_010",
+          "hotel_047",
+          "hotel_032",
+          "hotel_059",
+          "hotel_002",
+          "hotel_058",
+          "hotel_056"
+        ],
+        "bm25": [
+          "hotel_018",
+          "hotel_138",
+          "hotel_095",
+          "hotel_010",
+          "hotel_094",
+          "hotel_058",
+          "hotel_089",
+          "hotel_074",
+          "hotel_097",
+          "hotel_060"
+        ],
+        "rrf": [
+          "hotel_089",
+          "hotel_010",
+          "hotel_074",
+          "hotel_018",
+          "hotel_058",
+          "hotel_072",
+          "hotel_094",
+          "hotel_047",
+          "hotel_059",
+          "hotel_138"
+        ],
+        "rrf_support": [
+          "hotel_048",
+          "hotel_059",
+          "hotel_089",
+          "hotel_010",
+          "hotel_074",
+          "hotel_018",
+          "hotel_058",
+          "hotel_072",
+          "hotel_094",
+          "hotel_047"
+        ]
+      },
+      "scores": {
+        "dense": {
+          "recall@5": 0.5,
+          "recall@10": 0.5,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 0.25,
+          "ndcg@10": 0.2640681225725909
+        },
+        "bm25": {
+          "recall@5": 0.5,
+          "recall@10": 0.5,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 0.25,
+          "ndcg@10": 0.2640681225725909
+        },
+        "rrf": {
+          "recall@5": 0.5,
+          "recall@10": 0.5,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 0.5,
+          "ndcg@10": 0.38685280723454163
+        },
+        "rrf_support": {
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 1.0,
+          "ndcg@10": 0.8772153153380493
+        }
+      }
+    },
+    {
+      "id": "e03",
+      "type": "exact_name",
+      "query": "Does Serenity Palms Resort allow pets?",
+      "tuned_on": false,
+      "relevant_docs": [
+        "hotel_044"
+      ],
+      "rankings": {
+        "dense": [
+          "hotel_044",
+          "hotel_005",
+          "hotel_033",
+          "hotel_065",
+          "hotel_028",
+          "hotel_100",
+          "hotel_105",
+          "hotel_028",
+          "hotel_094",
+          "hotel_055"
+        ],
+        "bm25": [
+          "hotel_044",
+          "hotel_065",
+          "hotel_044",
+          "hotel_025",
+          "hotel_060",
+          "hotel_097",
+          "hotel_056",
+          "hotel_028",
+          "hotel_055",
+          "hotel_057"
+        ],
+        "rrf": [
+          "hotel_044",
+          "hotel_065",
+          "hotel_005",
+          "hotel_025",
+          "hotel_028",
+          "hotel_044",
+          "hotel_028",
+          "hotel_033",
+          "hotel_055",
+          "hotel_056"
+        ],
+        "rrf_support": [
+          "hotel_060",
+          "hotel_043",
+          "hotel_031",
+          "hotel_115",
+          "hotel_029",
+          "hotel_108",
+          "hotel_013",
+          "hotel_055",
+          "hotel_044",
+          "hotel_065"
+        ]
+      },
+      "scores": {
+        "dense": {
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 1.0,
+          "ndcg@10": 1.0
+        },
+        "bm25": {
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 1.0,
+          "ndcg@10": 1.0
+        },
+        "rrf": {
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 1.0,
+          "ndcg@10": 1.0
+        },
+        "rrf_support": {
+          "recall@5": 0.0,
+          "recall@10": 1.0,
+          "hit@5": 0.0,
+          "hit@10": 1.0,
+          "mrr@10": 0.1111111111111111,
+          "ndcg@10": 0.3010299956639812
+        }
+      }
+    },
+    {
+      "id": "e04",
+      "type": "exact_name",
+      "query": "Does Mistral Airport Hotel have room service?",
+      "tuned_on": false,
+      "relevant_docs": [
+        "hotel_107"
+      ],
+      "rankings": {
+        "dense": [
+          "hotel_106",
+          "hotel_106",
+          "hotel_109",
+          "hotel_108",
+          "hotel_062",
+          "hotel_134",
+          "hotel_113",
+          "hotel_096",
+          "hotel_120",
+          "hotel_135"
+        ],
+        "bm25": [
+          "hotel_108",
+          "hotel_129",
+          "hotel_106",
+          "hotel_109",
+          "hotel_106",
+          "hotel_044",
+          "hotel_113",
+          "hotel_049",
+          "hotel_052",
+          "hotel_025"
+        ],
+        "rrf": [
+          "hotel_106",
+          "hotel_108",
+          "hotel_106",
+          "hotel_109",
+          "hotel_113",
+          "hotel_129",
+          "hotel_052",
+          "hotel_120",
+          "hotel_107",
+          "hotel_083"
+        ],
+        "rrf_support": [
+          "hotel_009",
+          "hotel_047",
+          "hotel_058",
+          "hotel_060",
+          "hotel_073",
+          "hotel_045",
+          "hotel_107",
+          "hotel_107",
+          "hotel_106",
+          "hotel_108"
+        ]
+      },
+      "scores": {
+        "dense": {
+          "recall@5": 0.0,
+          "recall@10": 0.0,
+          "hit@5": 0.0,
+          "hit@10": 0.0,
+          "mrr@10": 0.0,
+          "ndcg@10": 0.0
+        },
+        "bm25": {
+          "recall@5": 0.0,
+          "recall@10": 0.0,
+          "hit@5": 0.0,
+          "hit@10": 0.0,
+          "mrr@10": 0.0,
+          "ndcg@10": 0.0
+        },
+        "rrf": {
+          "recall@5": 0.0,
+          "recall@10": 1.0,
+          "hit@5": 0.0,
+          "hit@10": 1.0,
+          "mrr@10": 0.1111111111111111,
+          "ndcg@10": 0.3010299956639812
+        },
+        "rrf_support": {
+          "recall@5": 0.0,
+          "recall@10": 1.0,
+          "hit@5": 0.0,
+          "hit@10": 1.0,
+          "mrr@10": 0.14285714285714285,
+          "ndcg@10": 0.3333333333333333
+        }
+      }
+    },
+    {
+      "id": "e05",
+      "type": "exact_name",
+      "query": "Is there a gym at Coral Bay Suites?",
+      "tuned_on": false,
+      "relevant_docs": [
+        "hotel_049"
+      ],
+      "rankings": {
+        "dense": [
+          "hotel_049",
+          "hotel_095",
+          "hotel_063",
+          "hotel_011",
+          "hotel_103",
+          "hotel_050",
+          "hotel_051",
+          "hotel_049",
+          "hotel_003",
+          "hotel_003"
+        ],
+        "bm25": [
+          "hotel_095",
+          "hotel_063",
+          "hotel_035",
+          "hotel_021",
+          "hotel_015",
+          "hotel_050",
+          "hotel_003",
+          "hotel_129",
+          "hotel_051",
+          "hotel_049"
+        ],
+        "rrf": [
+          "hotel_063",
+          "hotel_049",
+          "hotel_050",
+          "hotel_095",
+          "hotel_051",
+          "hotel_035",
+          "hotel_003",
+          "hotel_011",
+          "hotel_103",
+          "hotel_049"
+        ],
+        "rrf_support": [
+          "hotel_015",
+          "hotel_049",
+          "hotel_063",
+          "hotel_049",
+          "hotel_050",
+          "hotel_095",
+          "hotel_051",
+          "hotel_035",
+          "hotel_003",
+          "hotel_011"
+        ]
+      },
+      "scores": {
+        "dense": {
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 1.0,
+          "ndcg@10": 1.0
+        },
+        "bm25": {
+          "recall@5": 0.0,
+          "recall@10": 1.0,
+          "hit@5": 0.0,
+          "hit@10": 1.0,
+          "mrr@10": 0.1,
+          "ndcg@10": 0.2890648263178879
+        },
+        "rrf": {
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 0.5,
+          "ndcg@10": 0.6309297535714575
+        },
+        "rrf_support": {
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 0.5,
+          "ndcg@10": 0.6309297535714575
+        }
+      }
+    },
+    {
+      "id": "e06",
+      "type": "exact_name",
+      "query": "What are the check-in and check-out times at The Pinnacle Hotel?",
+      "tuned_on": false,
+      "relevant_docs": [
+        "hotel_027",
+        "hotel_061"
+      ],
+      "rankings": {
+        "dense": [
+          "hotel_061",
+          "hotel_027",
+          "hotel_063",
+          "hotel_026",
+          "hotel_012",
+          "hotel_042",
+          "hotel_086",
+          "hotel_022",
+          "hotel_012",
+          "hotel_053"
+        ],
+        "bm25": [
+          "hotel_022",
+          "hotel_061",
+          "hotel_041",
+          "hotel_078",
+          "hotel_042",
+          "hotel_063",
+          "hotel_071",
+          "hotel_063",
+          "hotel_038",
+          "hotel_031"
+        ],
+        "rrf": [
+          "hotel_061",
+          "hotel_022",
+          "hotel_063",
+          "hotel_042",
+          "hotel_026",
+          "hotel_027",
+          "hotel_041",
+          "hotel_012",
+          "hotel_038",
+          "hotel_052"
+        ],
+        "rrf_support": [
+          "hotel_052",
+          "hotel_031",
+          "hotel_061",
+          "hotel_022",
+          "hotel_063",
+          "hotel_042",
+          "hotel_026",
+          "hotel_027",
+          "hotel_041",
+          "hotel_012"
+        ]
+      },
+      "scores": {
+        "dense": {
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 1.0,
+          "ndcg@10": 1.0
+        },
+        "bm25": {
+          "recall@5": 0.5,
+          "recall@10": 0.5,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 0.5,
+          "ndcg@10": 0.38685280723454163
+        },
+        "rrf": {
+          "recall@5": 0.5,
+          "recall@10": 1.0,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 1.0,
+          "ndcg@10": 0.8315546295836225
+        },
+        "rrf_support": {
+          "recall@5": 0.5,
+          "recall@10": 1.0,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 0.3333333333333333,
+          "ndcg@10": 0.5
+        }
+      }
+    },
+    {
+      "id": "e07",
+      "type": "exact_name",
+      "query": "Does Northstar Capsule Lodge provide towels and shampoo?",
+      "tuned_on": false,
+      "relevant_docs": [
+        "hotel_114"
+      ],
+      "rankings": {
+        "dense": [
+          "hotel_103",
+          "hotel_121",
+          "hotel_105",
+          "hotel_102",
+          "hotel_125",
+          "hotel_113",
+          "hotel_111",
+          "hotel_101",
+          "hotel_129",
+          "hotel_114"
+        ],
+        "bm25": [
+          "hotel_113",
+          "hotel_114",
+          "hotel_105",
+          "hotel_117",
+          "hotel_103",
+          "hotel_102",
+          "hotel_121",
+          "hotel_125",
+          "hotel_113",
+          "hotel_135"
+        ],
+        "rrf": [
+          "hotel_103",
+          "hotel_105",
+          "hotel_113",
+          "hotel_121",
+          "hotel_102",
+          "hotel_125",
+          "hotel_114",
+          "hotel_117",
+          "hotel_129",
+          "hotel_107"
+        ],
+        "rrf_support": [
+          "hotel_114",
+          "hotel_113",
+          "hotel_103",
+          "hotel_105",
+          "hotel_113",
+          "hotel_121",
+          "hotel_102",
+          "hotel_125",
+          "hotel_114",
+          "hotel_117"
+        ]
+      },
+      "scores": {
+        "dense": {
+          "recall@5": 0.0,
+          "recall@10": 1.0,
+          "hit@5": 0.0,
+          "hit@10": 1.0,
+          "mrr@10": 0.1,
+          "ndcg@10": 0.2890648263178879
+        },
+        "bm25": {
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 0.5,
+          "ndcg@10": 0.6309297535714575
+        },
+        "rrf": {
+          "recall@5": 0.0,
+          "recall@10": 1.0,
+          "hit@5": 0.0,
+          "hit@10": 1.0,
+          "mrr@10": 0.14285714285714285,
+          "ndcg@10": 0.3333333333333333
+        },
+        "rrf_support": {
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 1.0,
+          "ndcg@10": 1.0
+        }
+      }
+    },
+    {
+      "id": "e08",
+      "type": "exact_name",
+      "query": "What is the Wi-Fi speed at Neon Arcade Hotel?",
+      "tuned_on": false,
+      "relevant_docs": [
+        "hotel_135"
+      ],
+      "rankings": {
+        "dense": [
+          "hotel_111",
+          "hotel_068",
+          "hotel_062",
+          "hotel_104",
+          "hotel_101",
+          "hotel_134",
+          "hotel_129",
+          "hotel_057",
+          "hotel_012",
+          "hotel_009"
+        ],
+        "bm25": [
+          "hotel_136",
+          "hotel_134",
+          "hotel_104",
+          "hotel_070",
+          "hotel_062",
+          "hotel_063",
+          "hotel_022",
+          "hotel_103",
+          "hotel_134",
+          "hotel_011"
+        ],
+        "rrf": [
+          "hotel_104",
+          "hotel_134",
+          "hotel_062",
+          "hotel_068",
+          "hotel_136",
+          "hotel_101",
+          "hotel_070",
+          "hotel_009",
+          "hotel_063",
+          "hotel_012"
+        ],
+        "rrf_support": [
+          "hotel_135",
+          "hotel_134",
+          "hotel_104",
+          "hotel_134",
+          "hotel_062",
+          "hotel_068",
+          "hotel_136",
+          "hotel_101",
+          "hotel_070",
+          "hotel_009"
+        ]
+      },
+      "scores": {
+        "dense": {
+          "recall@5": 0.0,
+          "recall@10": 0.0,
+          "hit@5": 0.0,
+          "hit@10": 0.0,
+          "mrr@10": 0.0,
+          "ndcg@10": 0.0
+        },
+        "bm25": {
+          "recall@5": 0.0,
+          "recall@10": 0.0,
+          "hit@5": 0.0,
+          "hit@10": 0.0,
+          "mrr@10": 0.0,
+          "ndcg@10": 0.0
+        },
+        "rrf": {
+          "recall@5": 0.0,
+          "recall@10": 0.0,
+          "hit@5": 0.0,
+          "hit@10": 0.0,
+          "mrr@10": 0.0,
+          "ndcg@10": 0.0
+        },
+        "rrf_support": {
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 1.0,
+          "ndcg@10": 1.0
+        }
+      }
+    },
+    {
+      "id": "e09",
+      "type": "exact_name",
+      "query": "How far is Sunrise Boutique Resort from the airport?",
+      "tuned_on": false,
+      "relevant_docs": [
+        "hotel_032",
+        "hotel_084",
+        "hotel_002",
+        "hotel_047",
+        "hotel_058"
+      ],
+      "rankings": {
+        "dense": [
+          "hotel_032",
+          "hotel_002",
+          "hotel_072",
+          "hotel_089",
+          "hotel_058",
+          "hotel_018",
+          "hotel_059",
+          "hotel_047",
+          "hotel_094",
+          "hotel_010"
+        ],
+        "bm25": [
+          "hotel_032",
+          "hotel_058",
+          "hotel_002",
+          "hotel_094",
+          "hotel_094",
+          "hotel_095",
+          "hotel_060",
+          "hotel_097",
+          "hotel_059",
+          "hotel_047"
+        ],
+        "rrf": [
+          "hotel_032",
+          "hotel_002",
+          "hotel_058",
+          "hotel_094",
+          "hotel_072",
+          "hotel_059",
+          "hotel_018",
+          "hotel_089",
+          "hotel_047",
+          "hotel_074"
+        ],
+        "rrf_support": [
+          "hotel_056",
+          "hotel_009",
+          "hotel_058",
+          "hotel_052",
+          "hotel_050",
+          "hotel_108",
+          "hotel_010",
+          "hotel_047",
+          "hotel_032",
+          "hotel_002"
+        ]
+      },
+      "scores": {
+        "dense": {
+          "recall@5": 0.6,
+          "recall@10": 0.8,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 1.0,
+          "ndcg@10": 0.7913446798877494
+        },
+        "bm25": {
+          "recall@5": 0.6,
+          "recall@10": 0.8,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 1.0,
+          "ndcg@10": 0.8207658584763088
+        },
+        "rrf": {
+          "recall@5": 0.6,
+          "recall@10": 0.8,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 1.0,
+          "ndcg@10": 0.8248239677678635
+        },
+        "rrf_support": {
+          "recall@5": 0.2,
+          "recall@10": 0.8,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 0.3333333333333333,
+          "ndcg@10": 0.4767099159583405
+        }
+      }
+    },
+    {
+      "id": "e10",
+      "type": "exact_name",
+      "query": "What is the cancellation policy of Coral Bay Suites?",
+      "tuned_on": true,
+      "relevant_docs": [
+        "hotel_026"
+      ],
+      "rankings": {
+        "dense": [
+          "hotel_003",
+          "hotel_095",
+          "hotel_043",
+          "hotel_003",
+          "hotel_050",
+          "hotel_063",
+          "hotel_020",
+          "hotel_103",
+          "hotel_075",
+          "hotel_051"
+        ],
+        "bm25": [
+          "hotel_063",
+          "hotel_035",
+          "hotel_003",
+          "hotel_051",
+          "hotel_095",
+          "hotel_043",
+          "hotel_095",
+          "hotel_050",
+          "hotel_015",
+          "hotel_049"
+        ],
+        "rrf": [
+          "hotel_003",
+          "hotel_063",
+          "hotel_095",
+          "hotel_043",
+          "hotel_050",
+          "hotel_051",
+          "hotel_003",
+          "hotel_035",
+          "hotel_103",
+          "hotel_049"
+        ],
+        "rrf_support": [
+          "hotel_011",
+          "hotel_049",
+          "hotel_003",
+          "hotel_063",
+          "hotel_095",
+          "hotel_043",
+          "hotel_050",
+          "hotel_051",
+          "hotel_003",
+          "hotel_035"
+        ]
+      },
+      "scores": {
+        "dense": {
+          "recall@5": 0.0,
+          "recall@10": 0.0,
+          "hit@5": 0.0,
+          "hit@10": 0.0,
+          "mrr@10": 0.0,
+          "ndcg@10": 0.0
+        },
+        "bm25": {
+          "recall@5": 0.0,
+          "recall@10": 0.0,
+          "hit@5": 0.0,
+          "hit@10": 0.0,
+          "mrr@10": 0.0,
+          "ndcg@10": 0.0
+        },
+        "rrf": {
+          "recall@5": 0.0,
+          "recall@10": 0.0,
+          "hit@5": 0.0,
+          "hit@10": 0.0,
+          "mrr@10": 0.0,
+          "ndcg@10": 0.0
+        },
+        "rrf_support": {
+          "recall@5": 0.0,
+          "recall@10": 0.0,
+          "hit@5": 0.0,
+          "hit@10": 0.0,
+          "mrr@10": 0.0,
+          "ndcg@10": 0.0
+        }
+      }
+    },
+    {
+      "id": "e11",
+      "type": "exact_name",
+      "query": "Is there a lift at Old Quarter Lantern Inn?",
+      "tuned_on": false,
+      "relevant_docs": [
+        "hotel_110"
+      ],
+      "rankings": {
+        "dense": [
+          "hotel_112",
+          "hotel_110",
+          "hotel_128",
+          "hotel_111",
+          "hotel_006",
+          "hotel_037",
+          "hotel_110",
+          "hotel_086",
+          "hotel_014",
+          "hotel_110"
+        ],
+        "bm25": [
+          "hotel_110",
+          "hotel_112",
+          "hotel_111",
+          "hotel_111",
+          "hotel_110",
+          "hotel_058",
+          "hotel_031",
+          "hotel_022",
+          "hotel_008",
+          "hotel_086"
+        ],
+        "rrf": [
+          "hotel_112",
+          "hotel_110",
+          "hotel_111",
+          "hotel_110",
+          "hotel_086",
+          "hotel_128",
+          "hotel_111",
+          "hotel_076",
+          "hotel_058",
+          "hotel_045"
+        ],
+        "rrf_support": [
+          "hotel_112",
+          "hotel_110",
+          "hotel_112",
+          "hotel_110",
+          "hotel_111",
+          "hotel_110",
+          "hotel_086",
+          "hotel_128",
+          "hotel_111",
+          "hotel_076"
+        ]
+      },
+      "scores": {
+        "dense": {
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 0.5,
+          "ndcg@10": 0.6309297535714575
+        },
+        "bm25": {
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 1.0,
+          "ndcg@10": 1.0
+        },
+        "rrf": {
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 0.5,
+          "ndcg@10": 0.6309297535714575
+        },
+        "rrf_support": {
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 0.5,
+          "ndcg@10": 0.6309297535714575
+        }
+      }
+    },
+    {
+      "id": "e12",
+      "type": "exact_name",
+      "query": "Does Glacier Edge Mountain Lodge have a sauna and a drying room?",
+      "tuned_on": false,
+      "relevant_docs": [
+        "hotel_132",
+        "hotel_131"
+      ],
+      "rankings": {
+        "dense": [
+          "hotel_131",
+          "hotel_133",
+          "hotel_014",
+          "hotel_019",
+          "hotel_004",
+          "hotel_039",
+          "hotel_125",
+          "hotel_105",
+          "hotel_022",
+          "hotel_113"
+        ],
+        "bm25": [
+          "hotel_131",
+          "hotel_133",
+          "hotel_113",
+          "hotel_129",
+          "hotel_049",
+          "hotel_120",
+          "hotel_133",
+          "hotel_044",
+          "hotel_012",
+          "hotel_116"
+        ],
+        "rrf": [
+          "hotel_131",
+          "hotel_133",
+          "hotel_113",
+          "hotel_014",
+          "hotel_116",
+          "hotel_012",
+          "hotel_105",
+          "hotel_117",
+          "hotel_019",
+          "hotel_129"
+        ],
+        "rrf_support": [
+          "hotel_132",
+          "hotel_133",
+          "hotel_131",
+          "hotel_133",
+          "hotel_113",
+          "hotel_014",
+          "hotel_116",
+          "hotel_012",
+          "hotel_105",
+          "hotel_117"
+        ]
+      },
+      "scores": {
+        "dense": {
+          "recall@5": 0.5,
+          "recall@10": 0.5,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 1.0,
+          "ndcg@10": 0.6131471927654584
+        },
+        "bm25": {
+          "recall@5": 0.5,
+          "recall@10": 0.5,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 1.0,
+          "ndcg@10": 0.6131471927654584
+        },
+        "rrf": {
+          "recall@5": 0.5,
+          "recall@10": 0.5,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 1.0,
+          "ndcg@10": 0.6131471927654584
+        },
+        "rrf_support": {
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 1.0,
+          "ndcg@10": 0.9197207891481876
+        }
+      }
+    },
+    {
+      "id": "p01",
+      "type": "paraphrase",
+      "query": "Which place does not accept dogs because of nesting turtles?",
+      "tuned_on": false,
+      "relevant_docs": [
+        "hotel_060",
+        "hotel_030",
+        "hotel_072",
+        "hotel_089"
+      ],
+      "rankings": {
+        "dense": [
+          "hotel_089",
+          "hotel_060",
+          "hotel_133",
+          "hotel_072",
+          "hotel_043",
+          "hotel_096",
+          "hotel_044",
+          "hotel_108",
+          "hotel_044",
+          "hotel_029"
+        ],
+        "bm25": [
+          "hotel_060",
+          "hotel_043",
+          "hotel_065",
+          "hotel_044",
+          "hotel_025",
+          "hotel_089",
+          "hotel_113",
+          "hotel_044",
+          "hotel_072",
+          "hotel_117"
+        ],
+        "rrf": [
+          "hotel_060",
+          "hotel_089",
+          "hotel_043",
+          "hotel_072",
+          "hotel_133",
+          "hotel_044",
+          "hotel_031",
+          "hotel_108",
+          "hotel_096",
+          "hotel_079"
+        ],
+        "rrf_support": [
+          "hotel_060",
+          "hotel_089",
+          "hotel_043",
+          "hotel_072",
+          "hotel_133",
+          "hotel_044",
+          "hotel_031",
+          "hotel_108"
+        ]
+      },
+      "scores": {
+        "dense": {
+          "recall@5": 0.75,
+          "recall@10": 0.75,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 1.0,
+          "ndcg@10": 0.8048099750039491
+        },
+        "bm25": {
+          "recall@5": 0.25,
+          "recall@10": 0.75,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 1.0,
+          "ndcg@10": 0.6469523342593044
+        },
+        "rrf": {
+          "recall@5": 0.75,
+          "recall@10": 0.75,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 1.0,
+          "ndcg@10": 0.8048099750039491
+        },
+        "rrf_support": {
+          "recall@5": 0.75,
+          "recall@10": 0.75,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 1.0,
+          "ndcg@10": 0.8048099750039491
+        }
+      }
+    },
+    {
+      "id": "p02",
+      "type": "paraphrase",
+      "query": "I am travelling with my dog, which hotels will take pets?",
+      "tuned_on": false,
+      "relevant_docs": [
+        "hotel_029",
+        "hotel_031",
+        "hotel_093",
+        "hotel_096",
+        "hotel_122"
+      ],
+      "rankings": {
+        "dense": [
+          "hotel_096",
+          "hotel_029",
+          "hotel_031",
+          "hotel_029",
+          "hotel_031",
+          "hotel_108",
+          "hotel_122",
+          "hotel_089",
+          "hotel_044",
+          "hotel_060"
+        ],
+        "bm25": [
+          "hotel_071",
+          "hotel_072",
+          "hotel_119",
+          "hotel_037",
+          "hotel_109",
+          "hotel_067",
+          "hotel_018",
+          "hotel_136",
+          "hotel_038",
+          "hotel_065"
+        ],
+        "rrf": [
+          "hotel_044",
+          "hotel_029",
+          "hotel_031",
+          "hotel_122",
+          "hotel_025",
+          "hotel_096",
+          "hotel_071",
+          "hotel_029",
+          "hotel_072",
+          "hotel_119"
+        ],
+        "rrf_support": [
+          "hotel_060",
+          "hotel_043",
+          "hotel_115",
+          "hotel_108",
+          "hotel_133",
+          "hotel_044",
+          "hotel_029",
+          "hotel_031",
+          "hotel_122",
+          "hotel_025"
+        ]
+      },
+      "scores": {
+        "dense": {
+          "recall@5": 0.6,
+          "recall@10": 0.8,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 1.0,
+          "ndcg@10": 0.8357799744028239
+        },
+        "bm25": {
+          "recall@5": 0.0,
+          "recall@10": 0.0,
+          "hit@5": 0.0,
+          "hit@10": 0.0,
+          "mrr@10": 0.0,
+          "ndcg@10": 0.0
+        },
+        "rrf": {
+          "recall@5": 0.6,
+          "recall@10": 0.8,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 0.5,
+          "ndcg@10": 0.6504460199135362
+        },
+        "rrf_support": {
+          "recall@5": 0.0,
+          "recall@10": 0.6,
+          "hit@5": 0.0,
+          "hit@10": 1.0,
+          "mrr@10": 0.14285714285714285,
+          "ndcg@10": 0.32214392924804747
+        }
+      }
+    },
+    {
+      "id": "p03",
+      "type": "paraphrase",
+      "query": "Where can I go for a quiet adults-only retreat with yoga and spa treatments?",
+      "tuned_on": false,
+      "relevant_docs": [
+        "hotel_097",
+        "hotel_077",
+        "hotel_005",
+        "hotel_065"
+      ],
+      "rankings": {
+        "dense": [
+          "hotel_065",
+          "hotel_077",
+          "hotel_023",
+          "hotel_024",
+          "hotel_005",
+          "hotel_013",
+          "hotel_053",
+          "hotel_055",
+          "hotel_137",
+          "hotel_094"
+        ],
+        "bm25": [
+          "hotel_023",
+          "hotel_094",
+          "hotel_072",
+          "hotel_140",
+          "hotel_077",
+          "hotel_106",
+          "hotel_073",
+          "hotel_134",
+          "hotel_093",
+          "hotel_024"
+        ],
+        "rrf": [
+          "hotel_023",
+          "hotel_077",
+          "hotel_094",
+          "hotel_065",
+          "hotel_024",
+          "hotel_053",
+          "hotel_005",
+          "hotel_134",
+          "hotel_097",
+          "hotel_065"
+        ],
+        "rrf_support": [
+          "hotel_023",
+          "hotel_077",
+          "hotel_094",
+          "hotel_065",
+          "hotel_024",
+          "hotel_053",
+          "hotel_005",
+          "hotel_134"
+        ]
+      },
+      "scores": {
+        "dense": {
+          "recall@5": 0.75,
+          "recall@10": 0.75,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 1.0,
+          "ndcg@10": 0.787702056960637
+        },
+        "bm25": {
+          "recall@5": 0.25,
+          "recall@10": 0.25,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 0.2,
+          "ndcg@10": 0.15101961822780524
+        },
+        "rrf": {
+          "recall@5": 0.5,
+          "recall@10": 1.0,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 0.5,
+          "ndcg@10": 0.6620727130989752
+        },
+        "rrf_support": {
+          "recall@5": 0.5,
+          "recall@10": 0.75,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 0.5,
+          "ndcg@10": 0.544556608342548
+        }
+      }
+    },
+    {
+      "id": "p04",
+      "type": "paraphrase",
+      "query": "Which hotel is best for large corporate conferences and meetings?",
+      "tuned_on": false,
+      "relevant_docs": [
+        "hotel_004",
+        "hotel_076",
+        "hotel_096",
+        "hotel_124",
+        "hotel_091"
+      ],
+      "rankings": {
+        "dense": [
+          "hotel_076",
+          "hotel_019",
+          "hotel_124",
+          "hotel_004",
+          "hotel_022",
+          "hotel_022",
+          "hotel_096",
+          "hotel_091",
+          "hotel_025",
+          "hotel_086"
+        ],
+        "bm25": [
+          "hotel_093",
+          "hotel_096",
+          "hotel_094",
+          "hotel_094",
+          "hotel_096",
+          "hotel_124",
+          "hotel_038",
+          "hotel_096",
+          "hotel_061",
+          "hotel_019"
+        ],
+        "rrf": [
+          "hotel_124",
+          "hotel_019",
+          "hotel_096",
+          "hotel_022",
+          "hotel_038",
+          "hotel_096",
+          "hotel_004",
+          "hotel_022",
+          "hotel_072",
+          "hotel_093"
+        ],
+        "rrf_support": [
+          "hotel_124",
+          "hotel_019",
+          "hotel_096",
+          "hotel_022",
+          "hotel_038",
+          "hotel_096",
+          "hotel_004",
+          "hotel_022"
+        ]
+      },
+      "scores": {
+        "dense": {
+          "recall@5": 0.6,
+          "recall@10": 1.0,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 1.0,
+          "ndcg@10": 0.8748551918782664
+        },
+        "bm25": {
+          "recall@5": 0.2,
+          "recall@10": 0.4,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 0.5,
+          "ndcg@10": 0.3347975674340217
+        },
+        "rrf": {
+          "recall@5": 0.4,
+          "recall@10": 0.6,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 1.0,
+          "ndcg@10": 0.6217937096682962
+        },
+        "rrf_support": {
+          "recall@5": 0.4,
+          "recall@10": 0.6,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 1.0,
+          "ndcg@10": 0.6217937096682962
+        }
+      }
+    },
+    {
+      "id": "p05",
+      "type": "paraphrase",
+      "query": "My flight got cancelled overnight, where can I sleep inside the terminal?",
+      "tuned_on": false,
+      "relevant_docs": [
+        "hotel_106",
+        "hotel_109",
+        "hotel_108"
+      ],
+      "rankings": {
+        "dense": [
+          "hotel_108",
+          "hotel_067",
+          "hotel_106",
+          "hotel_109",
+          "hotel_030",
+          "hotel_139",
+          "hotel_109",
+          "hotel_028",
+          "hotel_066",
+          "hotel_027"
+        ],
+        "bm25": [
+          "hotel_109",
+          "hotel_109",
+          "hotel_106",
+          "hotel_113",
+          "hotel_092",
+          "hotel_071",
+          "hotel_022",
+          "hotel_038",
+          "hotel_115",
+          "hotel_059"
+        ],
+        "rrf": [
+          "hotel_109",
+          "hotel_106",
+          "hotel_109",
+          "hotel_108",
+          "hotel_113",
+          "hotel_115",
+          "hotel_098",
+          "hotel_067",
+          "hotel_030",
+          "hotel_092"
+        ],
+        "rrf_support": [
+          "hotel_109",
+          "hotel_106",
+          "hotel_109",
+          "hotel_108",
+          "hotel_113",
+          "hotel_115",
+          "hotel_098",
+          "hotel_067"
+        ]
+      },
+      "scores": {
+        "dense": {
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 1.0,
+          "ndcg@10": 0.9060254355346823
+        },
+        "bm25": {
+          "recall@5": 0.6666666666666666,
+          "recall@10": 0.6666666666666666,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 1.0,
+          "ndcg@10": 0.7039180890341347
+        },
+        "rrf": {
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 1.0,
+          "ndcg@10": 0.9674679834891693
+        },
+        "rrf_support": {
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 1.0,
+          "ndcg@10": 0.9674679834891693
+        }
+      }
+    },
+    {
+      "id": "p06",
+      "type": "paraphrase",
+      "query": "Cheap place to sleep for a solo backpacker on a tight budget",
+      "tuned_on": false,
+      "relevant_docs": [
+        "hotel_113",
+        "hotel_110"
+      ],
+      "rankings": {
+        "dense": [
+          "hotel_019",
+          "hotel_030",
+          "hotel_071",
+          "hotel_022",
+          "hotel_094",
+          "hotel_113",
+          "hotel_022",
+          "hotel_117",
+          "hotel_022",
+          "hotel_072"
+        ],
+        "bm25": [
+          "hotel_113",
+          "hotel_024",
+          "hotel_018",
+          "hotel_110",
+          "hotel_036",
+          "hotel_053",
+          "hotel_017",
+          "hotel_077",
+          "hotel_036",
+          "hotel_114"
+        ],
+        "rrf": [
+          "hotel_113",
+          "hotel_022",
+          "hotel_114",
+          "hotel_012",
+          "hotel_092",
+          "hotel_116",
+          "hotel_019",
+          "hotel_030",
+          "hotel_024",
+          "hotel_071"
+        ],
+        "rrf_support": [
+          "hotel_113",
+          "hotel_022",
+          "hotel_114",
+          "hotel_012",
+          "hotel_092",
+          "hotel_116",
+          "hotel_019",
+          "hotel_030"
+        ]
+      },
+      "scores": {
+        "dense": {
+          "recall@5": 0.0,
+          "recall@10": 0.5,
+          "hit@5": 0.0,
+          "hit@10": 1.0,
+          "mrr@10": 0.16666666666666666,
+          "ndcg@10": 0.21840743681816419
+        },
+        "bm25": {
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 1.0,
+          "ndcg@10": 0.8772153153380493
+        },
+        "rrf": {
+          "recall@5": 0.5,
+          "recall@10": 0.5,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 1.0,
+          "ndcg@10": 0.6131471927654584
+        },
+        "rrf_support": {
+          "recall@5": 0.5,
+          "recall@10": 0.5,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 1.0,
+          "ndcg@10": 0.6131471927654584
+        }
+      }
+    },
+    {
+      "id": "p07",
+      "type": "paraphrase",
+      "query": "Off-grid cabins among rainforest trees with solar power",
+      "tuned_on": false,
+      "relevant_docs": [
+        "hotel_116",
+        "hotel_117",
+        "hotel_119"
+      ],
+      "rankings": {
+        "dense": [
+          "hotel_116",
+          "hotel_117",
+          "hotel_117",
+          "hotel_119",
+          "hotel_118",
+          "hotel_087",
+          "hotel_119",
+          "hotel_092",
+          "hotel_043",
+          "hotel_094"
+        ],
+        "bm25": [
+          "hotel_116",
+          "hotel_117",
+          "hotel_119",
+          "hotel_117",
+          "hotel_119",
+          "hotel_003",
+          "hotel_116",
+          "hotel_023",
+          "hotel_065",
+          "hotel_022"
+        ],
+        "rrf": [
+          "hotel_116",
+          "hotel_117",
+          "hotel_117",
+          "hotel_119",
+          "hotel_119",
+          "hotel_118",
+          "hotel_116",
+          "hotel_008",
+          "hotel_002",
+          "hotel_087"
+        ],
+        "rrf_support": [
+          "hotel_116",
+          "hotel_117",
+          "hotel_117",
+          "hotel_119",
+          "hotel_119",
+          "hotel_118",
+          "hotel_116",
+          "hotel_008"
+        ]
+      },
+      "scores": {
+        "dense": {
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 1.0,
+          "ndcg@10": 0.9674679834891693
+        },
+        "bm25": {
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 1.0,
+          "ndcg@10": 1.0
+        },
+        "rrf": {
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 1.0,
+          "ndcg@10": 0.9674679834891693
+        },
+        "rrf_support": {
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 1.0,
+          "ndcg@10": 0.9674679834891693
+        }
+      }
+    },
+    {
+      "id": "p08",
+      "type": "paraphrase",
+      "query": "Mountain lodge near a glacier for hiking and ski touring",
+      "tuned_on": false,
+      "relevant_docs": [
+        "hotel_131",
+        "hotel_133",
+        "hotel_132"
+      ],
+      "rankings": {
+        "dense": [
+          "hotel_131",
+          "hotel_133",
+          "hotel_085",
+          "hotel_113",
+          "hotel_116",
+          "hotel_093",
+          "hotel_045",
+          "hotel_001",
+          "hotel_054",
+          "hotel_073"
+        ],
+        "bm25": [
+          "hotel_131",
+          "hotel_133",
+          "hotel_113",
+          "hotel_113",
+          "hotel_133",
+          "hotel_079",
+          "hotel_107",
+          "hotel_116",
+          "hotel_119",
+          "hotel_008"
+        ],
+        "rrf": [
+          "hotel_131",
+          "hotel_133",
+          "hotel_113",
+          "hotel_116",
+          "hotel_119",
+          "hotel_113",
+          "hotel_114",
+          "hotel_085",
+          "hotel_133",
+          "hotel_093"
+        ],
+        "rrf_support": [
+          "hotel_131",
+          "hotel_133",
+          "hotel_113",
+          "hotel_116",
+          "hotel_119",
+          "hotel_113",
+          "hotel_114",
+          "hotel_085"
+        ]
+      },
+      "scores": {
+        "dense": {
+          "recall@5": 0.6666666666666666,
+          "recall@10": 0.6666666666666666,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 1.0,
+          "ndcg@10": 0.7653606369886217
+        },
+        "bm25": {
+          "recall@5": 0.6666666666666666,
+          "recall@10": 0.6666666666666666,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 1.0,
+          "ndcg@10": 0.7653606369886217
+        },
+        "rrf": {
+          "recall@5": 0.6666666666666666,
+          "recall@10": 0.6666666666666666,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 1.0,
+          "ndcg@10": 0.7653606369886217
+        },
+        "rrf_support": {
+          "recall@5": 0.6666666666666666,
+          "recall@10": 0.6666666666666666,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 1.0,
+          "ndcg@10": 0.7653606369886217
+        }
+      }
+    },
+    {
+      "id": "p09",
+      "type": "paraphrase",
+      "query": "Where can I stay with a retro arcade and very fast internet for streaming?",
+      "tuned_on": false,
+      "relevant_docs": [
+        "hotel_134",
+        "hotel_135",
+        "hotel_136"
+      ],
+      "rankings": {
+        "dense": [
+          "hotel_136",
+          "hotel_104",
+          "hotel_129",
+          "hotel_135",
+          "hotel_134",
+          "hotel_134",
+          "hotel_101",
+          "hotel_068",
+          "hotel_057",
+          "hotel_012"
+        ],
+        "bm25": [
+          "hotel_136",
+          "hotel_134",
+          "hotel_059",
+          "hotel_018",
+          "hotel_134",
+          "hotel_136",
+          "hotel_071",
+          "hotel_057",
+          "hotel_040",
+          "hotel_068"
+        ],
+        "rrf": [
+          "hotel_136",
+          "hotel_134",
+          "hotel_134",
+          "hotel_057",
+          "hotel_068",
+          "hotel_121",
+          "hotel_071",
+          "hotel_123",
+          "hotel_104",
+          "hotel_129"
+        ],
+        "rrf_support": [
+          "hotel_136",
+          "hotel_134",
+          "hotel_134",
+          "hotel_057",
+          "hotel_068",
+          "hotel_121",
+          "hotel_071",
+          "hotel_123"
+        ]
+      },
+      "scores": {
+        "dense": {
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 1.0,
+          "ndcg@10": 0.8529278650606567
+        },
+        "bm25": {
+          "recall@5": 0.6666666666666666,
+          "recall@10": 0.6666666666666666,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 1.0,
+          "ndcg@10": 0.7653606369886217
+        },
+        "rrf": {
+          "recall@5": 0.6666666666666666,
+          "recall@10": 0.6666666666666666,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 1.0,
+          "ndcg@10": 0.7653606369886217
+        },
+        "rrf_support": {
+          "recall@5": 0.6666666666666666,
+          "recall@10": 0.6666666666666666,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 1.0,
+          "ndcg@10": 0.7653606369886217
+        }
+      }
+    },
+    {
+      "id": "p10",
+      "type": "paraphrase",
+      "query": "A place to rest in silence with no phones, no alcohol and simple vegetarian meals",
+      "tuned_on": false,
+      "relevant_docs": [
+        "hotel_137",
+        "hotel_139",
+        "hotel_138",
+        "hotel_140"
+      ],
+      "rankings": {
+        "dense": [
+          "hotel_137",
+          "hotel_138",
+          "hotel_140",
+          "hotel_138",
+          "hotel_139",
+          "hotel_109",
+          "hotel_137",
+          "hotel_140",
+          "hotel_107",
+          "hotel_022"
+        ],
+        "bm25": [
+          "hotel_137",
+          "hotel_139",
+          "hotel_138",
+          "hotel_140",
+          "hotel_138",
+          "hotel_017",
+          "hotel_098",
+          "hotel_018",
+          "hotel_131",
+          "hotel_036"
+        ],
+        "rrf": [
+          "hotel_137",
+          "hotel_138",
+          "hotel_139",
+          "hotel_140",
+          "hotel_138",
+          "hotel_107",
+          "hotel_048",
+          "hotel_139",
+          "hotel_090",
+          "hotel_109"
+        ],
+        "rrf_support": [
+          "hotel_137",
+          "hotel_138",
+          "hotel_139",
+          "hotel_140",
+          "hotel_138",
+          "hotel_107",
+          "hotel_048",
+          "hotel_139"
+        ]
+      },
+      "scores": {
+        "dense": {
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 1.0,
+          "ndcg@10": 0.9828920819566879
+        },
+        "bm25": {
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 1.0,
+          "ndcg@10": 1.0
+        },
+        "rrf": {
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 1.0,
+          "ndcg@10": 1.0
+        },
+        "rrf_support": {
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 1.0,
+          "ndcg@10": 1.0
+        }
+      }
+    },
+    {
+      "id": "p11",
+      "type": "paraphrase",
+      "query": "Restored royal residence with painted ceilings and formal afternoon tea",
+      "tuned_on": false,
+      "relevant_docs": [
+        "hotel_128",
+        "hotel_129",
+        "hotel_130"
+      ],
+      "rankings": {
+        "dense": [
+          "hotel_128",
+          "hotel_128",
+          "hotel_130",
+          "hotel_128",
+          "hotel_124",
+          "hotel_137",
+          "hotel_002",
+          "hotel_129",
+          "hotel_130",
+          "hotel_129"
+        ],
+        "bm25": [
+          "hotel_128",
+          "hotel_128",
+          "hotel_130",
+          "hotel_128",
+          "hotel_130",
+          "hotel_129",
+          "hotel_004",
+          "hotel_110",
+          "hotel_020",
+          "hotel_111"
+        ],
+        "rrf": [
+          "hotel_128",
+          "hotel_128",
+          "hotel_128",
+          "hotel_130",
+          "hotel_130",
+          "hotel_129",
+          "hotel_110",
+          "hotel_111",
+          "hotel_124",
+          "hotel_137"
+        ],
+        "rrf_support": [
+          "hotel_128",
+          "hotel_128",
+          "hotel_128",
+          "hotel_130",
+          "hotel_130",
+          "hotel_129",
+          "hotel_110",
+          "hotel_111"
+        ]
+      },
+      "scores": {
+        "dense": {
+          "recall@5": 0.6666666666666666,
+          "recall@10": 1.0,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 1.0,
+          "ndcg@10": 0.8519590445170673
+        },
+        "bm25": {
+          "recall@5": 0.6666666666666666,
+          "recall@10": 1.0,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 1.0,
+          "ndcg@10": 0.8710785440003369
+        },
+        "rrf": {
+          "recall@5": 0.6666666666666666,
+          "recall@10": 1.0,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 1.0,
+          "ndcg@10": 0.8385465274895063
+        },
+        "rrf_support": {
+          "recall@5": 0.6666666666666666,
+          "recall@10": 1.0,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 1.0,
+          "ndcg@10": 0.8385465274895063
+        }
+      }
+    },
+    {
+      "id": "p12",
+      "type": "paraphrase",
+      "query": "Apartment with washer and dryer for a month-long consulting project",
+      "tuned_on": false,
+      "relevant_docs": [
+        "hotel_120",
+        "hotel_121",
+        "hotel_123",
+        "hotel_122"
+      ],
+      "rankings": {
+        "dense": [
+          "hotel_121",
+          "hotel_120",
+          "hotel_101",
+          "hotel_123",
+          "hotel_125",
+          "hotel_080",
+          "hotel_107",
+          "hotel_102",
+          "hotel_009",
+          "hotel_103"
+        ],
+        "bm25": [
+          "hotel_120",
+          "hotel_123",
+          "hotel_121",
+          "hotel_121",
+          "hotel_095",
+          "hotel_090",
+          "hotel_006",
+          "hotel_055",
+          "hotel_070",
+          "hotel_044"
+        ],
+        "rrf": [
+          "hotel_121",
+          "hotel_123",
+          "hotel_090",
+          "hotel_122",
+          "hotel_120",
+          "hotel_120",
+          "hotel_101",
+          "hotel_121",
+          "hotel_125",
+          "hotel_095"
+        ],
+        "rrf_support": [
+          "hotel_121",
+          "hotel_123",
+          "hotel_090",
+          "hotel_122",
+          "hotel_120",
+          "hotel_120",
+          "hotel_101",
+          "hotel_121"
+        ]
+      },
+      "scores": {
+        "dense": {
+          "recall@5": 0.75,
+          "recall@10": 0.75,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 1.0,
+          "ndcg@10": 0.8048099750039491
+        },
+        "bm25": {
+          "recall@5": 0.75,
+          "recall@10": 0.75,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 1.0,
+          "ndcg@10": 0.8318724637288826
+        },
+        "rrf": {
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 1.0,
+          "ndcg@10": 0.9558295932317544
+        },
+        "rrf_support": {
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 1.0,
+          "ndcg@10": 0.9558295932317544
+        }
+      }
+    },
+    {
+      "id": "p13",
+      "type": "paraphrase",
+      "query": "Where is the highest bar in the city with hundreds of whisky labels?",
+      "tuned_on": false,
+      "relevant_docs": [
+        "hotel_006",
+        "hotel_014",
+        "hotel_037",
+        "hotel_070"
+      ],
+      "rankings": {
+        "dense": [
+          "hotel_006",
+          "hotel_037",
+          "hotel_014",
+          "hotel_070",
+          "hotel_112",
+          "hotel_083",
+          "hotel_036",
+          "hotel_004",
+          "hotel_008",
+          "hotel_038"
+        ],
+        "bm25": [
+          "hotel_006",
+          "hotel_014",
+          "hotel_037",
+          "hotel_070",
+          "hotel_071",
+          "hotel_091",
+          "hotel_059",
+          "hotel_001",
+          "hotel_068",
+          "hotel_036"
+        ],
+        "rrf": [
+          "hotel_006",
+          "hotel_037",
+          "hotel_014",
+          "hotel_070",
+          "hotel_036",
+          "hotel_038",
+          "hotel_083",
+          "hotel_045",
+          "hotel_034",
+          "hotel_025"
+        ],
+        "rrf_support": [
+          "hotel_006",
+          "hotel_037",
+          "hotel_014",
+          "hotel_070",
+          "hotel_036",
+          "hotel_038",
+          "hotel_083",
+          "hotel_045"
+        ]
+      },
+      "scores": {
+        "dense": {
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 1.0,
+          "ndcg@10": 1.0
+        },
+        "bm25": {
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 1.0,
+          "ndcg@10": 1.0
+        },
+        "rrf": {
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 1.0,
+          "ndcg@10": 1.0
+        },
+        "rrf_support": {
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 1.0,
+          "ndcg@10": 1.0
+        }
+      }
+    },
+    {
+      "id": "p14",
+      "type": "paraphrase",
+      "query": "Which hotel has a restaurant over the water recognised by Michelin?",
+      "tuned_on": false,
+      "relevant_docs": [
+        "hotel_003",
+        "hotel_021"
+      ],
+      "rankings": {
+        "dense": [
+          "hotel_003",
+          "hotel_034",
+          "hotel_021",
+          "hotel_025",
+          "hotel_072",
+          "hotel_135",
+          "hotel_125",
+          "hotel_022",
+          "hotel_096",
+          "hotel_004"
+        ],
+        "bm25": [
+          "hotel_021",
+          "hotel_022",
+          "hotel_120",
+          "hotel_003",
+          "hotel_004",
+          "hotel_119",
+          "hotel_040",
+          "hotel_059",
+          "hotel_019",
+          "hotel_024"
+        ],
+        "rrf": [
+          "hotel_021",
+          "hotel_003",
+          "hotel_022",
+          "hotel_120",
+          "hotel_004",
+          "hotel_070",
+          "hotel_095",
+          "hotel_019",
+          "hotel_020",
+          "hotel_037"
+        ],
+        "rrf_support": [
+          "hotel_021",
+          "hotel_003",
+          "hotel_022",
+          "hotel_120",
+          "hotel_004",
+          "hotel_070",
+          "hotel_095",
+          "hotel_019"
+        ]
+      },
+      "scores": {
+        "dense": {
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 1.0,
+          "ndcg@10": 0.9197207891481876
+        },
+        "bm25": {
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 1.0,
+          "ndcg@10": 0.8772153153380493
+        },
+        "rrf": {
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 1.0,
+          "ndcg@10": 1.0
+        },
+        "rrf_support": {
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 1.0,
+          "ndcg@10": 1.0
+        }
+      }
+    },
+    {
+      "id": "p15",
+      "type": "paraphrase",
+      "query": "Resort with a nightly bonfire and an open-fire tasting menu",
+      "tuned_on": false,
+      "relevant_docs": [
+        "hotel_008",
+        "hotel_013",
+        "hotel_024"
+      ],
+      "rankings": {
+        "dense": [
+          "hotel_008",
+          "hotel_024",
+          "hotel_089",
+          "hotel_048",
+          "hotel_072",
+          "hotel_037",
+          "hotel_094",
+          "hotel_056",
+          "hotel_023",
+          "hotel_010"
+        ],
+        "bm25": [
+          "hotel_008",
+          "hotel_023",
+          "hotel_013",
+          "hotel_024",
+          "hotel_056",
+          "hotel_048",
+          "hotel_059",
+          "hotel_016",
+          "hotel_031",
+          "hotel_056"
+        ],
+        "rrf": [
+          "hotel_008",
+          "hotel_024",
+          "hotel_048",
+          "hotel_023",
+          "hotel_056",
+          "hotel_013",
+          "hotel_008",
+          "hotel_089",
+          "hotel_072",
+          "hotel_037"
+        ],
+        "rrf_support": [
+          "hotel_008",
+          "hotel_024",
+          "hotel_048",
+          "hotel_023",
+          "hotel_056",
+          "hotel_013",
+          "hotel_008",
+          "hotel_089"
+        ]
+      },
+      "scores": {
+        "dense": {
+          "recall@5": 0.6666666666666666,
+          "recall@10": 0.6666666666666666,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 1.0,
+          "ndcg@10": 0.7653606369886217
+        },
+        "bm25": {
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 1.0,
+          "ndcg@10": 0.9060254355346823
+        },
+        "rrf": {
+          "recall@5": 0.6666666666666666,
+          "recall@10": 1.0,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 1.0,
+          "ndcg@10": 0.9325210919548239
+        },
+        "rrf_support": {
+          "recall@5": 0.6666666666666666,
+          "recall@10": 1.0,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 1.0,
+          "ndcg@10": 0.9325210919548239
+        }
+      }
+    },
+    {
+      "id": "p16",
+      "type": "paraphrase",
+      "query": "Can someone with limited mobility stay at the heritage guesthouse on the pedestrian lane?",
+      "tuned_on": false,
+      "relevant_docs": [
+        "hotel_110",
+        "hotel_112"
+      ],
+      "rankings": {
+        "dense": [
+          "hotel_088",
+          "hotel_088",
+          "hotel_108",
+          "hotel_110",
+          "hotel_031",
+          "hotel_073",
+          "hotel_112",
+          "hotel_128",
+          "hotel_073",
+          "hotel_133"
+        ],
+        "bm25": [
+          "hotel_110",
+          "hotel_130",
+          "hotel_112",
+          "hotel_028",
+          "hotel_111",
+          "hotel_085",
+          "hotel_137",
+          "hotel_087",
+          "hotel_036",
+          "hotel_074"
+        ],
+        "rrf": [
+          "hotel_110",
+          "hotel_112",
+          "hotel_073",
+          "hotel_128",
+          "hotel_088",
+          "hotel_088",
+          "hotel_130",
+          "hotel_108",
+          "hotel_028",
+          "hotel_031"
+        ],
+        "rrf_support": [
+          "hotel_110",
+          "hotel_112",
+          "hotel_073",
+          "hotel_128",
+          "hotel_088",
+          "hotel_088",
+          "hotel_130",
+          "hotel_108"
+        ]
+      },
+      "scores": {
+        "dense": {
+          "recall@5": 0.5,
+          "recall@10": 1.0,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 0.25,
+          "ndcg@10": 0.46845052016107697
+        },
+        "bm25": {
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 1.0,
+          "ndcg@10": 0.9197207891481876
+        },
+        "rrf": {
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 1.0,
+          "ndcg@10": 1.0
+        },
+        "rrf_support": {
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 1.0,
+          "ndcg@10": 1.0
+        }
+      }
+    },
+    {
+      "id": "p17",
+      "type": "paraphrase",
+      "query": "Which hotels are unsuitable for young children?",
+      "tuned_on": true,
+      "relevant_docs": [
+        "hotel_065",
+        "hotel_118",
+        "hotel_115",
+        "hotel_139",
+        "hotel_133",
+        "hotel_028",
+        "hotel_097"
+      ],
+      "rankings": {
+        "dense": [
+          "hotel_065",
+          "hotel_062",
+          "hotel_051",
+          "hotel_020",
+          "hotel_054",
+          "hotel_133",
+          "hotel_025",
+          "hotel_136",
+          "hotel_030",
+          "hotel_096"
+        ],
+        "bm25": [
+          "hotel_059",
+          "hotel_097",
+          "hotel_071",
+          "hotel_059",
+          "hotel_094",
+          "hotel_025",
+          "hotel_059",
+          "hotel_062",
+          "hotel_065",
+          "hotel_025"
+        ],
+        "rrf": [
+          "hotel_065",
+          "hotel_062",
+          "hotel_059",
+          "hotel_025",
+          "hotel_133",
+          "hotel_051",
+          "hotel_054",
+          "hotel_059",
+          "hotel_094",
+          "hotel_097"
+        ],
+        "rrf_support": [
+          "hotel_075",
+          "hotel_015",
+          "hotel_049",
+          "hotel_054",
+          "hotel_046",
+          "hotel_059",
+          "hotel_065",
+          "hotel_062",
+          "hotel_059",
+          "hotel_025"
+        ]
+      },
+      "scores": {
+        "dense": {
+          "recall@5": 0.14285714285714285,
+          "recall@10": 0.2857142857142857,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 1.0,
+          "ndcg@10": 0.3727892582642586
+        },
+        "bm25": {
+          "recall@5": 0.14285714285714285,
+          "recall@10": 0.2857142857142857,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 0.5,
+          "ndcg@10": 0.25617367829355947
+        },
+        "rrf": {
+          "recall@5": 0.2857142857142857,
+          "recall@10": 0.42857142857142855,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 1.0,
+          "ndcg@10": 0.4606700933772881
+        },
+        "rrf_support": {
+          "recall@5": 0.0,
+          "recall@10": 0.14285714285714285,
+          "hit@5": 0.0,
+          "hit@10": 1.0,
+          "mrr@10": 0.14285714285714285,
+          "ndcg@10": 0.09162544430476362
+        }
+      }
+    },
+    {
+      "id": "p18",
+      "type": "paraphrase",
+      "query": "Which properties are best for late-night airport layovers?",
+      "tuned_on": true,
+      "relevant_docs": [
+        "hotel_106",
+        "hotel_109",
+        "hotel_107",
+        "hotel_108"
+      ],
+      "rankings": {
+        "dense": [
+          "hotel_045",
+          "hotel_109",
+          "hotel_110",
+          "hotel_098",
+          "hotel_106",
+          "hotel_063",
+          "hotel_088",
+          "hotel_052",
+          "hotel_094",
+          "hotel_071"
+        ],
+        "bm25": [
+          "hotel_106",
+          "hotel_072",
+          "hotel_019",
+          "hotel_061",
+          "hotel_087",
+          "hotel_136",
+          "hotel_030",
+          "hotel_052",
+          "hotel_134",
+          "hotel_048"
+        ],
+        "rrf": [
+          "hotel_106",
+          "hotel_019",
+          "hotel_088",
+          "hotel_094",
+          "hotel_052",
+          "hotel_071",
+          "hotel_025",
+          "hotel_045",
+          "hotel_109",
+          "hotel_072"
+        ],
+        "rrf_support": [
+          "hotel_009",
+          "hotel_058",
+          "hotel_047",
+          "hotel_050",
+          "hotel_056",
+          "hotel_052",
+          "hotel_106",
+          "hotel_019",
+          "hotel_088",
+          "hotel_094"
+        ]
+      },
+      "scores": {
+        "dense": {
+          "recall@5": 0.5,
+          "recall@10": 0.5,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 0.5,
+          "ndcg@10": 0.3973220069685352
+        },
+        "bm25": {
+          "recall@5": 0.25,
+          "recall@10": 0.25,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 1.0,
+          "ndcg@10": 0.3903800499921017
+        },
+        "rrf": {
+          "recall@5": 0.25,
+          "recall@10": 0.5,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 1.0,
+          "ndcg@10": 0.5078961547485289
+        },
+        "rrf_support": {
+          "recall@5": 0.0,
+          "recall@10": 0.25,
+          "hit@5": 0.0,
+          "hit@10": 1.0,
+          "mrr@10": 0.14285714285714285,
+          "ndcg@10": 0.13012668333070054
+        }
+      }
+    },
+    {
+      "id": "m01",
+      "type": "multi_condition",
+      "query": "Which hotels have free WiFi and complimentary breakfast?",
+      "tuned_on": true,
+      "relevant_docs": [
+        "hotel_009",
+        "hotel_010",
+        "hotel_011",
+        "hotel_013",
+        "hotel_111"
+      ],
+      "rankings": {
+        "dense": [
+          "hotel_062",
+          "hotel_022",
+          "hotel_071",
+          "hotel_072",
+          "hotel_019",
+          "hotel_012",
+          "hotel_004",
+          "hotel_068",
+          "hotel_009",
+          "hotel_097"
+        ],
+        "bm25": [
+          "hotel_071",
+          "hotel_114",
+          "hotel_042",
+          "hotel_072",
+          "hotel_012",
+          "hotel_030",
+          "hotel_111",
+          "hotel_019",
+          "hotel_069",
+          "hotel_018"
+        ],
+        "rrf": [
+          "hotel_071",
+          "hotel_072",
+          "hotel_012",
+          "hotel_019",
+          "hotel_009",
+          "hotel_068",
+          "hotel_111",
+          "hotel_070",
+          "hotel_030",
+          "hotel_129"
+        ],
+        "rrf_support": [
+          "hotel_010",
+          "hotel_011",
+          "hotel_013",
+          "hotel_071",
+          "hotel_072",
+          "hotel_012",
+          "hotel_019",
+          "hotel_009",
+          "hotel_068",
+          "hotel_111"
+        ]
+      },
+      "scores": {
+        "dense": {
+          "recall@5": 0.0,
+          "recall@10": 0.2,
+          "hit@5": 0.0,
+          "hit@10": 1.0,
+          "mrr@10": 0.1111111111111111,
+          "ndcg@10": 0.10209739512291163
+        },
+        "bm25": {
+          "recall@5": 0.0,
+          "recall@10": 0.2,
+          "hit@5": 0.0,
+          "hit@10": 1.0,
+          "mrr@10": 0.14285714285714285,
+          "ndcg@10": 0.11305340175787204
+        },
+        "rrf": {
+          "recall@5": 0.2,
+          "recall@10": 0.4,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 0.2,
+          "ndcg@10": 0.2442584792702138
+        },
+        "rrf_support": {
+          "recall@5": 0.6,
+          "recall@10": 1.0,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 1.0,
+          "ndcg@10": 0.9277589908435726
+        }
+      }
+    },
+    {
+      "id": "m02",
+      "type": "multi_condition",
+      "query": "Which hotels do not have televisions in the rooms?",
+      "tuned_on": true,
+      "relevant_docs": [
+        "hotel_105",
+        "hotel_102",
+        "hotel_008",
+        "hotel_013",
+        "hotel_057",
+        "hotel_117",
+        "hotel_132",
+        "hotel_138",
+        "hotel_114",
+        "hotel_111"
+      ],
+      "rankings": {
+        "dense": [
+          "hotel_132",
+          "hotel_102",
+          "hotel_120",
+          "hotel_107",
+          "hotel_062",
+          "hotel_128",
+          "hotel_136",
+          "hotel_031",
+          "hotel_138",
+          "hotel_124"
+        ],
+        "bm25": [
+          "hotel_111",
+          "hotel_114",
+          "hotel_102",
+          "hotel_117",
+          "hotel_132",
+          "hotel_094",
+          "hotel_071",
+          "hotel_129",
+          "hotel_138",
+          "hotel_025"
+        ],
+        "rrf": [
+          "hotel_102",
+          "hotel_132",
+          "hotel_138",
+          "hotel_111",
+          "hotel_110",
+          "hotel_129",
+          "hotel_012",
+          "hotel_002",
+          "hotel_004",
+          "hotel_019"
+        ],
+        "rrf_support": [
+          "hotel_114",
+          "hotel_117",
+          "hotel_103",
+          "hotel_105",
+          "hotel_101",
+          "hotel_094",
+          "hotel_102",
+          "hotel_132",
+          "hotel_138",
+          "hotel_111"
+        ]
+      },
+      "scores": {
+        "dense": {
+          "recall@5": 0.2,
+          "recall@10": 0.3,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 1.0,
+          "ndcg@10": 0.42520843362602373
+        },
+        "bm25": {
+          "recall@5": 0.5,
+          "recall@10": 0.6,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 1.0,
+          "ndcg@10": 0.7151857987862356
+        },
+        "rrf": {
+          "recall@5": 0.4,
+          "recall@10": 0.4,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 1.0,
+          "ndcg@10": 0.5637884576902256
+        },
+        "rrf_support": {
+          "recall@5": 0.3,
+          "recall@10": 0.7,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 1.0,
+          "ndcg@10": 0.7264127302306637
+        }
+      }
+    },
+    {
+      "id": "m03",
+      "type": "multi_condition",
+      "query": "Family hotel with a kids club and a full kitchen in the suite",
+      "tuned_on": false,
+      "relevant_docs": [
+        "hotel_051",
+        "hotel_075",
+        "hotel_095",
+        "hotel_003",
+        "hotel_020"
+      ],
+      "rankings": {
+        "dense": [
+          "hotel_020",
+          "hotel_062",
+          "hotel_004",
+          "hotel_054",
+          "hotel_136",
+          "hotel_134",
+          "hotel_120",
+          "hotel_050",
+          "hotel_130",
+          "hotel_124"
+        ],
+        "bm25": [
+          "hotel_020",
+          "hotel_075",
+          "hotel_020",
+          "hotel_095",
+          "hotel_059",
+          "hotel_090",
+          "hotel_051",
+          "hotel_068",
+          "hotel_003",
+          "hotel_103"
+        ],
+        "rrf": [
+          "hotel_020",
+          "hotel_054",
+          "hotel_059",
+          "hotel_090",
+          "hotel_020",
+          "hotel_051",
+          "hotel_019",
+          "hotel_051",
+          "hotel_002",
+          "hotel_062"
+        ],
+        "rrf_support": [
+          "hotel_020",
+          "hotel_054",
+          "hotel_059",
+          "hotel_090",
+          "hotel_020",
+          "hotel_051",
+          "hotel_019",
+          "hotel_051"
+        ]
+      },
+      "scores": {
+        "dense": {
+          "recall@5": 0.2,
+          "recall@10": 0.2,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 1.0,
+          "ndcg@10": 0.3391602052736161
+        },
+        "bm25": {
+          "recall@5": 0.6,
+          "recall@10": 1.0,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 1.0,
+          "ndcg@10": 0.9143656167316339
+        },
+        "rrf": {
+          "recall@5": 0.2,
+          "recall@10": 0.4,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 1.0,
+          "ndcg@10": 0.4599715079731103
+        },
+        "rrf_support": {
+          "recall@5": 0.2,
+          "recall@10": 0.4,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 1.0,
+          "ndcg@10": 0.4599715079731103
+        }
+      }
+    },
+    {
+      "id": "m04",
+      "type": "multi_condition",
+      "query": "Pet-friendly hotel with electric vehicle charging",
+      "tuned_on": false,
+      "relevant_docs": [
+        "hotel_029",
+        "hotel_031",
+        "hotel_045",
+        "hotel_052",
+        "hotel_016"
+      ],
+      "rankings": {
+        "dense": [
+          "hotel_043",
+          "hotel_058",
+          "hotel_096",
+          "hotel_031",
+          "hotel_029",
+          "hotel_031",
+          "hotel_052",
+          "hotel_045",
+          "hotel_029",
+          "hotel_108"
+        ],
+        "bm25": [
+          "hotel_058",
+          "hotel_045",
+          "hotel_043",
+          "hotel_029",
+          "hotel_052",
+          "hotel_122",
+          "hotel_016",
+          "hotel_096",
+          "hotel_094",
+          "hotel_093"
+        ],
+        "rrf": [
+          "hotel_058",
+          "hotel_043",
+          "hotel_029",
+          "hotel_045",
+          "hotel_096",
+          "hotel_052",
+          "hotel_031",
+          "hotel_031",
+          "hotel_016",
+          "hotel_122"
+        ],
+        "rrf_support": [
+          "hotel_058",
+          "hotel_043",
+          "hotel_029",
+          "hotel_045",
+          "hotel_096",
+          "hotel_052",
+          "hotel_031",
+          "hotel_031"
+        ]
+      },
+      "scores": {
+        "dense": {
+          "recall@5": 0.4,
+          "recall@10": 0.8,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 0.25,
+          "ndcg@10": 0.4973199614801841
+        },
+        "bm25": {
+          "recall@5": 0.6,
+          "recall@10": 0.8,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 0.5,
+          "ndcg@10": 0.6043130938474478
+        },
+        "rrf": {
+          "recall@5": 0.4,
+          "recall@10": 1.0,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 0.3333333333333333,
+          "ndcg@10": 0.6516105520597923
+        },
+        "rrf_support": {
+          "recall@5": 0.4,
+          "recall@10": 0.8,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 0.3333333333333333,
+          "ndcg@10": 0.5495131569368807
+        }
+      }
+    },
+    {
+      "id": "m05",
+      "type": "multi_condition",
+      "query": "Remote work stay with strong Wi-Fi, a proper desk and a full kitchen",
+      "tuned_on": false,
+      "relevant_docs": [
+        "hotel_090",
+        "hotel_075",
+        "hotel_095",
+        "hotel_123",
+        "hotel_063"
+      ],
+      "rankings": {
+        "dense": [
+          "hotel_090",
+          "hotel_123",
+          "hotel_092",
+          "hotel_107",
+          "hotel_138",
+          "hotel_104",
+          "hotel_012",
+          "hotel_038",
+          "hotel_120",
+          "hotel_117"
+        ],
+        "bm25": [
+          "hotel_090",
+          "hotel_123",
+          "hotel_095",
+          "hotel_063",
+          "hotel_028",
+          "hotel_075",
+          "hotel_061",
+          "hotel_020",
+          "hotel_097",
+          "hotel_027"
+        ],
+        "rrf": [
+          "hotel_090",
+          "hotel_123",
+          "hotel_092",
+          "hotel_063",
+          "hotel_120",
+          "hotel_071",
+          "hotel_095",
+          "hotel_107",
+          "hotel_138",
+          "hotel_028"
+        ],
+        "rrf_support": [
+          "hotel_090",
+          "hotel_123",
+          "hotel_092",
+          "hotel_063",
+          "hotel_120",
+          "hotel_071",
+          "hotel_095",
+          "hotel_107"
+        ]
+      },
+      "scores": {
+        "dense": {
+          "recall@5": 0.4,
+          "recall@10": 0.4,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 1.0,
+          "ndcg@10": 0.5531464700081437
+        },
+        "bm25": {
+          "recall@5": 0.8,
+          "recall@10": 1.0,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 1.0,
+          "ndcg@10": 0.9896062251871525
+        },
+        "rrf": {
+          "recall@5": 0.6,
+          "recall@10": 0.8,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 1.0,
+          "ndcg@10": 0.8122682216087223
+        },
+        "rrf_support": {
+          "recall@5": 0.6,
+          "recall@10": 0.8,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 1.0,
+          "ndcg@10": 0.8122682216087223
+        }
+      }
+    },
+    {
+      "id": "m06",
+      "type": "multi_condition",
+      "query": "Beachfront resort with free breakfast, snorkelling and no TV in the garden rooms",
+      "tuned_on": false,
+      "relevant_docs": [
+        "hotel_002",
+        "hotel_010",
+        "hotel_102",
+        "hotel_094",
+        "hotel_074"
+      ],
+      "rankings": {
+        "dense": [
+          "hotel_094",
+          "hotel_089",
+          "hotel_002",
+          "hotel_102",
+          "hotel_010",
+          "hotel_017",
+          "hotel_072",
+          "hotel_008",
+          "hotel_025",
+          "hotel_040"
+        ],
+        "bm25": [
+          "hotel_002",
+          "hotel_089",
+          "hotel_010",
+          "hotel_059",
+          "hotel_102",
+          "hotel_040",
+          "hotel_018",
+          "hotel_119",
+          "hotel_111",
+          "hotel_068"
+        ],
+        "rrf": [
+          "hotel_002",
+          "hotel_089",
+          "hotel_010",
+          "hotel_102",
+          "hotel_094",
+          "hotel_040",
+          "hotel_059",
+          "hotel_072",
+          "hotel_017",
+          "hotel_030"
+        ],
+        "rrf_support": [
+          "hotel_109",
+          "hotel_119",
+          "hotel_140",
+          "hotel_123",
+          "hotel_136",
+          "hotel_002",
+          "hotel_089",
+          "hotel_010",
+          "hotel_102",
+          "hotel_094"
+        ]
+      },
+      "scores": {
+        "dense": {
+          "recall@5": 0.8,
+          "recall@10": 0.8,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 1.0,
+          "ndcg@10": 0.7860137352654724
+        },
+        "bm25": {
+          "recall@5": 0.6,
+          "recall@10": 0.6,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 1.0,
+          "ndcg@10": 0.639945385422766
+        },
+        "rrf": {
+          "recall@5": 0.8,
+          "recall@10": 0.8,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 1.0,
+          "ndcg@10": 0.7860137352654724
+        },
+        "rrf_support": {
+          "recall@5": 0.0,
+          "recall@10": 0.8,
+          "hit@5": 0.0,
+          "hit@10": 1.0,
+          "mrr@10": 0.16666666666666666,
+          "ndcg@10": 0.4279411160210267
+        }
+      }
+    },
+    {
+      "id": "m07",
+      "type": "multi_condition",
+      "query": "Suggest a hotel with excellent reviews near the beach.",
+      "tuned_on": true,
+      "relevant_docs": [
+        "hotel_017",
+        "hotel_018",
+        "hotel_040",
+        "hotel_072",
+        "hotel_020",
+        "hotel_069",
+        "hotel_023"
+      ],
+      "rankings": {
+        "dense": [
+          "hotel_025",
+          "hotel_034",
+          "hotel_095",
+          "hotel_094",
+          "hotel_022",
+          "hotel_074",
+          "hotel_072",
+          "hotel_019",
+          "hotel_095",
+          "hotel_090"
+        ],
+        "bm25": [
+          "hotel_019",
+          "hotel_008",
+          "hotel_103",
+          "hotel_119",
+          "hotel_090",
+          "hotel_065",
+          "hotel_079",
+          "hotel_072",
+          "hotel_113",
+          "hotel_034"
+        ],
+        "rrf": [
+          "hotel_019",
+          "hotel_034",
+          "hotel_025",
+          "hotel_072",
+          "hotel_103",
+          "hotel_021",
+          "hotel_074",
+          "hotel_106",
+          "hotel_069",
+          "hotel_093"
+        ],
+        "rrf_support": [
+          "hotel_019",
+          "hotel_034",
+          "hotel_025",
+          "hotel_072",
+          "hotel_103",
+          "hotel_021",
+          "hotel_074",
+          "hotel_106"
+        ]
+      },
+      "scores": {
+        "dense": {
+          "recall@5": 0.0,
+          "recall@10": 0.14285714285714285,
+          "hit@5": 0.0,
+          "hit@10": 1.0,
+          "mrr@10": 0.14285714285714285,
+          "ndcg@10": 0.09162544430476362
+        },
+        "bm25": {
+          "recall@5": 0.0,
+          "recall@10": 0.14285714285714285,
+          "hit@5": 0.0,
+          "hit@10": 1.0,
+          "mrr@10": 0.125,
+          "ndcg@10": 0.08671382849411972
+        },
+        "rrf": {
+          "recall@5": 0.14285714285714285,
+          "recall@10": 0.2857142857142857,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 0.25,
+          "ndcg@10": 0.20112881426068294
+        },
+        "rrf_support": {
+          "recall@5": 0.14285714285714285,
+          "recall@10": 0.14285714285714285,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 0.25,
+          "ndcg@10": 0.11838279295536291
+        }
+      }
+    },
+    {
+      "id": "m08",
+      "type": "multi_condition",
+      "query": "Which hotels have a rooftop infinity pool or a proper lap pool for swimmers?",
+      "tuned_on": false,
+      "relevant_docs": [
+        "hotel_014",
+        "hotel_046",
+        "hotel_053",
+        "hotel_012",
+        "hotel_038",
+        "hotel_071"
+      ],
+      "rankings": {
+        "dense": [
+          "hotel_093",
+          "hotel_047",
+          "hotel_046",
+          "hotel_001",
+          "hotel_014",
+          "hotel_070",
+          "hotel_051",
+          "hotel_049",
+          "hotel_006",
+          "hotel_055"
+        ],
+        "bm25": [
+          "hotel_022",
+          "hotel_071",
+          "hotel_053",
+          "hotel_070",
+          "hotel_001",
+          "hotel_046",
+          "hotel_051",
+          "hotel_088",
+          "hotel_093",
+          "hotel_038"
+        ],
+        "rrf": [
+          "hotel_046",
+          "hotel_001",
+          "hotel_093",
+          "hotel_070",
+          "hotel_051",
+          "hotel_014",
+          "hotel_071",
+          "hotel_022",
+          "hotel_088",
+          "hotel_053"
+        ],
+        "rrf_support": [
+          "hotel_046",
+          "hotel_001",
+          "hotel_093",
+          "hotel_070",
+          "hotel_051",
+          "hotel_014",
+          "hotel_071",
+          "hotel_022"
+        ]
+      },
+      "scores": {
+        "dense": {
+          "recall@5": 0.3333333333333333,
+          "recall@10": 0.3333333333333333,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 0.3333333333333333,
+          "ndcg@10": 0.26836379988737025
+        },
+        "bm25": {
+          "recall@5": 0.3333333333333333,
+          "recall@10": 0.6666666666666666,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 0.5,
+          "ndcg@10": 0.5374829415542605
+        },
+        "rrf": {
+          "recall@5": 0.16666666666666666,
+          "recall@10": 0.6666666666666666,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 1.0,
+          "ndcg@10": 0.5987307532910037
+        },
+        "rrf_support": {
+          "recall@5": 0.16666666666666666,
+          "recall@10": 0.5,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 1.0,
+          "ndcg@10": 0.5112590391895955
+        }
+      }
+    },
+    {
+      "id": "m09",
+      "type": "multi_condition",
+      "query": "Venue for a group event with coach parking and a hybrid event studio",
+      "tuned_on": false,
+      "relevant_docs": [
+        "hotel_126",
+        "hotel_076",
+        "hotel_124"
+      ],
+      "rankings": {
+        "dense": [
+          "hotel_091",
+          "hotel_126",
+          "hotel_076",
+          "hotel_076",
+          "hotel_058",
+          "hotel_124",
+          "hotel_136",
+          "hotel_052",
+          "hotel_124",
+          "hotel_127"
+        ],
+        "bm25": [
+          "hotel_091",
+          "hotel_076",
+          "hotel_076",
+          "hotel_126",
+          "hotel_124",
+          "hotel_004",
+          "hotel_019",
+          "hotel_086",
+          "hotel_054",
+          "hotel_052"
+        ],
+        "rrf": [
+          "hotel_091",
+          "hotel_076",
+          "hotel_126",
+          "hotel_076",
+          "hotel_124",
+          "hotel_004",
+          "hotel_058",
+          "hotel_052",
+          "hotel_019",
+          "hotel_136"
+        ],
+        "rrf_support": [
+          "hotel_091",
+          "hotel_076",
+          "hotel_126",
+          "hotel_076",
+          "hotel_124",
+          "hotel_004",
+          "hotel_058",
+          "hotel_052"
+        ]
+      },
+      "scores": {
+        "dense": {
+          "recall@5": 0.6666666666666666,
+          "recall@10": 1.0,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 0.5,
+          "ndcg@10": 0.6978817289434457
+        },
+        "bm25": {
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 0.5,
+          "ndcg@10": 0.6797310500037655
+        },
+        "rrf": {
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 0.5,
+          "ndcg@10": 0.7122630665145961
+        },
+        "rrf_support": {
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 0.5,
+          "ndcg@10": 0.7122630665145961
+        }
+      }
+    },
+    {
+      "id": "m10",
+      "type": "multi_condition",
+      "query": "Hotel with free parking, a kitchen in every suite and complimentary kayaks",
+      "tuned_on": false,
+      "relevant_docs": [
+        "hotel_011",
+        "hotel_043",
+        "hotel_075",
+        "hotel_095",
+        "hotel_003"
+      ],
+      "rankings": {
+        "dense": [
+          "hotel_020",
+          "hotel_120",
+          "hotel_011",
+          "hotel_008",
+          "hotel_124",
+          "hotel_125",
+          "hotel_095",
+          "hotel_094",
+          "hotel_001",
+          "hotel_135"
+        ],
+        "bm25": [
+          "hotel_095",
+          "hotel_020",
+          "hotel_101",
+          "hotel_003",
+          "hotel_052",
+          "hotel_074",
+          "hotel_069",
+          "hotel_075",
+          "hotel_103",
+          "hotel_090"
+        ],
+        "rrf": [
+          "hotel_095",
+          "hotel_020",
+          "hotel_052",
+          "hotel_020",
+          "hotel_019",
+          "hotel_090",
+          "hotel_073",
+          "hotel_010",
+          "hotel_043",
+          "hotel_103"
+        ],
+        "rrf_support": [
+          "hotel_095",
+          "hotel_020",
+          "hotel_052",
+          "hotel_020",
+          "hotel_019",
+          "hotel_090",
+          "hotel_073",
+          "hotel_010"
+        ]
+      },
+      "scores": {
+        "dense": {
+          "recall@5": 0.2,
+          "recall@10": 0.4,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 0.3333333333333333,
+          "ndcg@10": 0.2826335043946801
+        },
+        "bm25": {
+          "recall@5": 0.4,
+          "recall@10": 0.6,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 1.0,
+          "ndcg@10": 0.5922216874835863
+        },
+        "rrf": {
+          "recall@5": 0.2,
+          "recall@10": 0.4,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 1.0,
+          "ndcg@10": 0.4412576003965278
+        },
+        "rrf_support": {
+          "recall@5": 0.2,
+          "recall@10": 0.2,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 1.0,
+          "ndcg@10": 0.3391602052736161
+        }
+      }
+    },
+    {
+      "id": "c01",
+      "type": "comparison",
+      "query": "Compare bathroom essentials at The Azure Grand and Northstar Capsule Lodge.",
+      "tuned_on": true,
+      "relevant_docs": [
+        "hotel_101",
+        "hotel_114"
+      ],
+      "rankings": {
+        "dense": [
+          "hotel_037",
+          "hotel_103",
+          "hotel_039",
+          "hotel_073",
+          "hotel_093",
+          "hotel_125",
+          "hotel_113",
+          "hotel_101",
+          "hotel_064",
+          "hotel_019"
+        ],
+        "bm25": [
+          "hotel_113",
+          "hotel_114",
+          "hotel_101",
+          "hotel_104",
+          "hotel_105",
+          "hotel_073",
+          "hotel_103",
+          "hotel_136",
+          "hotel_096",
+          "hotel_093"
+        ],
+        "rrf": [
+          "hotel_113",
+          "hotel_073",
+          "hotel_037",
+          "hotel_101",
+          "hotel_039",
+          "hotel_093",
+          "hotel_096",
+          "hotel_064",
+          "hotel_019",
+          "hotel_014"
+        ],
+        "rrf_support": [
+          "hotel_103",
+          "hotel_104",
+          "hotel_105",
+          "hotel_137",
+          "hotel_136",
+          "hotel_130",
+          "hotel_114",
+          "hotel_114",
+          "hotel_009",
+          "hotel_014"
+        ]
+      },
+      "scores": {
+        "dense": {
+          "recall@5": 0.0,
+          "recall@10": 0.5,
+          "hit@5": 0.0,
+          "hit@10": 1.0,
+          "mrr@10": 0.125,
+          "ndcg@10": 0.19342640361727081
+        },
+        "bm25": {
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 0.5,
+          "ndcg@10": 0.6934264036172708
+        },
+        "rrf": {
+          "recall@5": 0.5,
+          "recall@10": 0.5,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 0.25,
+          "ndcg@10": 0.2640681225725909
+        },
+        "rrf_support": {
+          "recall@5": 0.0,
+          "recall@10": 0.5,
+          "hit@5": 0.0,
+          "hit@10": 1.0,
+          "mrr@10": 0.14285714285714285,
+          "ndcg@10": 0.20438239758848611
+        }
+      }
+    },
+    {
+      "id": "c02",
+      "type": "comparison",
+      "query": "Compare the cancellation policies of The Pinnacle Hotel and The Azure Grand.",
+      "tuned_on": false,
+      "relevant_docs": [
+        "hotel_027",
+        "hotel_029",
+        "hotel_066"
+      ],
+      "rankings": {
+        "dense": [
+          "hotel_066",
+          "hotel_029",
+          "hotel_096",
+          "hotel_093",
+          "hotel_093",
+          "hotel_004",
+          "hotel_039",
+          "hotel_073",
+          "hotel_001",
+          "hotel_096"
+        ],
+        "bm25": [
+          "hotel_096",
+          "hotel_093",
+          "hotel_066",
+          "hotel_028",
+          "hotel_083",
+          "hotel_029",
+          "hotel_034",
+          "hotel_004",
+          "hotel_039",
+          "hotel_073"
+        ],
+        "rrf": [
+          "hotel_066",
+          "hotel_096",
+          "hotel_093",
+          "hotel_029",
+          "hotel_004",
+          "hotel_039",
+          "hotel_073",
+          "hotel_001",
+          "hotel_001",
+          "hotel_066"
+        ],
+        "rrf_support": [
+          "hotel_009",
+          "hotel_014",
+          "hotel_054",
+          "hotel_104",
+          "hotel_066",
+          "hotel_096",
+          "hotel_093",
+          "hotel_029",
+          "hotel_004",
+          "hotel_039"
+        ]
+      },
+      "scores": {
+        "dense": {
+          "recall@5": 0.6666666666666666,
+          "recall@10": 0.6666666666666666,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 1.0,
+          "ndcg@10": 0.7653606369886217
+        },
+        "bm25": {
+          "recall@5": 0.3333333333333333,
+          "recall@10": 0.6666666666666666,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 0.3333333333333333,
+          "ndcg@10": 0.40179981797758046
+        },
+        "rrf": {
+          "recall@5": 0.6666666666666666,
+          "recall@10": 0.6666666666666666,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 1.0,
+          "ndcg@10": 0.6713860725233041
+        },
+        "rrf_support": {
+          "recall@5": 0.3333333333333333,
+          "recall@10": 0.6666666666666666,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 0.2,
+          "ndcg@10": 0.3295827480202853
+        }
+      }
+    },
+    {
+      "id": "c03",
+      "type": "comparison",
+      "query": "Should I choose The Azure Grand or The Pinnacle Hotel?",
+      "tuned_on": false,
+      "relevant_docs": [
+        "hotel_093",
+        "hotel_096"
+      ],
+      "rankings": {
+        "dense": [
+          "hotel_096",
+          "hotel_093",
+          "hotel_093",
+          "hotel_039",
+          "hotel_001",
+          "hotel_019",
+          "hotel_073",
+          "hotel_001",
+          "hotel_004",
+          "hotel_037"
+        ],
+        "bm25": [
+          "hotel_096",
+          "hotel_093",
+          "hotel_019",
+          "hotel_022",
+          "hotel_039",
+          "hotel_037",
+          "hotel_083",
+          "hotel_034",
+          "hotel_109",
+          "hotel_088"
+        ],
+        "rrf": [
+          "hotel_096",
+          "hotel_093",
+          "hotel_019",
+          "hotel_039",
+          "hotel_022",
+          "hotel_037",
+          "hotel_093",
+          "hotel_073",
+          "hotel_004",
+          "hotel_034"
+        ],
+        "rrf_support": [
+          "hotel_014",
+          "hotel_045",
+          "hotel_012",
+          "hotel_016",
+          "hotel_096",
+          "hotel_093",
+          "hotel_019",
+          "hotel_039",
+          "hotel_022",
+          "hotel_037"
+        ]
+      },
+      "scores": {
+        "dense": {
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 1.0,
+          "ndcg@10": 1.0
+        },
+        "bm25": {
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 1.0,
+          "ndcg@10": 1.0
+        },
+        "rrf": {
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 1.0,
+          "ndcg@10": 1.0
+        },
+        "rrf_support": {
+          "recall@5": 0.5,
+          "recall@10": 1.0,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 0.2,
+          "ndcg@10": 0.45560514958746035
+        }
+      }
+    },
+    {
+      "id": "c04",
+      "type": "comparison",
+      "query": "Sunrise Boutique Resort or Serenity Palms Resort for a honeymoon?",
+      "tuned_on": false,
+      "relevant_docs": [
+        "hotel_094",
+        "hotel_097"
+      ],
+      "rankings": {
+        "dense": [
+          "hotel_095",
+          "hotel_097",
+          "hotel_094",
+          "hotel_094",
+          "hotel_089",
+          "hotel_005",
+          "hotel_059",
+          "hotel_018",
+          "hotel_072",
+          "hotel_002"
+        ],
+        "bm25": [
+          "hotel_095",
+          "hotel_097",
+          "hotel_094",
+          "hotel_060",
+          "hotel_058",
+          "hotel_044",
+          "hotel_002",
+          "hotel_059",
+          "hotel_094",
+          "hotel_032"
+        ],
+        "rrf": [
+          "hotel_095",
+          "hotel_097",
+          "hotel_094",
+          "hotel_094",
+          "hotel_059",
+          "hotel_002",
+          "hotel_005",
+          "hotel_065",
+          "hotel_058",
+          "hotel_018"
+        ],
+        "rrf_support": [
+          "hotel_057",
+          "hotel_013",
+          "hotel_058",
+          "hotel_074",
+          "hotel_095",
+          "hotel_097",
+          "hotel_094",
+          "hotel_094",
+          "hotel_059",
+          "hotel_002"
+        ]
+      },
+      "scores": {
+        "dense": {
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 0.5,
+          "ndcg@10": 0.6934264036172708
+        },
+        "bm25": {
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 0.5,
+          "ndcg@10": 0.6934264036172708
+        },
+        "rrf": {
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 0.5,
+          "ndcg@10": 0.6934264036172708
+        },
+        "rrf_support": {
+          "recall@5": 0.0,
+          "recall@10": 1.0,
+          "hit@5": 0.0,
+          "hit@10": 1.0,
+          "mrr@10": 0.16666666666666666,
+          "ndcg@10": 0.4227898344066503
+        }
+      }
+    },
+    {
+      "id": "c05",
+      "type": "comparison",
+      "query": "Coral Bay Suites versus Sunrise Boutique Resort for a family trip with diving",
+      "tuned_on": false,
+      "relevant_docs": [
+        "hotel_095",
+        "hotel_094",
+        "hotel_051",
+        "hotel_059"
+      ],
+      "rankings": {
+        "dense": [
+          "hotel_095",
+          "hotel_095",
+          "hotel_020",
+          "hotel_003",
+          "hotel_018",
+          "hotel_021",
+          "hotel_051",
+          "hotel_010",
+          "hotel_094",
+          "hotel_049"
+        ],
+        "bm25": [
+          "hotel_095",
+          "hotel_051",
+          "hotel_059",
+          "hotel_075",
+          "hotel_020",
+          "hotel_035",
+          "hotel_003",
+          "hotel_021",
+          "hotel_050",
+          "hotel_095"
+        ],
+        "rrf": [
+          "hotel_095",
+          "hotel_020",
+          "hotel_051",
+          "hotel_003",
+          "hotel_095",
+          "hotel_059",
+          "hotel_021",
+          "hotel_018",
+          "hotel_035",
+          "hotel_075"
+        ],
+        "rrf_support": [
+          "hotel_075",
+          "hotel_011",
+          "hotel_010",
+          "hotel_058",
+          "hotel_095",
+          "hotel_020",
+          "hotel_051",
+          "hotel_003",
+          "hotel_095",
+          "hotel_059"
+        ]
+      },
+      "scores": {
+        "dense": {
+          "recall@5": 0.25,
+          "recall@10": 0.75,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 1.0,
+          "ndcg@10": 0.6380228380792293
+        },
+        "bm25": {
+          "recall@5": 0.75,
+          "recall@10": 0.75,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 1.0,
+          "ndcg@10": 0.8318724637288826
+        },
+        "rrf": {
+          "recall@5": 0.5,
+          "recall@10": 0.75,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 1.0,
+          "ndcg@10": 0.7246262544989281
+        },
+        "rrf_support": {
+          "recall@5": 0.25,
+          "recall@10": 0.75,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 0.2,
+          "ndcg@10": 0.39399144290744104
+        }
+      }
+    },
+    {
+      "id": "c06",
+      "type": "comparison",
+      "query": "Compare Wi-Fi speeds at Serenity Palms Resort and Neon Arcade Hotel.",
+      "tuned_on": false,
+      "relevant_docs": [
+        "hotel_057",
+        "hotel_135",
+        "hotel_105",
+        "hotel_013"
+      ],
+      "rankings": {
+        "dense": [
+          "hotel_057",
+          "hotel_105",
+          "hotel_111",
+          "hotel_062",
+          "hotel_068",
+          "hotel_104",
+          "hotel_129",
+          "hotel_012",
+          "hotel_101",
+          "hotel_097"
+        ],
+        "bm25": [
+          "hotel_134",
+          "hotel_057",
+          "hotel_136",
+          "hotel_105",
+          "hotel_104",
+          "hotel_065",
+          "hotel_056",
+          "hotel_028",
+          "hotel_044",
+          "hotel_055"
+        ],
+        "rrf": [
+          "hotel_057",
+          "hotel_105",
+          "hotel_104",
+          "hotel_062",
+          "hotel_136",
+          "hotel_111",
+          "hotel_097",
+          "hotel_056",
+          "hotel_013",
+          "hotel_068"
+        ],
+        "rrf_support": [
+          "hotel_135",
+          "hotel_134",
+          "hotel_013",
+          "hotel_055",
+          "hotel_057",
+          "hotel_105",
+          "hotel_104",
+          "hotel_062",
+          "hotel_136",
+          "hotel_111"
+        ]
+      },
+      "scores": {
+        "dense": {
+          "recall@5": 0.5,
+          "recall@10": 0.5,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 1.0,
+          "ndcg@10": 0.6366824387328317
+        },
+        "bm25": {
+          "recall@5": 0.5,
+          "recall@10": 0.5,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 0.5,
+          "ndcg@10": 0.4144299250118475
+        },
+        "rrf": {
+          "recall@5": 0.5,
+          "recall@10": 0.75,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 1.0,
+          "ndcg@10": 0.7541985434892589
+        },
+        "rrf_support": {
+          "recall@5": 0.75,
+          "recall@10": 1.0,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 1.0,
+          "ndcg@10": 0.8756458727267334
+        }
+      }
+    },
+    {
+      "id": "c07",
+      "type": "comparison",
+      "query": "How do airport transfers compare between The Azure Grand and The Pinnacle Hotel?",
+      "tuned_on": false,
+      "relevant_docs": [
+        "hotel_045",
+        "hotel_052",
+        "hotel_009",
+        "hotel_012"
+      ],
+      "rankings": {
+        "dense": [
+          "hotel_096",
+          "hotel_093",
+          "hotel_093",
+          "hotel_073",
+          "hotel_012",
+          "hotel_004",
+          "hotel_096",
+          "hotel_001",
+          "hotel_068",
+          "hotel_039"
+        ],
+        "bm25": [
+          "hotel_096",
+          "hotel_093",
+          "hotel_070",
+          "hotel_083",
+          "hotel_062",
+          "hotel_052",
+          "hotel_047",
+          "hotel_034",
+          "hotel_034",
+          "hotel_052"
+        ],
+        "rrf": [
+          "hotel_096",
+          "hotel_093",
+          "hotel_073",
+          "hotel_004",
+          "hotel_062",
+          "hotel_083",
+          "hotel_052",
+          "hotel_070",
+          "hotel_039",
+          "hotel_034"
+        ],
+        "rrf_support": [
+          "hotel_052",
+          "hotel_009",
+          "hotel_045",
+          "hotel_047",
+          "hotel_050",
+          "hotel_055",
+          "hotel_045",
+          "hotel_009",
+          "hotel_104",
+          "hotel_012"
+        ]
+      },
+      "scores": {
+        "dense": {
+          "recall@5": 0.25,
+          "recall@10": 0.25,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 0.2,
+          "ndcg@10": 0.15101961822780524
+        },
+        "bm25": {
+          "recall@5": 0.0,
+          "recall@10": 0.25,
+          "hit@5": 0.0,
+          "hit@10": 1.0,
+          "mrr@10": 0.16666666666666666,
+          "ndcg@10": 0.13905617951077562
+        },
+        "rrf": {
+          "recall@5": 0.0,
+          "recall@10": 0.25,
+          "hit@5": 0.0,
+          "hit@10": 1.0,
+          "mrr@10": 0.14285714285714285,
+          "ndcg@10": 0.13012668333070054
+        },
+        "rrf_support": {
+          "recall@5": 0.75,
+          "recall@10": 1.0,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 1.0,
+          "ndcg@10": 0.9447176050778178
+        }
+      }
+    },
+    {
+      "id": "c08",
+      "type": "comparison",
+      "query": "Compare the TV and Wi-Fi setup at Coral Bay Suites and The Pinnacle Hotel.",
+      "tuned_on": false,
+      "relevant_docs": [
+        "hotel_103",
+        "hotel_104"
+      ],
+      "rankings": {
+        "dense": [
+          "hotel_012",
+          "hotel_104",
+          "hotel_068",
+          "hotel_103",
+          "hotel_090",
+          "hotel_004",
+          "hotel_096",
+          "hotel_076",
+          "hotel_101",
+          "hotel_022"
+        ],
+        "bm25": [
+          "hotel_063",
+          "hotel_103",
+          "hotel_136",
+          "hotel_095",
+          "hotel_050",
+          "hotel_035",
+          "hotel_021",
+          "hotel_090",
+          "hotel_051",
+          "hotel_049"
+        ],
+        "rrf": [
+          "hotel_103",
+          "hotel_090",
+          "hotel_104",
+          "hotel_076",
+          "hotel_063",
+          "hotel_095",
+          "hotel_136",
+          "hotel_068",
+          "hotel_069",
+          "hotel_021"
+        ],
+        "rrf_support": [
+          "hotel_123",
+          "hotel_119",
+          "hotel_140",
+          "hotel_109",
+          "hotel_011",
+          "hotel_015",
+          "hotel_012",
+          "hotel_052",
+          "hotel_103",
+          "hotel_090"
+        ]
+      },
+      "scores": {
+        "dense": {
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 0.5,
+          "ndcg@10": 0.6509209298071326
+        },
+        "bm25": {
+          "recall@5": 0.5,
+          "recall@10": 0.5,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 0.5,
+          "ndcg@10": 0.38685280723454163
+        },
+        "rrf": {
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 1.0,
+          "ndcg@10": 0.9197207891481876
+        },
+        "rrf_support": {
+          "recall@5": 0.0,
+          "recall@10": 0.5,
+          "hit@5": 0.0,
+          "hit@10": 1.0,
+          "mrr@10": 0.1111111111111111,
+          "ndcg@10": 0.18457569677956817
+        }
+      }
+    },
+    {
+      "id": "c09",
+      "type": "comparison",
+      "query": "Compare the pet policies of The Azure Grand, The Pinnacle Hotel and Coral Bay Suites.",
+      "tuned_on": false,
+      "relevant_docs": [
+        "hotel_029",
+        "hotel_031",
+        "hotel_043"
+      ],
+      "rankings": {
+        "dense": [
+          "hotel_093",
+          "hotel_031",
+          "hotel_031",
+          "hotel_073",
+          "hotel_096",
+          "hotel_039",
+          "hotel_096",
+          "hotel_043",
+          "hotel_001",
+          "hotel_060"
+        ],
+        "bm25": [
+          "hotel_043",
+          "hotel_096",
+          "hotel_093",
+          "hotel_031",
+          "hotel_035",
+          "hotel_003",
+          "hotel_095",
+          "hotel_051",
+          "hotel_050",
+          "hotel_063"
+        ],
+        "rrf": [
+          "hotel_031",
+          "hotel_043",
+          "hotel_096",
+          "hotel_093",
+          "hotel_031",
+          "hotel_093",
+          "hotel_095",
+          "hotel_001",
+          "hotel_073",
+          "hotel_039"
+        ],
+        "rrf_support": [
+          "hotel_049",
+          "hotel_011",
+          "hotel_009",
+          "hotel_014",
+          "hotel_054",
+          "hotel_104",
+          "hotel_031",
+          "hotel_043",
+          "hotel_096",
+          "hotel_093"
+        ]
+      },
+      "scores": {
+        "dense": {
+          "recall@5": 0.3333333333333333,
+          "recall@10": 0.6666666666666666,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 0.5,
+          "ndcg@10": 0.4441228664487979
+        },
+        "bm25": {
+          "recall@5": 0.6666666666666666,
+          "recall@10": 0.6666666666666666,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 1.0,
+          "ndcg@10": 0.6713860725233041
+        },
+        "rrf": {
+          "recall@5": 0.6666666666666666,
+          "recall@10": 0.6666666666666666,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 1.0,
+          "ndcg@10": 0.7653606369886217
+        },
+        "rrf_support": {
+          "recall@5": 0.0,
+          "recall@10": 0.6666666666666666,
+          "hit@5": 0.0,
+          "hit@10": 1.0,
+          "mrr@10": 0.14285714285714285,
+          "ndcg@10": 0.3044671974905181
+        }
+      }
+    },
+    {
+      "id": "l01",
+      "type": "policy",
+      "query": "What is the pet policy at The Pinnacle Hotel?",
+      "tuned_on": false,
+      "relevant_docs": [
+        "hotel_031",
+        "hotel_096"
+      ],
+      "rankings": {
+        "dense": [
+          "hotel_031",
+          "hotel_031",
+          "hotel_096",
+          "hotel_029",
+          "hotel_029",
+          "hotel_089",
+          "hotel_060",
+          "hotel_044",
+          "hotel_054",
+          "hotel_108"
+        ],
+        "bm25": [
+          "hotel_031",
+          "hotel_031",
+          "hotel_022",
+          "hotel_044",
+          "hotel_029",
+          "hotel_038",
+          "hotel_086",
+          "hotel_036",
+          "hotel_093",
+          "hotel_070"
+        ],
+        "rrf": [
+          "hotel_031",
+          "hotel_031",
+          "hotel_029",
+          "hotel_044",
+          "hotel_060",
+          "hotel_096",
+          "hotel_054",
+          "hotel_052",
+          "hotel_036",
+          "hotel_043"
+        ],
+        "rrf_support": [
+          "hotel_053",
+          "hotel_104",
+          "hotel_031",
+          "hotel_031",
+          "hotel_029",
+          "hotel_044",
+          "hotel_060",
+          "hotel_096",
+          "hotel_054",
+          "hotel_052"
+        ]
+      },
+      "scores": {
+        "dense": {
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 1.0,
+          "ndcg@10": 0.9197207891481876
+        },
+        "bm25": {
+          "recall@5": 0.5,
+          "recall@10": 0.5,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 1.0,
+          "ndcg@10": 0.6131471927654584
+        },
+        "rrf": {
+          "recall@5": 0.5,
+          "recall@10": 1.0,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 1.0,
+          "ndcg@10": 0.8315546295836225
+        },
+        "rrf_support": {
+          "recall@5": 0.5,
+          "recall@10": 1.0,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 0.3333333333333333,
+          "ndcg@10": 0.5
+        }
+      }
+    },
+    {
+      "id": "l02",
+      "type": "policy",
+      "query": "Can I check in late at Silent Monastery Guesthouse?",
+      "tuned_on": false,
+      "relevant_docs": [
+        "hotel_139",
+        "hotel_140"
+      ],
+      "rankings": {
+        "dense": [
+          "hotel_139",
+          "hotel_138",
+          "hotel_137",
+          "hotel_137",
+          "hotel_139",
+          "hotel_140",
+          "hotel_115",
+          "hotel_063",
+          "hotel_026",
+          "hotel_042"
+        ],
+        "bm25": [
+          "hotel_140",
+          "hotel_139",
+          "hotel_137",
+          "hotel_138",
+          "hotel_042",
+          "hotel_026",
+          "hotel_063",
+          "hotel_027",
+          "hotel_061",
+          "hotel_041"
+        ],
+        "rrf": [
+          "hotel_139",
+          "hotel_138",
+          "hotel_137",
+          "hotel_140",
+          "hotel_026",
+          "hotel_063",
+          "hotel_042",
+          "hotel_115",
+          "hotel_139",
+          "hotel_027"
+        ],
+        "rrf_support": [
+          "hotel_138",
+          "hotel_139",
+          "hotel_139",
+          "hotel_138",
+          "hotel_137",
+          "hotel_140",
+          "hotel_026",
+          "hotel_063",
+          "hotel_042",
+          "hotel_115"
+        ]
+      },
+      "scores": {
+        "dense": {
+          "recall@5": 0.5,
+          "recall@10": 1.0,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 1.0,
+          "ndcg@10": 0.8315546295836225
+        },
+        "bm25": {
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 1.0,
+          "ndcg@10": 1.0
+        },
+        "rrf": {
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 1.0,
+          "ndcg@10": 0.8772153153380493
+        },
+        "rrf_support": {
+          "recall@5": 0.5,
+          "recall@10": 1.0,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 0.5,
+          "ndcg@10": 0.6052602440527057
+        }
+      }
+    },
+    {
+      "id": "l03",
+      "type": "policy",
+      "query": "What deposit does Harbourview Aparthotel require?",
+      "tuned_on": false,
+      "relevant_docs": [
+        "hotel_122"
+      ],
+      "rankings": {
+        "dense": [
+          "hotel_120",
+          "hotel_121",
+          "hotel_123",
+          "hotel_120",
+          "hotel_122",
+          "hotel_080",
+          "hotel_034",
+          "hotel_035",
+          "hotel_015",
+          "hotel_079"
+        ],
+        "bm25": [
+          "hotel_121",
+          "hotel_120",
+          "hotel_126",
+          "hotel_122",
+          "hotel_123",
+          "hotel_133",
+          "hotel_025",
+          "hotel_022",
+          "hotel_136",
+          "hotel_120"
+        ],
+        "rrf": [
+          "hotel_120",
+          "hotel_121",
+          "hotel_123",
+          "hotel_122",
+          "hotel_120",
+          "hotel_080",
+          "hotel_079",
+          "hotel_113",
+          "hotel_078",
+          "hotel_128"
+        ],
+        "rrf_support": [
+          "hotel_121",
+          "hotel_120",
+          "hotel_121",
+          "hotel_123",
+          "hotel_122",
+          "hotel_120",
+          "hotel_080",
+          "hotel_079",
+          "hotel_113"
+        ]
+      },
+      "scores": {
+        "dense": {
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 0.2,
+          "ndcg@10": 0.38685280723454163
+        },
+        "bm25": {
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 0.25,
+          "ndcg@10": 0.43067655807339306
+        },
+        "rrf": {
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 0.25,
+          "ndcg@10": 0.43067655807339306
+        },
+        "rrf_support": {
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 0.2,
+          "ndcg@10": 0.38685280723454163
+        }
+      }
+    },
+    {
+      "id": "l04",
+      "type": "policy",
+      "query": "Do I get a refund at Glacier Edge Mountain Lodge if the road closes because of an avalanche?",
+      "tuned_on": false,
+      "relevant_docs": [
+        "hotel_133"
+      ],
+      "rankings": {
+        "dense": [
+          "hotel_133",
+          "hotel_131",
+          "hotel_029",
+          "hotel_066",
+          "hotel_067",
+          "hotel_028",
+          "hotel_067",
+          "hotel_026",
+          "hotel_066",
+          "hotel_081"
+        ],
+        "bm25": [
+          "hotel_133",
+          "hotel_131",
+          "hotel_133",
+          "hotel_119",
+          "hotel_018",
+          "hotel_132",
+          "hotel_084",
+          "hotel_023",
+          "hotel_025",
+          "hotel_088"
+        ],
+        "rrf": [
+          "hotel_133",
+          "hotel_131",
+          "hotel_088",
+          "hotel_114",
+          "hotel_029",
+          "hotel_133",
+          "hotel_066",
+          "hotel_119",
+          "hotel_067",
+          "hotel_018"
+        ],
+        "rrf_support": [
+          "hotel_132",
+          "hotel_133",
+          "hotel_131",
+          "hotel_088",
+          "hotel_114",
+          "hotel_029",
+          "hotel_133",
+          "hotel_066",
+          "hotel_119"
+        ]
+      },
+      "scores": {
+        "dense": {
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 1.0,
+          "ndcg@10": 1.0
+        },
+        "bm25": {
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 1.0,
+          "ndcg@10": 1.0
+        },
+        "rrf": {
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 1.0,
+          "ndcg@10": 1.0
+        },
+        "rrf_support": {
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 0.5,
+          "ndcg@10": 0.6309297535714575
+        }
+      }
+    },
+    {
+      "id": "l05",
+      "type": "policy",
+      "query": "What is the minimum guest age at Serenity Palms Resort?",
+      "tuned_on": false,
+      "relevant_docs": [
+        "hotel_028",
+        "hotel_044",
+        "hotel_065",
+        "hotel_097"
+      ],
+      "rankings": {
+        "dense": [
+          "hotel_028",
+          "hotel_065",
+          "hotel_028",
+          "hotel_044",
+          "hotel_008",
+          "hotel_065",
+          "hotel_055",
+          "hotel_094",
+          "hotel_056",
+          "hotel_013"
+        ],
+        "bm25": [
+          "hotel_065",
+          "hotel_028",
+          "hotel_044",
+          "hotel_033",
+          "hotel_025",
+          "hotel_055",
+          "hotel_044",
+          "hotel_023",
+          "hotel_056",
+          "hotel_033"
+        ],
+        "rrf": [
+          "hotel_028",
+          "hotel_065",
+          "hotel_044",
+          "hotel_055",
+          "hotel_028",
+          "hotel_025",
+          "hotel_056",
+          "hotel_033",
+          "hotel_105",
+          "hotel_008"
+        ],
+        "rrf_support": [
+          "hotel_013",
+          "hotel_055",
+          "hotel_028",
+          "hotel_065",
+          "hotel_044",
+          "hotel_055",
+          "hotel_028",
+          "hotel_025",
+          "hotel_056",
+          "hotel_033"
+        ]
+      },
+      "scores": {
+        "dense": {
+          "recall@5": 0.75,
+          "recall@10": 0.75,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 1.0,
+          "ndcg@10": 0.8048099750039491
+        },
+        "bm25": {
+          "recall@5": 0.75,
+          "recall@10": 0.75,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 1.0,
+          "ndcg@10": 0.8318724637288826
+        },
+        "rrf": {
+          "recall@5": 0.75,
+          "recall@10": 0.75,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 1.0,
+          "ndcg@10": 0.8318724637288826
+        },
+        "rrf_support": {
+          "recall@5": 0.75,
+          "recall@10": 0.75,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 0.3333333333333333,
+          "ndcg@10": 0.5143371794949736
+        }
+      }
+    },
+    {
+      "id": "l06",
+      "type": "policy",
+      "query": "How much is late check-out at The Azure Grand?",
+      "tuned_on": false,
+      "relevant_docs": [
+        "hotel_041"
+      ],
+      "rankings": {
+        "dense": [
+          "hotel_041",
+          "hotel_029",
+          "hotel_027",
+          "hotel_063",
+          "hotel_066",
+          "hotel_026",
+          "hotel_064",
+          "hotel_061",
+          "hotel_009",
+          "hotel_001"
+        ],
+        "bm25": [
+          "hotel_041",
+          "hotel_042",
+          "hotel_063",
+          "hotel_026",
+          "hotel_070",
+          "hotel_027",
+          "hotel_061",
+          "hotel_045",
+          "hotel_096",
+          "hotel_093"
+        ],
+        "rrf": [
+          "hotel_041",
+          "hotel_063",
+          "hotel_027",
+          "hotel_026",
+          "hotel_029",
+          "hotel_042",
+          "hotel_061",
+          "hotel_066",
+          "hotel_064",
+          "hotel_070"
+        ],
+        "rrf_support": [
+          "hotel_045",
+          "hotel_064",
+          "hotel_041",
+          "hotel_063",
+          "hotel_027",
+          "hotel_026",
+          "hotel_029",
+          "hotel_042",
+          "hotel_061",
+          "hotel_066"
+        ]
+      },
+      "scores": {
+        "dense": {
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 1.0,
+          "ndcg@10": 1.0
+        },
+        "bm25": {
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 1.0,
+          "ndcg@10": 1.0
+        },
+        "rrf": {
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 1.0,
+          "ndcg@10": 1.0
+        },
+        "rrf_support": {
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 0.3333333333333333,
+          "ndcg@10": 0.5
+        }
+      }
+    },
+    {
+      "id": "l07",
+      "type": "policy",
+      "query": "What are the quiet hours at Coral Bay Suites?",
+      "tuned_on": false,
+      "relevant_docs": [
+        "hotel_043",
+        "hotel_080"
+      ],
+      "rankings": {
+        "dense": [
+          "hotel_050",
+          "hotel_063",
+          "hotel_090",
+          "hotel_020",
+          "hotel_011",
+          "hotel_049",
+          "hotel_043",
+          "hotel_075",
+          "hotel_103",
+          "hotel_095"
+        ],
+        "bm25": [
+          "hotel_063",
+          "hotel_050",
+          "hotel_035",
+          "hotel_051",
+          "hotel_015",
+          "hotel_021",
+          "hotel_050",
+          "hotel_003",
+          "hotel_049",
+          "hotel_103"
+        ],
+        "rrf": [
+          "hotel_050",
+          "hotel_063",
+          "hotel_049",
+          "hotel_035",
+          "hotel_015",
+          "hotel_090",
+          "hotel_051",
+          "hotel_003",
+          "hotel_103",
+          "hotel_011"
+        ],
+        "rrf_support": [
+          "hotel_050",
+          "hotel_075",
+          "hotel_050",
+          "hotel_063",
+          "hotel_049",
+          "hotel_035",
+          "hotel_015",
+          "hotel_090",
+          "hotel_051",
+          "hotel_003"
+        ]
+      },
+      "scores": {
+        "dense": {
+          "recall@5": 0.0,
+          "recall@10": 0.5,
+          "hit@5": 0.0,
+          "hit@10": 1.0,
+          "mrr@10": 0.14285714285714285,
+          "ndcg@10": 0.20438239758848611
+        },
+        "bm25": {
+          "recall@5": 0.0,
+          "recall@10": 0.0,
+          "hit@5": 0.0,
+          "hit@10": 0.0,
+          "mrr@10": 0.0,
+          "ndcg@10": 0.0
+        },
+        "rrf": {
+          "recall@5": 0.0,
+          "recall@10": 0.0,
+          "hit@5": 0.0,
+          "hit@10": 0.0,
+          "mrr@10": 0.0,
+          "ndcg@10": 0.0
+        },
+        "rrf_support": {
+          "recall@5": 0.0,
+          "recall@10": 0.0,
+          "hit@5": 0.0,
+          "hit@10": 0.0,
+          "mrr@10": 0.0,
+          "ndcg@10": 0.0
+        }
+      }
+    },
+    {
+      "id": "l08",
+      "type": "policy",
+      "query": "Can children stay at Verdant Canopy Treehouse Retreat?",
+      "tuned_on": false,
+      "relevant_docs": [
+        "hotel_118"
+      ],
+      "rankings": {
+        "dense": [
+          "hotel_118",
+          "hotel_116",
+          "hotel_117",
+          "hotel_119",
+          "hotel_133",
+          "hotel_051",
+          "hotel_065",
+          "hotel_030",
+          "hotel_065",
+          "hotel_092"
+        ],
+        "bm25": [
+          "hotel_117",
+          "hotel_118",
+          "hotel_116",
+          "hotel_119",
+          "hotel_062",
+          "hotel_075",
+          "hotel_059",
+          "hotel_074",
+          "hotel_054",
+          "hotel_097"
+        ],
+        "rrf": [
+          "hotel_118",
+          "hotel_117",
+          "hotel_116",
+          "hotel_119",
+          "hotel_059",
+          "hotel_133",
+          "hotel_065",
+          "hotel_094",
+          "hotel_051",
+          "hotel_062"
+        ],
+        "rrf_support": [
+          "hotel_075",
+          "hotel_015",
+          "hotel_054",
+          "hotel_049",
+          "hotel_051",
+          "hotel_051",
+          "hotel_117",
+          "hotel_119",
+          "hotel_118",
+          "hotel_117"
+        ]
+      },
+      "scores": {
+        "dense": {
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 1.0,
+          "ndcg@10": 1.0
+        },
+        "bm25": {
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 0.5,
+          "ndcg@10": 0.6309297535714575
+        },
+        "rrf": {
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 1.0,
+          "ndcg@10": 1.0
+        },
+        "rrf_support": {
+          "recall@5": 0.0,
+          "recall@10": 1.0,
+          "hit@5": 0.0,
+          "hit@10": 1.0,
+          "mrr@10": 0.1111111111111111,
+          "ndcg@10": 0.3010299956639812
+        }
+      }
+    },
+    {
+      "id": "l09",
+      "type": "policy",
+      "query": "Does The Azure Grand place an incidentals hold on my credit card?",
+      "tuned_on": false,
+      "relevant_docs": [
+        "hotel_078"
+      ],
+      "rankings": {
+        "dense": [
+          "hotel_001",
+          "hotel_034",
+          "hotel_029",
+          "hotel_066",
+          "hotel_096",
+          "hotel_001",
+          "hotel_073",
+          "hotel_029",
+          "hotel_093",
+          "hotel_039"
+        ],
+        "bm25": [
+          "hotel_078",
+          "hotel_078",
+          "hotel_088",
+          "hotel_029",
+          "hotel_031",
+          "hotel_044",
+          "hotel_096",
+          "hotel_081",
+          "hotel_093",
+          "hotel_017"
+        ],
+        "rrf": [
+          "hotel_029",
+          "hotel_096",
+          "hotel_034",
+          "hotel_001",
+          "hotel_088",
+          "hotel_066",
+          "hotel_039",
+          "hotel_078",
+          "hotel_081",
+          "hotel_031"
+        ],
+        "rrf_support": [
+          "hotel_064",
+          "hotel_009",
+          "hotel_029",
+          "hotel_096",
+          "hotel_034",
+          "hotel_001",
+          "hotel_088",
+          "hotel_066",
+          "hotel_039",
+          "hotel_078"
+        ]
+      },
+      "scores": {
+        "dense": {
+          "recall@5": 0.0,
+          "recall@10": 0.0,
+          "hit@5": 0.0,
+          "hit@10": 0.0,
+          "mrr@10": 0.0,
+          "ndcg@10": 0.0
+        },
+        "bm25": {
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 1.0,
+          "ndcg@10": 1.0
+        },
+        "rrf": {
+          "recall@5": 0.0,
+          "recall@10": 1.0,
+          "hit@5": 0.0,
+          "hit@10": 1.0,
+          "mrr@10": 0.125,
+          "ndcg@10": 0.31546487678572877
+        },
+        "rrf_support": {
+          "recall@5": 0.0,
+          "recall@10": 1.0,
+          "hit@5": 0.0,
+          "hit@10": 1.0,
+          "mrr@10": 0.1,
+          "ndcg@10": 0.2890648263178879
+        }
+      }
+    },
+    {
+      "id": "l10",
+      "type": "policy",
+      "query": "What happens if I do not show up for my Mistral Airport Hotel booking?",
+      "tuned_on": false,
+      "relevant_docs": [
+        "hotel_108"
+      ],
+      "rankings": {
+        "dense": [
+          "hotel_108",
+          "hotel_109",
+          "hotel_106",
+          "hotel_106",
+          "hotel_028",
+          "hotel_067",
+          "hotel_026",
+          "hotel_027",
+          "hotel_066",
+          "hotel_030"
+        ],
+        "bm25": [
+          "hotel_109",
+          "hotel_108",
+          "hotel_018",
+          "hotel_109",
+          "hotel_106",
+          "hotel_038",
+          "hotel_022",
+          "hotel_140",
+          "hotel_017",
+          "hotel_106"
+        ],
+        "rrf": [
+          "hotel_108",
+          "hotel_109",
+          "hotel_106",
+          "hotel_106",
+          "hotel_030",
+          "hotel_067",
+          "hotel_018",
+          "hotel_109",
+          "hotel_028",
+          "hotel_067"
+        ],
+        "rrf_support": [
+          "hotel_009",
+          "hotel_052",
+          "hotel_056",
+          "hotel_058",
+          "hotel_050",
+          "hotel_127",
+          "hotel_107",
+          "hotel_107",
+          "hotel_108",
+          "hotel_109"
+        ]
+      },
+      "scores": {
+        "dense": {
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 1.0,
+          "ndcg@10": 1.0
+        },
+        "bm25": {
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 0.5,
+          "ndcg@10": 0.6309297535714575
+        },
+        "rrf": {
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 1.0,
+          "ndcg@10": 1.0
+        },
+        "rrf_support": {
+          "recall@5": 0.0,
+          "recall@10": 1.0,
+          "hit@5": 0.0,
+          "hit@10": 1.0,
+          "mrr@10": 0.1111111111111111,
+          "ndcg@10": 0.3010299956639812
+        }
+      }
+    },
+    {
+      "id": "l11",
+      "type": "policy",
+      "query": "What accessibility services does The Azure Grand offer for wheelchair users?",
+      "tuned_on": false,
+      "relevant_docs": [
+        "hotel_073",
+        "hotel_088"
+      ],
+      "rankings": {
+        "dense": [
+          "hotel_073",
+          "hotel_088",
+          "hotel_093",
+          "hotel_073",
+          "hotel_046",
+          "hotel_031",
+          "hotel_093",
+          "hotel_096",
+          "hotel_001",
+          "hotel_045"
+        ],
+        "bm25": [
+          "hotel_088",
+          "hotel_073",
+          "hotel_093",
+          "hotel_019",
+          "hotel_062",
+          "hotel_096",
+          "hotel_065",
+          "hotel_088",
+          "hotel_093",
+          "hotel_113"
+        ],
+        "rrf": [
+          "hotel_073",
+          "hotel_088",
+          "hotel_093",
+          "hotel_096",
+          "hotel_093",
+          "hotel_088",
+          "hotel_045",
+          "hotel_019",
+          "hotel_062",
+          "hotel_039"
+        ],
+        "rrf_support": [
+          "hotel_014",
+          "hotel_046",
+          "hotel_073",
+          "hotel_088",
+          "hotel_093",
+          "hotel_096",
+          "hotel_093",
+          "hotel_088",
+          "hotel_045",
+          "hotel_019"
+        ]
+      },
+      "scores": {
+        "dense": {
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 1.0,
+          "ndcg@10": 1.0
+        },
+        "bm25": {
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 1.0,
+          "ndcg@10": 1.0
+        },
+        "rrf": {
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 1.0,
+          "ndcg@10": 1.0
+        },
+        "rrf_support": {
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 0.3333333333333333,
+          "ndcg@10": 0.5706417189553201
+        }
+      }
+    },
+    {
+      "id": "l12",
+      "type": "policy",
+      "query": "Can The Pinnacle Hotel invoice my company and add a purchase order number?",
+      "tuned_on": false,
+      "relevant_docs": [
+        "hotel_081"
+      ],
+      "rankings": {
+        "dense": [
+          "hotel_081",
+          "hotel_081",
+          "hotel_054",
+          "hotel_012",
+          "hotel_004",
+          "hotel_036",
+          "hotel_007",
+          "hotel_061",
+          "hotel_007",
+          "hotel_054"
+        ],
+        "bm25": [
+          "hotel_081",
+          "hotel_081",
+          "hotel_022",
+          "hotel_071",
+          "hotel_054",
+          "hotel_031",
+          "hotel_038",
+          "hotel_076",
+          "hotel_064",
+          "hotel_078"
+        ],
+        "rrf": [
+          "hotel_081",
+          "hotel_081",
+          "hotel_054",
+          "hotel_004",
+          "hotel_076",
+          "hotel_031",
+          "hotel_078",
+          "hotel_036",
+          "hotel_007",
+          "hotel_012"
+        ],
+        "rrf_support": [
+          "hotel_012",
+          "hotel_016",
+          "hotel_081",
+          "hotel_081",
+          "hotel_054",
+          "hotel_004",
+          "hotel_076",
+          "hotel_031",
+          "hotel_078",
+          "hotel_036"
+        ]
+      },
+      "scores": {
+        "dense": {
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 1.0,
+          "ndcg@10": 1.0
+        },
+        "bm25": {
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 1.0,
+          "ndcg@10": 1.0
+        },
+        "rrf": {
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 1.0,
+          "ndcg@10": 1.0
+        },
+        "rrf_support": {
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 0.3333333333333333,
+          "ndcg@10": 0.5
+        }
+      }
+    },
+    {
+      "id": "l13",
+      "type": "policy",
+      "query": "Is smoking allowed at Sunrise Boutique Resort?",
+      "tuned_on": false,
+      "relevant_docs": [
+        "hotel_030",
+        "hotel_079"
+      ],
+      "rankings": {
+        "dense": [
+          "hotel_079",
+          "hotel_059",
+          "hotel_043",
+          "hotel_089",
+          "hotel_072",
+          "hotel_010",
+          "hotel_060",
+          "hotel_074",
+          "hotel_094",
+          "hotel_002"
+        ],
+        "bm25": [
+          "hotel_095",
+          "hotel_094",
+          "hotel_058",
+          "hotel_074",
+          "hotel_097",
+          "hotel_060",
+          "hotel_018",
+          "hotel_059",
+          "hotel_047",
+          "hotel_028"
+        ],
+        "rrf": [
+          "hotel_059",
+          "hotel_094",
+          "hotel_074",
+          "hotel_060",
+          "hotel_043",
+          "hotel_079",
+          "hotel_089",
+          "hotel_058",
+          "hotel_018",
+          "hotel_095"
+        ],
+        "rrf_support": [
+          "hotel_010",
+          "hotel_047",
+          "hotel_059",
+          "hotel_094",
+          "hotel_074",
+          "hotel_060",
+          "hotel_043",
+          "hotel_079",
+          "hotel_089",
+          "hotel_058"
+        ]
+      },
+      "scores": {
+        "dense": {
+          "recall@5": 0.5,
+          "recall@10": 0.5,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 1.0,
+          "ndcg@10": 0.6131471927654584
+        },
+        "bm25": {
+          "recall@5": 0.0,
+          "recall@10": 0.0,
+          "hit@5": 0.0,
+          "hit@10": 0.0,
+          "mrr@10": 0.0,
+          "ndcg@10": 0.0
+        },
+        "rrf": {
+          "recall@5": 0.0,
+          "recall@10": 0.5,
+          "hit@5": 0.0,
+          "hit@10": 1.0,
+          "mrr@10": 0.16666666666666666,
+          "ndcg@10": 0.21840743681816419
+        },
+        "rrf_support": {
+          "recall@5": 0.0,
+          "recall@10": 0.5,
+          "hit@5": 0.0,
+          "hit@10": 1.0,
+          "mrr@10": 0.125,
+          "ndcg@10": 0.19342640361727081
+        }
+      }
+    },
+    {
+      "id": "l14",
+      "type": "policy",
+      "query": "Can I check in early at Coral Bay Suites without paying?",
+      "tuned_on": false,
+      "relevant_docs": [
+        "hotel_026",
+        "hotel_063"
+      ],
+      "rankings": {
+        "dense": [
+          "hotel_063",
+          "hotel_050",
+          "hotel_063",
+          "hotel_043",
+          "hotel_075",
+          "hotel_011",
+          "hotel_042",
+          "hotel_095",
+          "hotel_103",
+          "hotel_049"
+        ],
+        "bm25": [
+          "hotel_063",
+          "hotel_050",
+          "hotel_015",
+          "hotel_022",
+          "hotel_051",
+          "hotel_103",
+          "hotel_003",
+          "hotel_069",
+          "hotel_095",
+          "hotel_021"
+        ],
+        "rrf": [
+          "hotel_063",
+          "hotel_050",
+          "hotel_063",
+          "hotel_103",
+          "hotel_043",
+          "hotel_075",
+          "hotel_015",
+          "hotel_026",
+          "hotel_003",
+          "hotel_011"
+        ],
+        "rrf_support": [
+          "hotel_011",
+          "hotel_049",
+          "hotel_063",
+          "hotel_050",
+          "hotel_063",
+          "hotel_103",
+          "hotel_043",
+          "hotel_075",
+          "hotel_015",
+          "hotel_026"
+        ]
+      },
+      "scores": {
+        "dense": {
+          "recall@5": 0.5,
+          "recall@10": 0.5,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 1.0,
+          "ndcg@10": 0.6131471927654584
+        },
+        "bm25": {
+          "recall@5": 0.5,
+          "recall@10": 0.5,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 1.0,
+          "ndcg@10": 0.6131471927654584
+        },
+        "rrf": {
+          "recall@5": 0.5,
+          "recall@10": 1.0,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 1.0,
+          "ndcg@10": 0.8065735963827293
+        },
+        "rrf_support": {
+          "recall@5": 0.5,
+          "recall@10": 1.0,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 0.3333333333333333,
+          "ndcg@10": 0.48381288316677695
+        }
+      }
+    }
+  ]
+}
