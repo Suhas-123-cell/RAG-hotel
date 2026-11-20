@@ -1,0 +1,260 @@
+{
+  "meta": {
+    "generated_at": "2026-11-20",
+    "git_commit": "9dc769d",
+    "n_queries": 63,
+    "n_tuned_on": 7,
+    "n_relevant_total": 190,
+    "n_documents": 140,
+    "n_chunks": 296,
+    "embedding_model": "sentence-transformers/all-MiniLM-L6-v2",
+    "rrf_k": 60,
+    "hybrid_candidate_k": 30,
+    "generation_context_k": 8,
+    "max_generation_chunks": 10,
+    "top_k": 10,
+    "note": "Baseline measured before the semantic chunker stopped dropping short segments (code at the commit named in git_commit). per_query detail omitted."
+  },
+  "aggregate": {
+    "dense": {
+      "overall": {
+        "recall@5": 0.5975,
+        "recall@10": 0.7084,
+        "hit@5": 0.8413,
+        "hit@10": 0.9365,
+        "mrr@10": 0.7239,
+        "ndcg@10": 0.631
+      },
+      "not_tuned_on": {
+        "recall@5": 0.6571,
+        "recall@10": 0.7625,
+        "hit@5": 0.8929,
+        "hit@10": 0.9464,
+        "mrr@10": 0.763,
+        "ndcg@10": 0.6817
+      },
+      "by_type": {
+        "exact_name": {
+          "recall@5": 0.55,
+          "recall@10": 0.65,
+          "hit@5": 0.6667,
+          "hit@10": 0.75,
+          "mrr@10": 0.5708,
+          "ndcg@10": 0.549
+        },
+        "paraphrase": {
+          "recall@5": 0.6996,
+          "recall@10": 0.8149,
+          "hit@5": 0.9444,
+          "hit@10": 1.0,
+          "mrr@10": 0.8843,
+          "ndcg@10": 0.7543
+        },
+        "multi_condition": {
+          "recall@5": 0.32,
+          "recall@10": 0.4576,
+          "hit@5": 0.8,
+          "hit@10": 1.0,
+          "mrr@10": 0.5671,
+          "ndcg@10": 0.4043
+        },
+        "comparison": {
+          "recall@5": 0.5556,
+          "recall@10": 0.7037,
+          "hit@5": 0.8889,
+          "hit@10": 1.0,
+          "mrr@10": 0.6472,
+          "ndcg@10": 0.5748
+        },
+        "policy": {
+          "recall@5": 0.7321,
+          "recall@10": 0.8036,
+          "hit@5": 0.8571,
+          "hit@10": 0.9286,
+          "mrr@10": 0.8102,
+          "ndcg@10": 0.741
+        }
+      }
+    },
+    "bm25": {
+      "overall": {
+        "recall@5": 0.6102,
+        "recall@10": 0.6933,
+        "hit@5": 0.8413,
+        "hit@10": 0.9048,
+        "mrr@10": 0.6995,
+        "ndcg@10": 0.6182
+      },
+      "not_tuned_on": {
+        "recall@5": 0.6527,
+        "recall@10": 0.7357,
+        "hit@5": 0.875,
+        "hit@10": 0.9107,
+        "mrr@10": 0.7286,
+        "ndcg@10": 0.6552
+      },
+      "by_type": {
+        "exact_name": {
+          "recall@5": 0.4667,
+          "recall@10": 0.6083,
+          "hit@5": 0.6667,
+          "hit@10": 0.75,
+          "mrr@10": 0.5292,
+          "ndcg@10": 0.4829
+        },
+        "paraphrase": {
+          "recall@5": 0.6394,
+          "recall@10": 0.7048,
+          "hit@5": 0.9444,
+          "hit@10": 0.9444,
+          "mrr@10": 0.8444,
+          "ndcg@10": 0.6832
+        },
+        "multi_condition": {
+          "recall@5": 0.4833,
+          "recall@10": 0.661,
+          "hit@5": 0.8,
+          "hit@10": 1.0,
+          "mrr@10": 0.6768,
+          "ndcg@10": 0.5873
+        },
+        "comparison": {
+          "recall@5": 0.6389,
+          "recall@10": 0.7037,
+          "hit@5": 0.8889,
+          "hit@10": 1.0,
+          "mrr@10": 0.6111,
+          "ndcg@10": 0.5814
+        },
+        "policy": {
+          "recall@5": 0.7679,
+          "recall@10": 0.7679,
+          "hit@5": 0.8571,
+          "hit@10": 0.8571,
+          "mrr@10": 0.7321,
+          "ndcg@10": 0.6965
+        }
+      }
+    },
+    "rrf": {
+      "overall": {
+        "recall@5": 0.615,
+        "recall@10": 0.773,
+        "hit@5": 0.873,
+        "hit@10": 0.9524,
+        "mrr@10": 0.7694,
+        "ndcg@10": 0.677
+      },
+      "not_tuned_on": {
+        "recall@5": 0.6601,
+        "recall@10": 0.8247,
+        "hit@5": 0.875,
+        "hit@10": 0.9643,
+        "mrr@10": 0.7995,
+        "ndcg@10": 0.7216
+      },
+      "by_type": {
+        "exact_name": {
+          "recall@5": 0.5083,
+          "recall@10": 0.7333,
+          "hit@5": 0.6667,
+          "hit@10": 0.8333,
+          "mrr@10": 0.5628,
+          "ndcg@10": 0.5358
+        },
+        "paraphrase": {
+          "recall@5": 0.7196,
+          "recall@10": 0.8284,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 0.9444,
+          "ndcg@10": 0.8063
+        },
+        "multi_condition": {
+          "recall@5": 0.411,
+          "recall@10": 0.6152,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 0.7283,
+          "ndcg@10": 0.5471
+        },
+        "comparison": {
+          "recall@5": 0.6481,
+          "recall@10": 0.7315,
+          "hit@5": 0.8889,
+          "hit@10": 1.0,
+          "mrr@10": 0.7659,
+          "ndcg@10": 0.6581
+        },
+        "policy": {
+          "recall@5": 0.6964,
+          "recall@10": 0.875,
+          "hit@5": 0.7857,
+          "hit@10": 0.9286,
+          "mrr@10": 0.753,
+          "ndcg@10": 0.7366
+        }
+      }
+    },
+    "rrf_support": {
+      "overall": {
+        "recall@5": 0.5152,
+        "recall@10": 0.8,
+        "hit@5": 0.746,
+        "hit@10": 0.9683,
+        "mrr@10": 0.5594,
+        "ndcg@10": 0.5713
+      },
+      "not_tuned_on": {
+        "recall@5": 0.561,
+        "recall@10": 0.8512,
+        "hit@5": 0.7857,
+        "hit@10": 0.9821,
+        "mrr@10": 0.5815,
+        "ndcg@10": 0.6035
+      },
+      "by_type": {
+        "exact_name": {
+          "recall@5": 0.6,
+          "recall@10": 0.9,
+          "hit@5": 0.75,
+          "hit@10": 0.9167,
+          "mrr@10": 0.5212,
+          "ndcg@10": 0.5996
+        },
+        "paraphrase": {
+          "recall@5": 0.6565,
+          "recall@10": 0.7737,
+          "hit@5": 0.8333,
+          "hit@10": 1.0,
+          "mrr@10": 0.8294,
+          "ndcg@10": 0.74
+        },
+        "multi_condition": {
+          "recall@5": 0.361,
+          "recall@10": 0.6343,
+          "hit@5": 0.9,
+          "hit@10": 1.0,
+          "mrr@10": 0.725,
+          "ndcg@10": 0.5585
+        },
+        "comparison": {
+          "recall@5": 0.287,
+          "recall@10": 0.787,
+          "hit@5": 0.5556,
+          "hit@10": 1.0,
+          "mrr@10": 0.3515,
+          "ndcg@10": 0.4573
+        },
+        "policy": {
+          "recall@5": 0.5179,
+          "recall@10": 0.875,
+          "hit@5": 0.6429,
+          "hit@10": 0.9286,
+          "mrr@10": 0.2605,
+          "ndcg@10": 0.4126
+        }
+      }
+    }
+  }
+}
