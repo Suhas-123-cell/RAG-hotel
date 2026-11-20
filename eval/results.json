@@ -1,12 +1,12 @@
 {
   "meta": {
     "generated_at": "2026-11-20",
-    "git_commit": "9dc769d",
+    "git_commit": "b24e691",
     "n_queries": 63,
     "n_tuned_on": 7,
     "n_relevant_total": 190,
     "n_documents": 140,
-    "n_chunks": 296,
+    "n_chunks": 306,
     "embedding_model": "sentence-transformers/all-MiniLM-L6-v2",
     "rrf_k": 60,
     "hybrid_candidate_k": 30,
@@ -17,241 +17,241 @@
   "aggregate": {
     "dense": {
       "overall": {
-        "recall@5": 0.5975,
-        "recall@10": 0.7084,
-        "hit@5": 0.8413,
-        "hit@10": 0.9365,
-        "mrr@10": 0.7239,
-        "ndcg@10": 0.631
+        "recall@5": 0.7006,
+        "recall@10": 0.8314,
+        "hit@5": 0.8889,
+        "hit@10": 0.9683,
+        "mrr@10": 0.7759,
+        "ndcg@10": 0.7406
       },
       "not_tuned_on": {
-        "recall@5": 0.6571,
-        "recall@10": 0.7625,
-        "hit@5": 0.8929,
-        "hit@10": 0.9464,
-        "mrr@10": 0.763,
-        "ndcg@10": 0.6817
+        "recall@5": 0.75,
+        "recall@10": 0.8804,
+        "hit@5": 0.9286,
+        "hit@10": 0.9643,
+        "mrr@10": 0.8131,
+        "ndcg@10": 0.7863
       },
       "by_type": {
         "exact_name": {
-          "recall@5": 0.55,
-          "recall@10": 0.65,
-          "hit@5": 0.6667,
-          "hit@10": 0.75,
-          "mrr@10": 0.5708,
-          "ndcg@10": 0.549
+          "recall@5": 0.8417,
+          "recall@10": 0.9167,
+          "hit@5": 0.9167,
+          "hit@10": 0.9167,
+          "mrr@10": 0.8125,
+          "ndcg@10": 0.8379
         },
         "paraphrase": {
-          "recall@5": 0.6996,
-          "recall@10": 0.8149,
-          "hit@5": 0.9444,
-          "hit@10": 1.0,
-          "mrr@10": 0.8843,
-          "ndcg@10": 0.7543
+          "recall@5": 0.7233,
+          "recall@10": 0.8659,
+          "hit@5": 0.8889,
+          "hit@10": 0.9444,
+          "mrr@10": 0.8704,
+          "ndcg@10": 0.8041
         },
         "multi_condition": {
-          "recall@5": 0.32,
-          "recall@10": 0.4576,
+          "recall@5": 0.2933,
+          "recall@10": 0.4876,
           "hit@5": 0.8,
           "hit@10": 1.0,
-          "mrr@10": 0.5671,
-          "ndcg@10": 0.4043
+          "mrr@10": 0.4986,
+          "ndcg@10": 0.4034
         },
         "comparison": {
-          "recall@5": 0.5556,
-          "recall@10": 0.7037,
+          "recall@5": 0.6204,
+          "recall@10": 0.7685,
           "hit@5": 0.8889,
           "hit@10": 1.0,
-          "mrr@10": 0.6472,
-          "ndcg@10": 0.5748
+          "mrr@10": 0.6457,
+          "ndcg@10": 0.6172
         },
         "policy": {
-          "recall@5": 0.7321,
-          "recall@10": 0.8036,
-          "hit@5": 0.8571,
-          "hit@10": 0.9286,
-          "mrr@10": 0.8102,
-          "ndcg@10": 0.741
+          "recall@5": 0.8929,
+          "recall@10": 1.0,
+          "hit@5": 0.9286,
+          "hit@10": 1.0,
+          "mrr@10": 0.9048,
+          "ndcg@10": 0.8956
         }
       }
     },
     "bm25": {
       "overall": {
-        "recall@5": 0.6102,
-        "recall@10": 0.6933,
-        "hit@5": 0.8413,
-        "hit@10": 0.9048,
-        "mrr@10": 0.6995,
-        "ndcg@10": 0.6182
+        "recall@5": 0.6917,
+        "recall@10": 0.7834,
+        "hit@5": 0.9048,
+        "hit@10": 0.9683,
+        "mrr@10": 0.7632,
+        "ndcg@10": 0.6979
       },
       "not_tuned_on": {
-        "recall@5": 0.6527,
-        "recall@10": 0.7357,
-        "hit@5": 0.875,
-        "hit@10": 0.9107,
-        "mrr@10": 0.7286,
-        "ndcg@10": 0.6552
+        "recall@5": 0.7283,
+        "recall@10": 0.8182,
+        "hit@5": 0.9286,
+        "hit@10": 0.9821,
+        "mrr@10": 0.7891,
+        "ndcg@10": 0.7282
       },
       "by_type": {
         "exact_name": {
-          "recall@5": 0.4667,
-          "recall@10": 0.6083,
-          "hit@5": 0.6667,
-          "hit@10": 0.75,
-          "mrr@10": 0.5292,
-          "ndcg@10": 0.4829
+          "recall@5": 0.775,
+          "recall@10": 0.8583,
+          "hit@5": 0.9167,
+          "hit@10": 1.0,
+          "mrr@10": 0.6611,
+          "ndcg@10": 0.6718
         },
         "paraphrase": {
-          "recall@5": 0.6394,
-          "recall@10": 0.7048,
+          "recall@5": 0.6765,
+          "recall@10": 0.7696,
           "hit@5": 0.9444,
           "hit@10": 0.9444,
-          "mrr@10": 0.8444,
-          "ndcg@10": 0.6832
+          "mrr@10": 0.8472,
+          "ndcg@10": 0.7258
         },
         "multi_condition": {
-          "recall@5": 0.4833,
-          "recall@10": 0.661,
+          "recall@5": 0.51,
+          "recall@10": 0.6867,
           "hit@5": 0.8,
-          "hit@10": 1.0,
-          "mrr@10": 0.6768,
-          "ndcg@10": 0.5873
+          "hit@10": 0.9,
+          "mrr@10": 0.6643,
+          "ndcg@10": 0.6064
         },
         "comparison": {
           "recall@5": 0.6389,
-          "recall@10": 0.7037,
+          "recall@10": 0.7315,
           "hit@5": 0.8889,
           "hit@10": 1.0,
-          "mrr@10": 0.6111,
-          "ndcg@10": 0.5814
+          "mrr@10": 0.679,
+          "ndcg@10": 0.6271
         },
         "policy": {
-          "recall@5": 0.7679,
-          "recall@10": 0.7679,
-          "hit@5": 0.8571,
-          "hit@10": 0.8571,
-          "mrr@10": 0.7321,
-          "ndcg@10": 0.6965
+          "recall@5": 0.8036,
+          "recall@10": 0.8393,
+          "hit@5": 0.9286,
+          "hit@10": 1.0,
+          "mrr@10": 0.8673,
+          "ndcg@10": 0.7955
         }
       }
     },
     "rrf": {
       "overall": {
-        "recall@5": 0.615,
-        "recall@10": 0.773,
-        "hit@5": 0.873,
-        "hit@10": 0.9524,
-        "mrr@10": 0.7694,
-        "ndcg@10": 0.677
+        "recall@5": 0.7499,
+        "recall@10": 0.8559,
+        "hit@5": 0.9683,
+        "hit@10": 1.0,
+        "mrr@10": 0.8352,
+        "ndcg@10": 0.7743
       },
       "not_tuned_on": {
-        "recall@5": 0.6601,
-        "recall@10": 0.8247,
-        "hit@5": 0.875,
-        "hit@10": 0.9643,
-        "mrr@10": 0.7995,
-        "ndcg@10": 0.7216
+        "recall@5": 0.7958,
+        "recall@10": 0.9062,
+        "hit@5": 0.9643,
+        "hit@10": 1.0,
+        "mrr@10": 0.8646,
+        "ndcg@10": 0.8198
       },
       "by_type": {
         "exact_name": {
-          "recall@5": 0.5083,
-          "recall@10": 0.7333,
-          "hit@5": 0.6667,
-          "hit@10": 0.8333,
-          "mrr@10": 0.5628,
-          "ndcg@10": 0.5358
+          "recall@5": 0.8167,
+          "recall@10": 0.9833,
+          "hit@5": 0.9167,
+          "hit@10": 1.0,
+          "mrr@10": 0.8056,
+          "ndcg@10": 0.8105
         },
         "paraphrase": {
-          "recall@5": 0.7196,
-          "recall@10": 0.8284,
+          "recall@5": 0.8168,
+          "recall@10": 0.8603,
           "hit@5": 1.0,
           "hit@10": 1.0,
-          "mrr@10": 0.9444,
-          "ndcg@10": 0.8063
+          "mrr@10": 0.8889,
+          "ndcg@10": 0.8191
         },
         "multi_condition": {
-          "recall@5": 0.411,
-          "recall@10": 0.6152,
+          "recall@5": 0.441,
+          "recall@10": 0.6552,
           "hit@5": 1.0,
           "hit@10": 1.0,
-          "mrr@10": 0.7283,
-          "ndcg@10": 0.5471
+          "mrr@10": 0.6783,
+          "ndcg@10": 0.56
         },
         "comparison": {
-          "recall@5": 0.6481,
+          "recall@5": 0.6759,
           "recall@10": 0.7315,
           "hit@5": 0.8889,
           "hit@10": 1.0,
-          "mrr@10": 0.7659,
-          "ndcg@10": 0.6581
+          "mrr@10": 0.7685,
+          "ndcg@10": 0.6753
         },
         "policy": {
-          "recall@5": 0.6964,
-          "recall@10": 0.875,
-          "hit@5": 0.7857,
-          "hit@10": 0.9286,
-          "mrr@10": 0.753,
-          "ndcg@10": 0.7366
+          "recall@5": 0.875,
+          "recall@10": 0.9643,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 0.9464,
+          "ndcg@10": 0.9022
         }
       }
     },
     "rrf_support": {
       "overall": {
-        "recall@5": 0.5152,
-        "recall@10": 0.8,
-        "hit@5": 0.746,
-        "hit@10": 0.9683,
-        "mrr@10": 0.5594,
-        "ndcg@10": 0.5713
+        "recall@5": 0.5946,
+        "recall@10": 0.8535,
+        "hit@5": 0.8095,
+        "hit@10": 1.0,
+        "mrr@10": 0.5565,
+        "ndcg@10": 0.6055
       },
       "not_tuned_on": {
-        "recall@5": 0.561,
-        "recall@10": 0.8512,
-        "hit@5": 0.7857,
-        "hit@10": 0.9821,
-        "mrr@10": 0.5815,
-        "ndcg@10": 0.6035
+        "recall@5": 0.6262,
+        "recall@10": 0.8926,
+        "hit@5": 0.8214,
+        "hit@10": 1.0,
+        "mrr@10": 0.5716,
+        "ndcg@10": 0.6316
       },
       "by_type": {
         "exact_name": {
-          "recall@5": 0.6,
-          "recall@10": 0.9,
-          "hit@5": 0.75,
-          "hit@10": 0.9167,
-          "mrr@10": 0.5212,
-          "ndcg@10": 0.5996
-        },
-        "paraphrase": {
-          "recall@5": 0.6565,
-          "recall@10": 0.7737,
+          "recall@5": 0.6833,
+          "recall@10": 0.9833,
           "hit@5": 0.8333,
           "hit@10": 1.0,
-          "mrr@10": 0.8294,
-          "ndcg@10": 0.74
+          "mrr@10": 0.4795,
+          "ndcg@10": 0.6018
+        },
+        "paraphrase": {
+          "recall@5": 0.7676,
+          "recall@10": 0.8635,
+          "hit@5": 0.8889,
+          "hit@10": 1.0,
+          "mrr@10": 0.8051,
+          "ndcg@10": 0.7904
         },
         "multi_condition": {
-          "recall@5": 0.361,
+          "recall@5": 0.411,
           "recall@10": 0.6343,
           "hit@5": 0.9,
           "hit@10": 1.0,
-          "mrr@10": 0.725,
-          "ndcg@10": 0.5585
+          "mrr@10": 0.675,
+          "ndcg@10": 0.5593
         },
         "comparison": {
           "recall@5": 0.287,
-          "recall@10": 0.787,
+          "recall@10": 0.7593,
           "hit@5": 0.5556,
           "hit@10": 1.0,
           "mrr@10": 0.3515,
-          "ndcg@10": 0.4573
+          "ndcg@10": 0.4446
         },
         "policy": {
-          "recall@5": 0.5179,
-          "recall@10": 0.875,
-          "hit@5": 0.6429,
-          "hit@10": 0.9286,
-          "mrr@10": 0.2605,
-          "ndcg@10": 0.4126
+          "recall@5": 0.625,
+          "recall@10": 0.9464,
+          "hit@5": 0.7857,
+          "hit@10": 1.0,
+          "mrr@10": 0.3502,
+          "ndcg@10": 0.5072
         }
       }
     }
@@ -270,50 +270,50 @@
         "dense": [
           "hotel_045",
           "hotel_001",
+          "hotel_078",
           "hotel_034",
           "hotel_052",
           "hotel_073",
           "hotel_093",
+          "hotel_093",
           "hotel_001",
-          "hotel_029",
-          "hotel_088",
-          "hotel_070"
+          "hotel_029"
         ],
         "bm25": [
           "hotel_045",
           "hotel_070",
+          "hotel_093",
           "hotel_096",
           "hotel_093",
-          "hotel_093",
           "hotel_006",
-          "hotel_034",
-          "hotel_113",
           "hotel_052",
-          "hotel_001"
+          "hotel_113",
+          "hotel_034",
+          "hotel_052"
         ],
         "rrf": [
           "hotel_045",
-          "hotel_034",
           "hotel_093",
-          "hotel_001",
+          "hotel_093",
+          "hotel_034",
           "hotel_070",
           "hotel_052",
+          "hotel_001",
           "hotel_096",
           "hotel_006",
-          "hotel_093",
-          "hotel_083"
+          "hotel_078"
         ],
         "rrf_support": [
           "hotel_009",
           "hotel_014",
           "hotel_045",
-          "hotel_034",
           "hotel_093",
-          "hotel_001",
+          "hotel_093",
+          "hotel_034",
           "hotel_070",
           "hotel_052",
-          "hotel_096",
-          "hotel_006"
+          "hotel_001",
+          "hotel_096"
         ]
       },
       "scores": {
@@ -327,19 +327,19 @@
         },
         "bm25": {
           "recall@5": 0.5,
-          "recall@10": 1.0,
+          "recall@10": 0.5,
           "hit@5": 1.0,
           "hit@10": 1.0,
           "mrr@10": 1.0,
-          "ndcg@10": 0.7903864795495061
+          "ndcg@10": 0.6131471927654584
         },
         "rrf": {
-          "recall@5": 1.0,
+          "recall@5": 0.5,
           "recall@10": 1.0,
           "hit@5": 1.0,
           "hit@10": 1.0,
           "mrr@10": 1.0,
-          "ndcg@10": 0.8772153153380493
+          "ndcg@10": 0.8175295903539445
         },
         "rrf_support": {
           "recall@5": 0.5,
@@ -347,7 +347,7 @@
           "hit@5": 1.0,
           "hit@10": 1.0,
           "mrr@10": 0.3333333333333333,
-          "ndcg@10": 0.5249810332008933
+          "ndcg@10": 0.4911492931622974
         }
       }
     },
@@ -362,62 +362,62 @@
       ],
       "rankings": {
         "dense": [
+          "hotel_042",
           "hotel_089",
           "hotel_072",
+          "hotel_048",
           "hotel_074",
           "hotel_010",
           "hotel_047",
           "hotel_032",
           "hotel_059",
-          "hotel_002",
-          "hotel_058",
-          "hotel_056"
+          "hotel_002"
         ],
         "bm25": [
           "hotel_018",
+          "hotel_042",
           "hotel_138",
-          "hotel_095",
           "hotel_010",
+          "hotel_030",
           "hotel_094",
           "hotel_058",
+          "hotel_095",
           "hotel_089",
-          "hotel_074",
-          "hotel_097",
-          "hotel_060"
+          "hotel_074"
         ],
         "rrf": [
-          "hotel_089",
+          "hotel_042",
           "hotel_010",
+          "hotel_089",
           "hotel_074",
-          "hotel_018",
           "hotel_058",
-          "hotel_072",
+          "hotel_018",
+          "hotel_030",
           "hotel_094",
-          "hotel_047",
-          "hotel_059",
-          "hotel_138"
+          "hotel_048",
+          "hotel_047"
         ],
         "rrf_support": [
           "hotel_048",
-          "hotel_059",
-          "hotel_089",
+          "hotel_047",
+          "hotel_042",
           "hotel_010",
+          "hotel_089",
           "hotel_074",
-          "hotel_018",
           "hotel_058",
-          "hotel_072",
-          "hotel_094",
-          "hotel_047"
+          "hotel_018",
+          "hotel_030",
+          "hotel_094"
         ]
       },
       "scores": {
         "dense": {
           "recall@5": 0.5,
-          "recall@10": 0.5,
+          "recall@10": 1.0,
           "hit@5": 1.0,
           "hit@10": 1.0,
           "mrr@10": 0.25,
-          "ndcg@10": 0.2640681225725909
+          "ndcg@10": 0.48247555939075504
         },
         "bm25": {
           "recall@5": 0.5,
@@ -429,11 +429,11 @@
         },
         "rrf": {
           "recall@5": 0.5,
-          "recall@10": 0.5,
+          "recall@10": 1.0,
           "hit@5": 1.0,
           "hit@10": 1.0,
           "mrr@10": 0.5,
-          "ndcg@10": 0.38685280723454163
+          "ndcg@10": 0.5714285040141098
         },
         "rrf_support": {
           "recall@5": 1.0,
@@ -457,13 +457,13 @@
         "dense": [
           "hotel_044",
           "hotel_005",
+          "hotel_097",
           "hotel_033",
           "hotel_065",
-          "hotel_028",
           "hotel_100",
+          "hotel_028",
           "hotel_105",
           "hotel_028",
-          "hotel_094",
           "hotel_055"
         ],
         "bm25": [
@@ -471,8 +471,8 @@
           "hotel_065",
           "hotel_044",
           "hotel_025",
-          "hotel_060",
           "hotel_097",
+          "hotel_060",
           "hotel_056",
           "hotel_028",
           "hotel_055",
@@ -483,20 +483,20 @@
           "hotel_065",
           "hotel_005",
           "hotel_025",
+          "hotel_033",
           "hotel_028",
           "hotel_044",
-          "hotel_028",
-          "hotel_033",
           "hotel_055",
+          "hotel_105",
           "hotel_056"
         ],
         "rrf_support": [
           "hotel_060",
+          "hotel_060",
+          "hotel_030",
           "hotel_043",
           "hotel_031",
           "hotel_115",
-          "hotel_029",
-          "hotel_108",
           "hotel_013",
           "hotel_055",
           "hotel_044",
@@ -548,78 +548,78 @@
       ],
       "rankings": {
         "dense": [
+          "hotel_107",
           "hotel_106",
           "hotel_106",
           "hotel_109",
           "hotel_108",
-          "hotel_062",
           "hotel_134",
           "hotel_113",
-          "hotel_096",
-          "hotel_120",
-          "hotel_135"
+          "hotel_108",
+          "hotel_062",
+          "hotel_096"
         ],
         "bm25": [
           "hotel_108",
+          "hotel_107",
           "hotel_129",
           "hotel_106",
           "hotel_109",
           "hotel_106",
           "hotel_044",
-          "hotel_113",
           "hotel_049",
-          "hotel_052",
-          "hotel_025"
+          "hotel_113",
+          "hotel_052"
         ],
         "rrf": [
-          "hotel_106",
+          "hotel_107",
           "hotel_108",
+          "hotel_106",
           "hotel_106",
           "hotel_109",
           "hotel_113",
           "hotel_129",
           "hotel_052",
-          "hotel_120",
-          "hotel_107",
-          "hotel_083"
+          "hotel_073",
+          "hotel_134"
         ],
         "rrf_support": [
           "hotel_009",
-          "hotel_047",
-          "hotel_058",
+          "hotel_012",
+          "hotel_016",
           "hotel_060",
-          "hotel_073",
-          "hotel_045",
+          "hotel_056",
+          "hotel_050",
           "hotel_107",
+          "hotel_108",
           "hotel_107",
-          "hotel_106",
           "hotel_108"
         ]
       },
       "scores": {
         "dense": {
-          "recall@5": 0.0,
-          "recall@10": 0.0,
-          "hit@5": 0.0,
-          "hit@10": 0.0,
-          "mrr@10": 0.0,
-          "ndcg@10": 0.0
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 1.0,
+          "ndcg@10": 1.0
         },
         "bm25": {
-          "recall@5": 0.0,
-          "recall@10": 0.0,
-          "hit@5": 0.0,
-          "hit@10": 0.0,
-          "mrr@10": 0.0,
-          "ndcg@10": 0.0
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 0.5,
+          "ndcg@10": 0.6309297535714575
         },
         "rrf": {
-          "recall@5": 0.0,
+          "recall@5": 1.0,
           "recall@10": 1.0,
-          "hit@5": 0.0,
+          "hit@5": 1.0,
           "hit@10": 1.0,
-          "mrr@10": 0.1111111111111111,
-          "ndcg@10": 0.3010299956639812
+          "mrr@10": 1.0,
+          "ndcg@10": 1.0
         },
         "rrf_support": {
           "recall@5": 0.0,
@@ -650,17 +650,17 @@
           "hotel_051",
           "hotel_049",
           "hotel_003",
-          "hotel_003"
+          "hotel_020"
         ],
         "bm25": [
-          "hotel_095",
           "hotel_063",
           "hotel_035",
           "hotel_021",
           "hotel_015",
+          "hotel_095",
           "hotel_050",
-          "hotel_003",
           "hotel_129",
+          "hotel_003",
           "hotel_051",
           "hotel_049"
         ],
@@ -669,24 +669,24 @@
           "hotel_049",
           "hotel_050",
           "hotel_095",
-          "hotel_051",
           "hotel_035",
+          "hotel_051",
           "hotel_003",
-          "hotel_011",
-          "hotel_103",
-          "hotel_049"
+          "hotel_021",
+          "hotel_049",
+          "hotel_011"
         ],
         "rrf_support": [
+          "hotel_011",
           "hotel_015",
-          "hotel_049",
           "hotel_063",
           "hotel_049",
           "hotel_050",
           "hotel_095",
-          "hotel_051",
           "hotel_035",
+          "hotel_051",
           "hotel_003",
-          "hotel_011"
+          "hotel_021"
         ]
       },
       "scores": {
@@ -719,8 +719,8 @@
           "recall@10": 1.0,
           "hit@5": 1.0,
           "hit@10": 1.0,
-          "mrr@10": 0.5,
-          "ndcg@10": 0.6309297535714575
+          "mrr@10": 0.25,
+          "ndcg@10": 0.43067655807339306
         }
       }
     },
@@ -737,9 +737,9 @@
         "dense": [
           "hotel_061",
           "hotel_027",
+          "hotel_012",
           "hotel_063",
           "hotel_026",
-          "hotel_012",
           "hotel_042",
           "hotel_086",
           "hotel_022",
@@ -748,38 +748,38 @@
         ],
         "bm25": [
           "hotel_022",
-          "hotel_061",
+          "hotel_042",
           "hotel_041",
+          "hotel_061",
           "hotel_078",
           "hotel_042",
           "hotel_063",
           "hotel_071",
-          "hotel_063",
           "hotel_038",
           "hotel_031"
         ],
         "rrf": [
           "hotel_061",
           "hotel_022",
+          "hotel_042",
           "hotel_063",
+          "hotel_027",
           "hotel_042",
           "hotel_026",
-          "hotel_027",
-          "hotel_041",
           "hotel_012",
-          "hotel_038",
-          "hotel_052"
+          "hotel_041",
+          "hotel_038"
         ],
         "rrf_support": [
           "hotel_052",
           "hotel_031",
           "hotel_061",
           "hotel_022",
+          "hotel_042",
           "hotel_063",
+          "hotel_027",
           "hotel_042",
           "hotel_026",
-          "hotel_027",
-          "hotel_041",
           "hotel_012"
         ]
       },
@@ -797,16 +797,16 @@
           "recall@10": 0.5,
           "hit@5": 1.0,
           "hit@10": 1.0,
-          "mrr@10": 0.5,
-          "ndcg@10": 0.38685280723454163
+          "mrr@10": 0.25,
+          "ndcg@10": 0.2640681225725909
         },
         "rrf": {
-          "recall@5": 0.5,
+          "recall@5": 1.0,
           "recall@10": 1.0,
           "hit@5": 1.0,
           "hit@10": 1.0,
           "mrr@10": 1.0,
-          "ndcg@10": 0.8315546295836225
+          "ndcg@10": 0.8503449055347546
         },
         "rrf_support": {
           "recall@5": 0.5,
@@ -814,7 +814,7 @@
           "hit@5": 1.0,
           "hit@10": 1.0,
           "mrr@10": 0.3333333333333333,
-          "ndcg@10": 0.5
+          "ndcg@10": 0.5109559939712153
         }
       }
     },
@@ -837,53 +837,53 @@
           "hotel_111",
           "hotel_101",
           "hotel_129",
-          "hotel_114"
+          "hotel_117"
         ],
         "bm25": [
           "hotel_113",
           "hotel_114",
+          "hotel_115",
           "hotel_105",
           "hotel_117",
           "hotel_103",
           "hotel_102",
           "hotel_121",
           "hotel_125",
-          "hotel_113",
-          "hotel_135"
+          "hotel_132"
         ],
         "rrf": [
           "hotel_103",
-          "hotel_105",
           "hotel_113",
+          "hotel_105",
           "hotel_121",
           "hotel_102",
-          "hotel_125",
           "hotel_114",
+          "hotel_125",
           "hotel_117",
-          "hotel_129",
-          "hotel_107"
+          "hotel_115",
+          "hotel_129"
         ],
         "rrf_support": [
           "hotel_114",
-          "hotel_113",
+          "hotel_115",
           "hotel_103",
-          "hotel_105",
           "hotel_113",
+          "hotel_105",
           "hotel_121",
           "hotel_102",
-          "hotel_125",
           "hotel_114",
+          "hotel_125",
           "hotel_117"
         ]
       },
       "scores": {
         "dense": {
           "recall@5": 0.0,
-          "recall@10": 1.0,
+          "recall@10": 0.0,
           "hit@5": 0.0,
-          "hit@10": 1.0,
-          "mrr@10": 0.1,
-          "ndcg@10": 0.2890648263178879
+          "hit@10": 0.0,
+          "mrr@10": 0.0,
+          "ndcg@10": 0.0
         },
         "bm25": {
           "recall@5": 1.0,
@@ -898,8 +898,8 @@
           "recall@10": 1.0,
           "hit@5": 0.0,
           "hit@10": 1.0,
-          "mrr@10": 0.14285714285714285,
-          "ndcg@10": 0.3333333333333333
+          "mrr@10": 0.16666666666666666,
+          "ndcg@10": 0.3562071871080222
         },
         "rrf_support": {
           "recall@5": 1.0,
@@ -921,30 +921,31 @@
       ],
       "rankings": {
         "dense": [
+          "hotel_135",
           "hotel_111",
           "hotel_068",
           "hotel_062",
           "hotel_104",
           "hotel_101",
+          "hotel_125",
           "hotel_134",
           "hotel_129",
-          "hotel_057",
-          "hotel_012",
-          "hotel_009"
+          "hotel_062"
         ],
         "bm25": [
           "hotel_136",
           "hotel_134",
+          "hotel_135",
           "hotel_104",
           "hotel_070",
           "hotel_062",
           "hotel_063",
           "hotel_022",
           "hotel_103",
-          "hotel_134",
           "hotel_011"
         ],
         "rrf": [
+          "hotel_135",
           "hotel_104",
           "hotel_134",
           "hotel_062",
@@ -953,46 +954,45 @@
           "hotel_101",
           "hotel_070",
           "hotel_009",
-          "hotel_063",
-          "hotel_012"
+          "hotel_063"
         ],
         "rrf_support": [
           "hotel_135",
           "hotel_134",
+          "hotel_135",
           "hotel_104",
           "hotel_134",
           "hotel_062",
           "hotel_068",
           "hotel_136",
           "hotel_101",
-          "hotel_070",
-          "hotel_009"
+          "hotel_070"
         ]
       },
       "scores": {
         "dense": {
-          "recall@5": 0.0,
-          "recall@10": 0.0,
-          "hit@5": 0.0,
-          "hit@10": 0.0,
-          "mrr@10": 0.0,
-          "ndcg@10": 0.0
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 1.0,
+          "ndcg@10": 1.0
         },
         "bm25": {
-          "recall@5": 0.0,
-          "recall@10": 0.0,
-          "hit@5": 0.0,
-          "hit@10": 0.0,
-          "mrr@10": 0.0,
-          "ndcg@10": 0.0
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 0.3333333333333333,
+          "ndcg@10": 0.5
         },
         "rrf": {
-          "recall@5": 0.0,
-          "recall@10": 0.0,
-          "hit@5": 0.0,
-          "hit@10": 0.0,
-          "mrr@10": 0.0,
-          "ndcg@10": 0.0
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 1.0,
+          "ndcg@10": 1.0
         },
         "rrf_support": {
           "recall@5": 1.0,
@@ -1020,84 +1020,84 @@
         "dense": [
           "hotel_032",
           "hotel_002",
+          "hotel_084",
           "hotel_072",
           "hotel_089",
           "hotel_058",
           "hotel_018",
+          "hotel_042",
           "hotel_059",
-          "hotel_047",
-          "hotel_094",
-          "hotel_010"
+          "hotel_047"
         ],
         "bm25": [
+          "hotel_084",
           "hotel_032",
           "hotel_058",
           "hotel_002",
-          "hotel_094",
           "hotel_094",
           "hotel_095",
           "hotel_060",
           "hotel_097",
           "hotel_059",
-          "hotel_047"
+          "hotel_094"
         ],
         "rrf": [
           "hotel_032",
+          "hotel_084",
           "hotel_002",
           "hotel_058",
-          "hotel_094",
           "hotel_072",
+          "hotel_094",
           "hotel_059",
           "hotel_018",
-          "hotel_089",
-          "hotel_047",
-          "hotel_074"
+          "hotel_042",
+          "hotel_089"
         ],
         "rrf_support": [
           "hotel_056",
           "hotel_009",
+          "hotel_012",
           "hotel_058",
-          "hotel_052",
+          "hotel_107",
           "hotel_050",
-          "hotel_108",
           "hotel_010",
           "hotel_047",
           "hotel_032",
-          "hotel_002"
+          "hotel_084"
         ]
       },
       "scores": {
         "dense": {
           "recall@5": 0.6,
-          "recall@10": 0.8,
+          "recall@10": 1.0,
           "hit@5": 1.0,
           "hit@10": 1.0,
           "mrr@10": 1.0,
-          "ndcg@10": 0.7913446798877494
+          "ndcg@10": 0.9415771611758031
         },
         "bm25": {
-          "recall@5": 0.6,
+          "recall@5": 0.8,
           "recall@10": 0.8,
           "hit@5": 1.0,
           "hit@10": 1.0,
           "mrr@10": 1.0,
-          "ndcg@10": 0.8207658584763088
+          "ndcg@10": 0.8687949224876582
         },
         "rrf": {
-          "recall@5": 0.6,
+          "recall@5": 0.8,
           "recall@10": 0.8,
           "hit@5": 1.0,
           "hit@10": 1.0,
           "mrr@10": 1.0,
-          "ndcg@10": 0.8248239677678635
+          "ndcg@10": 0.8687949224876582
         },
         "rrf_support": {
           "recall@5": 0.2,
           "recall@10": 0.8,
           "hit@5": 1.0,
           "hit@10": 1.0,
-          "mrr@10": 0.3333333333333333,
-          "ndcg@10": 0.4767099159583405
+          "mrr@10": 0.25,
+          "ndcg@10": 0.4531981631642389
         }
       }
     },
@@ -1111,86 +1111,86 @@
       ],
       "rankings": {
         "dense": [
+          "hotel_026",
+          "hotel_080",
           "hotel_003",
           "hotel_095",
+          "hotel_099",
           "hotel_043",
-          "hotel_003",
           "hotel_050",
+          "hotel_003",
           "hotel_063",
-          "hotel_020",
-          "hotel_103",
-          "hotel_075",
-          "hotel_051"
+          "hotel_020"
         ],
         "bm25": [
-          "hotel_063",
+          "hotel_026",
           "hotel_035",
           "hotel_003",
           "hotel_051",
+          "hotel_063",
           "hotel_095",
+          "hotel_080",
           "hotel_043",
           "hotel_095",
-          "hotel_050",
-          "hotel_015",
-          "hotel_049"
+          "hotel_050"
         ],
         "rrf": [
+          "hotel_026",
           "hotel_003",
-          "hotel_063",
+          "hotel_080",
           "hotel_095",
+          "hotel_063",
           "hotel_043",
+          "hotel_099",
           "hotel_050",
           "hotel_051",
-          "hotel_003",
-          "hotel_035",
-          "hotel_103",
-          "hotel_049"
+          "hotel_035"
         ],
         "rrf_support": [
           "hotel_011",
           "hotel_049",
+          "hotel_026",
           "hotel_003",
-          "hotel_063",
+          "hotel_080",
           "hotel_095",
+          "hotel_063",
           "hotel_043",
-          "hotel_050",
-          "hotel_051",
-          "hotel_003",
-          "hotel_035"
+          "hotel_099",
+          "hotel_050"
         ]
       },
       "scores": {
         "dense": {
-          "recall@5": 0.0,
-          "recall@10": 0.0,
-          "hit@5": 0.0,
-          "hit@10": 0.0,
-          "mrr@10": 0.0,
-          "ndcg@10": 0.0
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 1.0,
+          "ndcg@10": 1.0
         },
         "bm25": {
-          "recall@5": 0.0,
-          "recall@10": 0.0,
-          "hit@5": 0.0,
-          "hit@10": 0.0,
-          "mrr@10": 0.0,
-          "ndcg@10": 0.0
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 1.0,
+          "ndcg@10": 1.0
         },
         "rrf": {
-          "recall@5": 0.0,
-          "recall@10": 0.0,
-          "hit@5": 0.0,
-          "hit@10": 0.0,
-          "mrr@10": 0.0,
-          "ndcg@10": 0.0
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 1.0,
+          "ndcg@10": 1.0
         },
         "rrf_support": {
-          "recall@5": 0.0,
-          "recall@10": 0.0,
-          "hit@5": 0.0,
-          "hit@10": 0.0,
-          "mrr@10": 0.0,
-          "ndcg@10": 0.0
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 0.3333333333333333,
+          "ndcg@10": 0.5
         }
       }
     },
@@ -1208,8 +1208,8 @@
           "hotel_110",
           "hotel_128",
           "hotel_111",
-          "hotel_006",
           "hotel_037",
+          "hotel_006",
           "hotel_110",
           "hotel_086",
           "hotel_014",
@@ -1221,11 +1221,11 @@
           "hotel_111",
           "hotel_111",
           "hotel_110",
-          "hotel_058",
           "hotel_031",
-          "hotel_022",
+          "hotel_058",
           "hotel_008",
-          "hotel_086"
+          "hotel_086",
+          "hotel_022"
         ],
         "rrf": [
           "hotel_112",
@@ -1233,11 +1233,11 @@
           "hotel_111",
           "hotel_110",
           "hotel_086",
-          "hotel_128",
           "hotel_111",
+          "hotel_128",
           "hotel_076",
-          "hotel_058",
-          "hotel_045"
+          "hotel_045",
+          "hotel_112"
         ],
         "rrf_support": [
           "hotel_112",
@@ -1247,8 +1247,8 @@
           "hotel_111",
           "hotel_110",
           "hotel_086",
-          "hotel_128",
           "hotel_111",
+          "hotel_128",
           "hotel_076"
         ]
       },
@@ -1298,86 +1298,85 @@
       ],
       "rankings": {
         "dense": [
+          "hotel_132",
           "hotel_131",
           "hotel_133",
           "hotel_014",
           "hotel_019",
+          "hotel_117",
           "hotel_004",
+          "hotel_006",
           "hotel_039",
-          "hotel_125",
-          "hotel_105",
-          "hotel_022",
-          "hotel_113"
+          "hotel_125"
         ],
         "bm25": [
           "hotel_131",
+          "hotel_132",
           "hotel_133",
           "hotel_113",
           "hotel_129",
           "hotel_049",
           "hotel_120",
-          "hotel_133",
+          "hotel_117",
           "hotel_044",
-          "hotel_012",
-          "hotel_116"
+          "hotel_012"
         ],
         "rrf": [
+          "hotel_132",
           "hotel_131",
           "hotel_133",
-          "hotel_113",
+          "hotel_117",
           "hotel_014",
+          "hotel_113",
           "hotel_116",
-          "hotel_012",
           "hotel_105",
           "hotel_117",
-          "hotel_019",
-          "hotel_129"
+          "hotel_019"
         ],
         "rrf_support": [
-          "hotel_132",
           "hotel_133",
+          "hotel_132",
           "hotel_131",
           "hotel_133",
-          "hotel_113",
+          "hotel_117",
           "hotel_014",
+          "hotel_113",
           "hotel_116",
-          "hotel_012",
-          "hotel_105",
-          "hotel_117"
+          "hotel_105"
         ]
       },
       "scores": {
         "dense": {
-          "recall@5": 0.5,
-          "recall@10": 0.5,
+          "recall@5": 1.0,
+          "recall@10": 1.0,
           "hit@5": 1.0,
           "hit@10": 1.0,
           "mrr@10": 1.0,
-          "ndcg@10": 0.6131471927654584
+          "ndcg@10": 1.0
         },
         "bm25": {
-          "recall@5": 0.5,
-          "recall@10": 0.5,
+          "recall@5": 1.0,
+          "recall@10": 1.0,
           "hit@5": 1.0,
           "hit@10": 1.0,
           "mrr@10": 1.0,
-          "ndcg@10": 0.6131471927654584
+          "ndcg@10": 1.0
         },
         "rrf": {
-          "recall@5": 0.5,
-          "recall@10": 0.5,
+          "recall@5": 1.0,
+          "recall@10": 1.0,
           "hit@5": 1.0,
           "hit@10": 1.0,
           "mrr@10": 1.0,
-          "ndcg@10": 0.6131471927654584
+          "ndcg@10": 1.0
         },
         "rrf_support": {
           "recall@5": 1.0,
           "recall@10": 1.0,
           "hit@5": 1.0,
           "hit@10": 1.0,
-          "mrr@10": 1.0,
-          "ndcg@10": 0.9197207891481876
+          "mrr@10": 0.5,
+          "ndcg@10": 0.6934264036172708
         }
       }
     },
@@ -1396,82 +1395,82 @@
         "dense": [
           "hotel_089",
           "hotel_060",
-          "hotel_133",
           "hotel_072",
-          "hotel_043",
+          "hotel_133",
           "hotel_096",
           "hotel_044",
-          "hotel_108",
+          "hotel_043",
           "hotel_044",
+          "hotel_030",
           "hotel_029"
         ],
         "bm25": [
           "hotel_060",
-          "hotel_043",
+          "hotel_030",
           "hotel_065",
+          "hotel_139",
+          "hotel_043",
+          "hotel_089",
           "hotel_044",
           "hotel_025",
-          "hotel_089",
-          "hotel_113",
           "hotel_044",
-          "hotel_072",
-          "hotel_117"
+          "hotel_113"
         ],
         "rrf": [
           "hotel_060",
           "hotel_089",
+          "hotel_030",
           "hotel_043",
           "hotel_072",
-          "hotel_133",
           "hotel_044",
-          "hotel_031",
-          "hotel_108",
+          "hotel_133",
           "hotel_096",
-          "hotel_079"
+          "hotel_031",
+          "hotel_029"
         ],
         "rrf_support": [
           "hotel_060",
           "hotel_089",
+          "hotel_030",
           "hotel_043",
           "hotel_072",
-          "hotel_133",
           "hotel_044",
-          "hotel_031",
-          "hotel_108"
+          "hotel_133",
+          "hotel_096"
         ]
       },
       "scores": {
         "dense": {
           "recall@5": 0.75,
-          "recall@10": 0.75,
+          "recall@10": 1.0,
           "hit@5": 1.0,
           "hit@10": 1.0,
           "mrr@10": 1.0,
-          "ndcg@10": 0.8048099750039491
+          "ndcg@10": 0.9493885684853097
         },
         "bm25": {
-          "recall@5": 0.25,
+          "recall@5": 0.5,
           "recall@10": 0.75,
           "hit@5": 1.0,
           "hit@10": 1.0,
           "mrr@10": 1.0,
-          "ndcg@10": 0.6469523342593044
+          "ndcg@10": 0.7757386182436072
         },
         "rrf": {
-          "recall@5": 0.75,
-          "recall@10": 0.75,
+          "recall@5": 1.0,
+          "recall@10": 1.0,
           "hit@5": 1.0,
           "hit@10": 1.0,
           "mrr@10": 1.0,
-          "ndcg@10": 0.8048099750039491
+          "ndcg@10": 0.9828920819566879
         },
         "rrf_support": {
-          "recall@5": 0.75,
-          "recall@10": 0.75,
+          "recall@5": 1.0,
+          "recall@10": 1.0,
           "hit@5": 1.0,
           "hit@10": 1.0,
           "mrr@10": 1.0,
-          "ndcg@10": 0.8048099750039491
+          "ndcg@10": 0.9828920819566879
         }
       }
     },
@@ -1493,48 +1492,48 @@
           "hotel_029",
           "hotel_031",
           "hotel_029",
-          "hotel_031",
           "hotel_108",
+          "hotel_031",
           "hotel_122",
           "hotel_089",
-          "hotel_044",
-          "hotel_060"
+          "hotel_043",
+          "hotel_044"
         ],
         "bm25": [
           "hotel_071",
           "hotel_072",
           "hotel_119",
-          "hotel_037",
           "hotel_109",
           "hotel_067",
           "hotel_018",
-          "hotel_136",
+          "hotel_037",
           "hotel_038",
-          "hotel_065"
+          "hotel_065",
+          "hotel_017"
         ],
         "rrf": [
           "hotel_044",
           "hotel_029",
           "hotel_031",
-          "hotel_122",
-          "hotel_025",
           "hotel_096",
           "hotel_071",
           "hotel_029",
           "hotel_072",
-          "hotel_119"
+          "hotel_119",
+          "hotel_109",
+          "hotel_108"
         ],
         "rrf_support": [
           "hotel_060",
+          "hotel_060",
+          "hotel_030",
           "hotel_043",
           "hotel_115",
-          "hotel_108",
-          "hotel_133",
+          "hotel_122",
           "hotel_044",
           "hotel_029",
           "hotel_031",
-          "hotel_122",
-          "hotel_025"
+          "hotel_096"
         ]
       },
       "scores": {
@@ -1556,19 +1555,19 @@
         },
         "rrf": {
           "recall@5": 0.6,
-          "recall@10": 0.8,
+          "recall@10": 0.6,
           "hit@5": 1.0,
           "hit@10": 1.0,
           "mrr@10": 0.5,
-          "ndcg@10": 0.6504460199135362
+          "ndcg@10": 0.5296347172140421
         },
         "rrf_support": {
           "recall@5": 0.0,
-          "recall@10": 0.6,
+          "recall@10": 0.8,
           "hit@5": 0.0,
           "hit@10": 1.0,
-          "mrr@10": 0.14285714285714285,
-          "ndcg@10": 0.32214392924804747
+          "mrr@10": 0.16666666666666666,
+          "ndcg@10": 0.4279411160210267
         }
       }
     },
@@ -1590,79 +1589,79 @@
           "hotel_023",
           "hotel_024",
           "hotel_005",
+          "hotel_097",
           "hotel_013",
           "hotel_053",
           "hotel_055",
-          "hotel_137",
-          "hotel_094"
+          "hotel_137"
         ],
         "bm25": [
+          "hotel_097",
           "hotel_023",
-          "hotel_094",
-          "hotel_072",
           "hotel_140",
+          "hotel_072",
           "hotel_077",
           "hotel_106",
-          "hotel_073",
-          "hotel_134",
+          "hotel_094",
+          "hotel_005",
           "hotel_093",
-          "hotel_024"
+          "hotel_134"
         ],
         "rrf": [
           "hotel_023",
+          "hotel_097",
           "hotel_077",
-          "hotel_094",
+          "hotel_005",
           "hotel_065",
           "hotel_024",
+          "hotel_094",
           "hotel_053",
-          "hotel_005",
           "hotel_134",
-          "hotel_097",
           "hotel_065"
         ],
         "rrf_support": [
           "hotel_023",
+          "hotel_097",
           "hotel_077",
-          "hotel_094",
+          "hotel_005",
           "hotel_065",
           "hotel_024",
-          "hotel_053",
-          "hotel_005",
-          "hotel_134"
+          "hotel_094",
+          "hotel_053"
         ]
       },
       "scores": {
         "dense": {
           "recall@5": 0.75,
+          "recall@10": 1.0,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 1.0,
+          "ndcg@10": 0.9267582364714126
+        },
+        "bm25": {
+          "recall@5": 0.5,
           "recall@10": 0.75,
           "hit@5": 1.0,
           "hit@10": 1.0,
           "mrr@10": 1.0,
-          "ndcg@10": 0.787702056960637
-        },
-        "bm25": {
-          "recall@5": 0.25,
-          "recall@10": 0.25,
-          "hit@5": 1.0,
-          "hit@10": 1.0,
-          "mrr@10": 0.2,
-          "ndcg@10": 0.15101961822780524
+          "ndcg@10": 0.664550862590272
         },
         "rrf": {
-          "recall@5": 0.5,
+          "recall@5": 1.0,
           "recall@10": 1.0,
           "hit@5": 1.0,
           "hit@10": 1.0,
           "mrr@10": 0.5,
-          "ndcg@10": 0.6620727130989752
+          "ndcg@10": 0.7606395682357036
         },
         "rrf_support": {
-          "recall@5": 0.5,
-          "recall@10": 0.75,
+          "recall@5": 1.0,
+          "recall@10": 1.0,
           "hit@5": 1.0,
           "hit@10": 1.0,
           "mrr@10": 0.5,
-          "ndcg@10": 0.544556608342548
+          "ndcg@10": 0.7606395682357036
         }
       }
     },
@@ -1680,6 +1679,7 @@
       ],
       "rankings": {
         "dense": [
+          "hotel_091",
           "hotel_076",
           "hotel_019",
           "hotel_124",
@@ -1687,21 +1687,20 @@
           "hotel_022",
           "hotel_022",
           "hotel_096",
-          "hotel_091",
-          "hotel_025",
+          "hotel_001",
           "hotel_086"
         ],
         "bm25": [
           "hotel_093",
           "hotel_096",
           "hotel_094",
-          "hotel_094",
           "hotel_096",
+          "hotel_094",
           "hotel_124",
           "hotel_038",
+          "hotel_062",
           "hotel_096",
-          "hotel_061",
-          "hotel_019"
+          "hotel_054"
         ],
         "rrf": [
           "hotel_124",
@@ -1711,9 +1710,9 @@
           "hotel_038",
           "hotel_096",
           "hotel_004",
+          "hotel_086",
           "hotel_022",
-          "hotel_072",
-          "hotel_093"
+          "hotel_062"
         ],
         "rrf_support": [
           "hotel_124",
@@ -1723,17 +1722,17 @@
           "hotel_038",
           "hotel_096",
           "hotel_004",
-          "hotel_022"
+          "hotel_086"
         ]
       },
       "scores": {
         "dense": {
-          "recall@5": 0.6,
+          "recall@5": 0.8,
           "recall@10": 1.0,
           "hit@5": 1.0,
           "hit@10": 1.0,
           "mrr@10": 1.0,
-          "ndcg@10": 0.8748551918782664
+          "ndcg@10": 0.9374130297304558
         },
         "bm25": {
           "recall@5": 0.2,
@@ -1774,15 +1773,15 @@
       "rankings": {
         "dense": [
           "hotel_108",
+          "hotel_109",
           "hotel_067",
           "hotel_106",
           "hotel_109",
-          "hotel_030",
-          "hotel_139",
-          "hotel_109",
           "hotel_028",
           "hotel_066",
-          "hotel_027"
+          "hotel_050",
+          "hotel_113",
+          "hotel_115"
         ],
         "bm25": [
           "hotel_109",
@@ -1791,31 +1790,31 @@
           "hotel_113",
           "hotel_092",
           "hotel_071",
+          "hotel_136",
           "hotel_022",
-          "hotel_038",
-          "hotel_115",
-          "hotel_059"
+          "hotel_022",
+          "hotel_038"
         ],
         "rrf": [
           "hotel_109",
-          "hotel_106",
           "hotel_109",
-          "hotel_108",
+          "hotel_106",
           "hotel_113",
+          "hotel_108",
           "hotel_115",
-          "hotel_098",
+          "hotel_107",
           "hotel_067",
-          "hotel_030",
-          "hotel_092"
+          "hotel_092",
+          "hotel_028"
         ],
         "rrf_support": [
           "hotel_109",
-          "hotel_106",
           "hotel_109",
-          "hotel_108",
+          "hotel_106",
           "hotel_113",
+          "hotel_108",
           "hotel_115",
-          "hotel_098",
+          "hotel_107",
           "hotel_067"
         ]
       },
@@ -1826,7 +1825,7 @@
           "hit@5": 1.0,
           "hit@10": 1.0,
           "mrr@10": 1.0,
-          "ndcg@10": 0.9060254355346823
+          "ndcg@10": 0.9674679834891693
         },
         "bm25": {
           "recall@5": 0.6666666666666666,
@@ -1842,7 +1841,7 @@
           "hit@5": 1.0,
           "hit@10": 1.0,
           "mrr@10": 1.0,
-          "ndcg@10": 0.9674679834891693
+          "ndcg@10": 0.8854598815714874
         },
         "rrf_support": {
           "recall@5": 1.0,
@@ -1850,7 +1849,7 @@
           "hit@5": 1.0,
           "hit@10": 1.0,
           "mrr@10": 1.0,
-          "ndcg@10": 0.9674679834891693
+          "ndcg@10": 0.8854598815714874
         }
       }
     },
@@ -1866,15 +1865,15 @@
       "rankings": {
         "dense": [
           "hotel_019",
-          "hotel_030",
+          "hotel_114",
           "hotel_071",
+          "hotel_070",
           "hotel_022",
+          "hotel_132",
+          "hotel_030",
           "hotel_094",
-          "hotel_113",
-          "hotel_022",
-          "hotel_117",
-          "hotel_022",
-          "hotel_072"
+          "hotel_025",
+          "hotel_117"
         ],
         "bm25": [
           "hotel_113",
@@ -1883,42 +1882,42 @@
           "hotel_110",
           "hotel_036",
           "hotel_053",
+          "hotel_114",
           "hotel_017",
-          "hotel_077",
           "hotel_036",
-          "hotel_114"
+          "hotel_108"
         ],
         "rrf": [
-          "hotel_113",
-          "hotel_022",
           "hotel_114",
+          "hotel_113",
+          "hotel_107",
           "hotel_012",
+          "hotel_022",
           "hotel_092",
           "hotel_116",
           "hotel_019",
-          "hotel_030",
           "hotel_024",
           "hotel_071"
         ],
         "rrf_support": [
-          "hotel_113",
-          "hotel_022",
           "hotel_114",
+          "hotel_113",
+          "hotel_107",
           "hotel_012",
+          "hotel_022",
           "hotel_092",
           "hotel_116",
-          "hotel_019",
-          "hotel_030"
+          "hotel_019"
         ]
       },
       "scores": {
         "dense": {
           "recall@5": 0.0,
-          "recall@10": 0.5,
+          "recall@10": 0.0,
           "hit@5": 0.0,
-          "hit@10": 1.0,
-          "mrr@10": 0.16666666666666666,
-          "ndcg@10": 0.21840743681816419
+          "hit@10": 0.0,
+          "mrr@10": 0.0,
+          "ndcg@10": 0.0
         },
         "bm25": {
           "recall@5": 1.0,
@@ -1933,16 +1932,16 @@
           "recall@10": 0.5,
           "hit@5": 1.0,
           "hit@10": 1.0,
-          "mrr@10": 1.0,
-          "ndcg@10": 0.6131471927654584
+          "mrr@10": 0.5,
+          "ndcg@10": 0.38685280723454163
         },
         "rrf_support": {
           "recall@5": 0.5,
           "recall@10": 0.5,
           "hit@5": 1.0,
           "hit@10": 1.0,
-          "mrr@10": 1.0,
-          "ndcg@10": 0.6131471927654584
+          "mrr@10": 0.5,
+          "ndcg@10": 0.38685280723454163
         }
       }
     },
@@ -1963,45 +1962,45 @@
           "hotel_117",
           "hotel_119",
           "hotel_118",
-          "hotel_087",
-          "hotel_119",
           "hotel_092",
-          "hotel_043",
+          "hotel_119",
+          "hotel_087",
+          "hotel_005",
           "hotel_094"
         ],
         "bm25": [
           "hotel_116",
-          "hotel_117",
           "hotel_119",
           "hotel_117",
+          "hotel_117",
+          "hotel_100",
           "hotel_119",
-          "hotel_003",
-          "hotel_116",
-          "hotel_023",
           "hotel_065",
-          "hotel_022"
+          "hotel_003",
+          "hotel_022",
+          "hotel_116"
         ],
         "rrf": [
           "hotel_116",
           "hotel_117",
+          "hotel_119",
           "hotel_117",
           "hotel_119",
-          "hotel_119",
           "hotel_118",
+          "hotel_100",
           "hotel_116",
           "hotel_008",
-          "hotel_002",
-          "hotel_087"
+          "hotel_002"
         ],
         "rrf_support": [
           "hotel_116",
           "hotel_117",
+          "hotel_119",
           "hotel_117",
           "hotel_119",
-          "hotel_119",
           "hotel_118",
-          "hotel_116",
-          "hotel_008"
+          "hotel_100",
+          "hotel_116"
         ]
       },
       "scores": {
@@ -2027,7 +2026,7 @@
           "hit@5": 1.0,
           "hit@10": 1.0,
           "mrr@10": 1.0,
-          "ndcg@10": 0.9674679834891693
+          "ndcg@10": 1.0
         },
         "rrf_support": {
           "recall@5": 1.0,
@@ -2035,7 +2034,7 @@
           "hit@5": 1.0,
           "hit@10": 1.0,
           "mrr@10": 1.0,
-          "ndcg@10": 0.9674679834891693
+          "ndcg@10": 1.0
         }
       }
     },
@@ -2052,83 +2051,83 @@
       "rankings": {
         "dense": [
           "hotel_131",
+          "hotel_132",
           "hotel_133",
           "hotel_085",
+          "hotel_093",
           "hotel_113",
           "hotel_116",
           "hotel_093",
           "hotel_045",
-          "hotel_001",
-          "hotel_054",
-          "hotel_073"
+          "hotel_054"
         ],
         "bm25": [
           "hotel_131",
           "hotel_133",
           "hotel_113",
+          "hotel_132",
           "hotel_113",
-          "hotel_133",
           "hotel_079",
+          "hotel_133",
           "hotel_107",
           "hotel_116",
-          "hotel_119",
           "hotel_008"
         ],
         "rrf": [
           "hotel_131",
           "hotel_133",
+          "hotel_132",
           "hotel_113",
           "hotel_116",
-          "hotel_119",
+          "hotel_115",
           "hotel_113",
+          "hotel_119",
           "hotel_114",
-          "hotel_085",
-          "hotel_133",
-          "hotel_093"
+          "hotel_001"
         ],
         "rrf_support": [
           "hotel_131",
           "hotel_133",
+          "hotel_132",
           "hotel_113",
           "hotel_116",
-          "hotel_119",
+          "hotel_115",
           "hotel_113",
-          "hotel_114",
-          "hotel_085"
+          "hotel_119"
         ]
       },
       "scores": {
         "dense": {
-          "recall@5": 0.6666666666666666,
-          "recall@10": 0.6666666666666666,
+          "recall@5": 1.0,
+          "recall@10": 1.0,
           "hit@5": 1.0,
           "hit@10": 1.0,
           "mrr@10": 1.0,
-          "ndcg@10": 0.7653606369886217
+          "ndcg@10": 1.0
         },
         "bm25": {
-          "recall@5": 0.6666666666666666,
-          "recall@10": 0.6666666666666666,
+          "recall@5": 1.0,
+          "recall@10": 1.0,
           "hit@5": 1.0,
           "hit@10": 1.0,
           "mrr@10": 1.0,
-          "ndcg@10": 0.7653606369886217
+          "ndcg@10": 0.9674679834891693
         },
         "rrf": {
-          "recall@5": 0.6666666666666666,
-          "recall@10": 0.6666666666666666,
+          "recall@5": 1.0,
+          "recall@10": 1.0,
           "hit@5": 1.0,
           "hit@10": 1.0,
           "mrr@10": 1.0,
-          "ndcg@10": 0.7653606369886217
+          "ndcg@10": 1.0
         },
         "rrf_support": {
-          "recall@5": 0.6666666666666666,
-          "recall@10": 0.6666666666666666,
+          "recall@5": 1.0,
+          "recall@10": 1.0,
           "hit@5": 1.0,
           "hit@10": 1.0,
           "mrr@10": 1.0,
-          "ndcg@10": 0.7653606369886217
+          "ndcg@10": 1.0
         }
       }
     },
@@ -2144,6 +2143,7 @@
       ],
       "rankings": {
         "dense": [
+          "hotel_135",
           "hotel_136",
           "hotel_104",
           "hotel_129",
@@ -2152,76 +2152,75 @@
           "hotel_134",
           "hotel_101",
           "hotel_068",
-          "hotel_057",
-          "hotel_012"
+          "hotel_057"
         ],
         "bm25": [
           "hotel_136",
           "hotel_134",
           "hotel_059",
+          "hotel_135",
           "hotel_018",
-          "hotel_134",
           "hotel_136",
+          "hotel_134",
           "hotel_071",
           "hotel_057",
-          "hotel_040",
-          "hotel_068"
+          "hotel_040"
         ],
         "rrf": [
           "hotel_136",
+          "hotel_135",
           "hotel_134",
           "hotel_134",
           "hotel_057",
           "hotel_068",
           "hotel_121",
-          "hotel_071",
-          "hotel_123",
           "hotel_104",
+          "hotel_059",
           "hotel_129"
         ],
         "rrf_support": [
           "hotel_136",
+          "hotel_135",
           "hotel_134",
           "hotel_134",
           "hotel_057",
           "hotel_068",
           "hotel_121",
-          "hotel_071",
-          "hotel_123"
+          "hotel_104"
         ]
       },
       "scores": {
         "dense": {
+          "recall@5": 0.6666666666666666,
+          "recall@10": 1.0,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 1.0,
+          "ndcg@10": 0.9325210919548239
+        },
+        "bm25": {
           "recall@5": 1.0,
           "recall@10": 1.0,
           "hit@5": 1.0,
           "hit@10": 1.0,
           "mrr@10": 1.0,
-          "ndcg@10": 0.8529278650606567
-        },
-        "bm25": {
-          "recall@5": 0.6666666666666666,
-          "recall@10": 0.6666666666666666,
-          "hit@5": 1.0,
-          "hit@10": 1.0,
-          "mrr@10": 1.0,
-          "ndcg@10": 0.7653606369886217
+          "ndcg@10": 0.9674679834891693
         },
         "rrf": {
-          "recall@5": 0.6666666666666666,
-          "recall@10": 0.6666666666666666,
+          "recall@5": 1.0,
+          "recall@10": 1.0,
           "hit@5": 1.0,
           "hit@10": 1.0,
           "mrr@10": 1.0,
-          "ndcg@10": 0.7653606369886217
+          "ndcg@10": 1.0
         },
         "rrf_support": {
-          "recall@5": 0.6666666666666666,
-          "recall@10": 0.6666666666666666,
+          "recall@5": 1.0,
+          "recall@10": 1.0,
           "hit@5": 1.0,
           "hit@10": 1.0,
           "mrr@10": 1.0,
-          "ndcg@10": 0.7653606369886217
+          "ndcg@10": 1.0
         }
       }
     },
@@ -2246,19 +2245,19 @@
           "hotel_109",
           "hotel_137",
           "hotel_140",
-          "hotel_107",
-          "hotel_022"
+          "hotel_117",
+          "hotel_077"
         ],
         "bm25": [
           "hotel_137",
           "hotel_139",
           "hotel_138",
           "hotel_140",
+          "hotel_077",
           "hotel_138",
           "hotel_017",
-          "hotel_098",
           "hotel_018",
-          "hotel_131",
+          "hotel_098",
           "hotel_036"
         ],
         "rrf": [
@@ -2267,11 +2266,11 @@
           "hotel_139",
           "hotel_140",
           "hotel_138",
-          "hotel_107",
-          "hotel_048",
-          "hotel_139",
-          "hotel_090",
-          "hotel_109"
+          "hotel_077",
+          "hotel_031",
+          "hotel_111",
+          "hotel_025",
+          "hotel_090"
         ],
         "rrf_support": [
           "hotel_137",
@@ -2279,9 +2278,9 @@
           "hotel_139",
           "hotel_140",
           "hotel_138",
-          "hotel_107",
-          "hotel_048",
-          "hotel_139"
+          "hotel_077",
+          "hotel_031",
+          "hotel_111"
         ]
       },
       "scores": {
@@ -2332,27 +2331,27 @@
       "rankings": {
         "dense": [
           "hotel_128",
-          "hotel_128",
           "hotel_130",
           "hotel_128",
-          "hotel_124",
+          "hotel_128",
           "hotel_137",
+          "hotel_021",
+          "hotel_124",
           "hotel_002",
           "hotel_129",
-          "hotel_130",
-          "hotel_129"
+          "hotel_130"
         ],
         "bm25": [
           "hotel_128",
           "hotel_128",
-          "hotel_130",
           "hotel_128",
+          "hotel_130",
           "hotel_130",
           "hotel_129",
           "hotel_004",
           "hotel_110",
           "hotel_020",
-          "hotel_111"
+          "hotel_138"
         ],
         "rrf": [
           "hotel_128",
@@ -2362,8 +2361,8 @@
           "hotel_130",
           "hotel_129",
           "hotel_110",
+          "hotel_138",
           "hotel_111",
-          "hotel_124",
           "hotel_137"
         ],
         "rrf_support": [
@@ -2374,7 +2373,7 @@
           "hotel_130",
           "hotel_129",
           "hotel_110",
-          "hotel_111"
+          "hotel_138"
         ]
       },
       "scores": {
@@ -2384,7 +2383,7 @@
           "hit@5": 1.0,
           "hit@10": 1.0,
           "mrr@10": 1.0,
-          "ndcg@10": 0.8519590445170673
+          "ndcg@10": 0.9066276098484507
         },
         "bm25": {
           "recall@5": 0.6666666666666666,
@@ -2392,7 +2391,7 @@
           "hit@5": 1.0,
           "hit@10": 1.0,
           "mrr@10": 1.0,
-          "ndcg@10": 0.8710785440003369
+          "ndcg@10": 0.8385465274895063
         },
         "rrf": {
           "recall@5": 0.6666666666666666,
@@ -2426,27 +2425,27 @@
       "rankings": {
         "dense": [
           "hotel_121",
+          "hotel_075",
           "hotel_120",
           "hotel_101",
           "hotel_123",
+          "hotel_103",
           "hotel_125",
-          "hotel_080",
           "hotel_107",
-          "hotel_102",
-          "hotel_009",
-          "hotel_103"
+          "hotel_114",
+          "hotel_102"
         ],
         "bm25": [
           "hotel_120",
+          "hotel_121",
           "hotel_123",
           "hotel_121",
-          "hotel_121",
+          "hotel_003",
           "hotel_095",
-          "hotel_090",
           "hotel_006",
           "hotel_055",
-          "hotel_070",
-          "hotel_044"
+          "hotel_090",
+          "hotel_070"
         ],
         "rrf": [
           "hotel_121",
@@ -2454,11 +2453,11 @@
           "hotel_090",
           "hotel_122",
           "hotel_120",
+          "hotel_075",
           "hotel_120",
           "hotel_101",
           "hotel_121",
-          "hotel_125",
-          "hotel_095"
+          "hotel_003"
         ],
         "rrf_support": [
           "hotel_121",
@@ -2466,9 +2465,9 @@
           "hotel_090",
           "hotel_122",
           "hotel_120",
+          "hotel_075",
           "hotel_120",
-          "hotel_101",
-          "hotel_121"
+          "hotel_101"
         ]
       },
       "scores": {
@@ -2478,7 +2477,7 @@
           "hit@5": 1.0,
           "hit@10": 1.0,
           "mrr@10": 1.0,
-          "ndcg@10": 0.8048099750039491
+          "ndcg@10": 0.7365896932159578
         },
         "bm25": {
           "recall@5": 0.75,
@@ -2520,8 +2519,8 @@
       "rankings": {
         "dense": [
           "hotel_006",
-          "hotel_037",
           "hotel_014",
+          "hotel_037",
           "hotel_070",
           "hotel_112",
           "hotel_083",
@@ -2536,32 +2535,32 @@
           "hotel_037",
           "hotel_070",
           "hotel_071",
-          "hotel_091",
-          "hotel_059",
           "hotel_001",
-          "hotel_068",
-          "hotel_036"
+          "hotel_089",
+          "hotel_036",
+          "hotel_034",
+          "hotel_068"
         ],
         "rrf": [
           "hotel_006",
-          "hotel_037",
           "hotel_014",
+          "hotel_037",
           "hotel_070",
           "hotel_036",
-          "hotel_038",
           "hotel_083",
+          "hotel_130",
           "hotel_045",
           "hotel_034",
-          "hotel_025"
+          "hotel_038"
         ],
         "rrf_support": [
           "hotel_006",
-          "hotel_037",
           "hotel_014",
+          "hotel_037",
           "hotel_070",
           "hotel_036",
-          "hotel_038",
           "hotel_083",
+          "hotel_130",
           "hotel_045"
         ]
       },
@@ -2614,23 +2613,23 @@
           "hotel_003",
           "hotel_034",
           "hotel_021",
-          "hotel_025",
           "hotel_072",
           "hotel_135",
           "hotel_125",
-          "hotel_022",
           "hotel_096",
-          "hotel_004"
+          "hotel_004",
+          "hotel_096",
+          "hotel_010"
         ],
         "bm25": [
-          "hotel_021",
           "hotel_022",
+          "hotel_021",
           "hotel_120",
-          "hotel_003",
           "hotel_004",
           "hotel_119",
-          "hotel_040",
+          "hotel_003",
           "hotel_059",
+          "hotel_040",
           "hotel_019",
           "hotel_024"
         ],
@@ -2640,11 +2639,11 @@
           "hotel_022",
           "hotel_120",
           "hotel_004",
-          "hotel_070",
           "hotel_095",
-          "hotel_019",
+          "hotel_070",
           "hotel_020",
-          "hotel_037"
+          "hotel_019",
+          "hotel_035"
         ],
         "rrf_support": [
           "hotel_021",
@@ -2652,9 +2651,9 @@
           "hotel_022",
           "hotel_120",
           "hotel_004",
-          "hotel_070",
           "hotel_095",
-          "hotel_019"
+          "hotel_070",
+          "hotel_020"
         ]
       },
       "scores": {
@@ -2667,12 +2666,12 @@
           "ndcg@10": 0.9197207891481876
         },
         "bm25": {
-          "recall@5": 1.0,
+          "recall@5": 0.5,
           "recall@10": 1.0,
           "hit@5": 1.0,
           "hit@10": 1.0,
-          "mrr@10": 1.0,
-          "ndcg@10": 0.8772153153380493
+          "mrr@10": 0.5,
+          "ndcg@10": 0.6052602440527057
         },
         "rrf": {
           "recall@5": 1.0,
@@ -2706,14 +2705,14 @@
         "dense": [
           "hotel_008",
           "hotel_024",
-          "hotel_089",
           "hotel_048",
+          "hotel_013",
+          "hotel_089",
           "hotel_072",
-          "hotel_037",
-          "hotel_094",
           "hotel_056",
-          "hotel_023",
-          "hotel_010"
+          "hotel_094",
+          "hotel_037",
+          "hotel_023"
         ],
         "bm25": [
           "hotel_008",
@@ -2724,40 +2723,40 @@
           "hotel_048",
           "hotel_059",
           "hotel_016",
-          "hotel_031",
+          "hotel_133",
           "hotel_056"
         ],
         "rrf": [
           "hotel_008",
           "hotel_024",
+          "hotel_013",
           "hotel_048",
           "hotel_023",
           "hotel_056",
-          "hotel_013",
           "hotel_008",
           "hotel_089",
           "hotel_072",
-          "hotel_037"
+          "hotel_059"
         ],
         "rrf_support": [
           "hotel_008",
           "hotel_024",
+          "hotel_013",
           "hotel_048",
           "hotel_023",
           "hotel_056",
-          "hotel_013",
           "hotel_008",
           "hotel_089"
         ]
       },
       "scores": {
         "dense": {
-          "recall@5": 0.6666666666666666,
-          "recall@10": 0.6666666666666666,
+          "recall@5": 1.0,
+          "recall@10": 1.0,
           "hit@5": 1.0,
           "hit@10": 1.0,
           "mrr@10": 1.0,
-          "ndcg@10": 0.7653606369886217
+          "ndcg@10": 0.9674679834891693
         },
         "bm25": {
           "recall@5": 1.0,
@@ -2768,20 +2767,20 @@
           "ndcg@10": 0.9060254355346823
         },
         "rrf": {
-          "recall@5": 0.6666666666666666,
+          "recall@5": 1.0,
           "recall@10": 1.0,
           "hit@5": 1.0,
           "hit@10": 1.0,
           "mrr@10": 1.0,
-          "ndcg@10": 0.9325210919548239
+          "ndcg@10": 1.0
         },
         "rrf_support": {
-          "recall@5": 0.6666666666666666,
+          "recall@5": 1.0,
           "recall@10": 1.0,
           "hit@5": 1.0,
           "hit@10": 1.0,
           "mrr@10": 1.0,
-          "ndcg@10": 0.9325210919548239
+          "ndcg@10": 1.0
         }
       }
     },
@@ -2796,60 +2795,60 @@
       ],
       "rankings": {
         "dense": [
-          "hotel_088",
+          "hotel_133",
           "hotel_088",
           "hotel_108",
-          "hotel_110",
           "hotel_031",
+          "hotel_088",
+          "hotel_110",
           "hotel_073",
+          "hotel_043",
           "hotel_112",
-          "hotel_128",
-          "hotel_073",
-          "hotel_133"
+          "hotel_128"
         ],
         "bm25": [
           "hotel_110",
-          "hotel_130",
           "hotel_112",
           "hotel_028",
+          "hotel_130",
           "hotel_111",
-          "hotel_085",
           "hotel_137",
-          "hotel_087",
+          "hotel_085",
           "hotel_036",
+          "hotel_087",
           "hotel_074"
         ],
         "rrf": [
           "hotel_110",
           "hotel_112",
-          "hotel_073",
           "hotel_128",
+          "hotel_111",
+          "hotel_073",
+          "hotel_116",
+          "hotel_133",
           "hotel_088",
-          "hotel_088",
-          "hotel_130",
           "hotel_108",
-          "hotel_028",
-          "hotel_031"
+          "hotel_028"
         ],
         "rrf_support": [
           "hotel_110",
           "hotel_112",
-          "hotel_073",
           "hotel_128",
-          "hotel_088",
-          "hotel_088",
-          "hotel_130",
-          "hotel_108"
+          "hotel_111",
+          "hotel_073",
+          "hotel_116",
+          "hotel_133",
+          "hotel_088"
         ]
       },
       "scores": {
         "dense": {
-          "recall@5": 0.5,
+          "recall@5": 0.0,
           "recall@10": 1.0,
-          "hit@5": 1.0,
+          "hit@5": 0.0,
           "hit@10": 1.0,
-          "mrr@10": 0.25,
-          "ndcg@10": 0.46845052016107697
+          "mrr@10": 0.16666666666666666,
+          "ndcg@10": 0.40298313359773236
         },
         "bm25": {
           "recall@5": 1.0,
@@ -2857,7 +2856,7 @@
           "hit@5": 1.0,
           "hit@10": 1.0,
           "mrr@10": 1.0,
-          "ndcg@10": 0.9197207891481876
+          "ndcg@10": 1.0
         },
         "rrf": {
           "recall@5": 1.0,
@@ -2894,39 +2893,39 @@
       "rankings": {
         "dense": [
           "hotel_065",
-          "hotel_062",
+          "hotel_133",
           "hotel_051",
           "hotel_020",
+          "hotel_059",
           "hotel_054",
-          "hotel_133",
-          "hotel_025",
+          "hotel_062",
           "hotel_136",
-          "hotel_030",
-          "hotel_096"
+          "hotel_096",
+          "hotel_065"
         ],
         "bm25": [
           "hotel_059",
-          "hotel_097",
+          "hotel_059",
           "hotel_071",
-          "hotel_059",
+          "hotel_097",
+          "hotel_093",
           "hotel_094",
-          "hotel_025",
           "hotel_059",
-          "hotel_062",
+          "hotel_025",
           "hotel_065",
           "hotel_025"
         ],
         "rrf": [
-          "hotel_065",
-          "hotel_062",
           "hotel_059",
-          "hotel_025",
+          "hotel_065",
+          "hotel_059",
+          "hotel_062",
           "hotel_133",
           "hotel_051",
+          "hotel_025",
           "hotel_054",
-          "hotel_059",
-          "hotel_094",
-          "hotel_097"
+          "hotel_093",
+          "hotel_062"
         ],
         "rrf_support": [
           "hotel_075",
@@ -2935,44 +2934,44 @@
           "hotel_054",
           "hotel_046",
           "hotel_059",
-          "hotel_065",
-          "hotel_062",
           "hotel_059",
-          "hotel_025"
+          "hotel_065",
+          "hotel_059",
+          "hotel_062"
         ]
       },
       "scores": {
         "dense": {
-          "recall@5": 0.14285714285714285,
+          "recall@5": 0.2857142857142857,
           "recall@10": 0.2857142857142857,
           "hit@5": 1.0,
           "hit@10": 1.0,
           "mrr@10": 1.0,
-          "ndcg@10": 0.3727892582642586
+          "ndcg@10": 0.4483039899025303
         },
         "bm25": {
           "recall@5": 0.14285714285714285,
           "recall@10": 0.2857142857142857,
           "hit@5": 1.0,
           "hit@10": 1.0,
-          "mrr@10": 0.5,
-          "ndcg@10": 0.25617367829355947
+          "mrr@10": 0.25,
+          "ndcg@10": 0.20112881426068294
         },
         "rrf": {
           "recall@5": 0.2857142857142857,
-          "recall@10": 0.42857142857142855,
+          "recall@10": 0.2857142857142857,
           "hit@5": 1.0,
           "hit@10": 1.0,
-          "mrr@10": 1.0,
-          "ndcg@10": 0.4606700933772881
+          "mrr@10": 0.5,
+          "ndcg@10": 0.2797643380184693
         },
         "rrf_support": {
           "recall@5": 0.0,
           "recall@10": 0.14285714285714285,
           "hit@5": 0.0,
           "hit@10": 1.0,
-          "mrr@10": 0.14285714285714285,
-          "ndcg@10": 0.09162544430476362
+          "mrr@10": 0.125,
+          "ndcg@10": 0.08671382849411972
         }
       }
     },
@@ -2991,60 +2990,60 @@
         "dense": [
           "hotel_045",
           "hotel_109",
+          "hotel_107",
           "hotel_110",
-          "hotel_098",
           "hotel_106",
           "hotel_063",
-          "hotel_088",
-          "hotel_052",
-          "hotel_094",
-          "hotel_071"
-        ],
-        "bm25": [
-          "hotel_106",
-          "hotel_072",
-          "hotel_019",
-          "hotel_061",
-          "hotel_087",
-          "hotel_136",
-          "hotel_030",
-          "hotel_052",
-          "hotel_134",
-          "hotel_048"
-        ],
-        "rrf": [
-          "hotel_106",
-          "hotel_019",
-          "hotel_088",
           "hotel_094",
           "hotel_052",
           "hotel_071",
+          "hotel_012"
+        ],
+        "bm25": [
+          "hotel_106",
+          "hotel_094",
+          "hotel_072",
+          "hotel_061",
+          "hotel_019",
+          "hotel_027",
+          "hotel_134",
+          "hotel_087",
+          "hotel_052",
+          "hotel_136"
+        ],
+        "rrf": [
+          "hotel_106",
+          "hotel_094",
+          "hotel_087",
+          "hotel_019",
+          "hotel_071",
+          "hotel_052",
+          "hotel_136",
           "hotel_025",
           "hotel_045",
-          "hotel_109",
-          "hotel_072"
+          "hotel_109"
         ],
         "rrf_support": [
+          "hotel_012",
+          "hotel_016",
           "hotel_009",
           "hotel_058",
-          "hotel_047",
+          "hotel_107",
           "hotel_050",
-          "hotel_056",
-          "hotel_052",
           "hotel_106",
-          "hotel_019",
-          "hotel_088",
-          "hotel_094"
+          "hotel_094",
+          "hotel_087",
+          "hotel_019"
         ]
       },
       "scores": {
         "dense": {
-          "recall@5": 0.5,
-          "recall@10": 0.5,
+          "recall@5": 0.75,
+          "recall@10": 0.75,
           "hit@5": 1.0,
           "hit@10": 1.0,
           "mrr@10": 0.5,
-          "ndcg@10": 0.3973220069685352
+          "ndcg@10": 0.592512031964586
         },
         "bm25": {
           "recall@5": 0.25,
@@ -3060,15 +3059,15 @@
           "hit@5": 1.0,
           "hit@10": 1.0,
           "mrr@10": 1.0,
-          "ndcg@10": 0.5078961547485289
+          "ndcg@10": 0.5032251913410369
         },
         "rrf_support": {
-          "recall@5": 0.0,
-          "recall@10": 0.25,
-          "hit@5": 0.0,
+          "recall@5": 0.25,
+          "recall@10": 0.5,
+          "hit@5": 1.0,
           "hit@10": 1.0,
-          "mrr@10": 0.14285714285714285,
-          "ndcg@10": 0.13012668333070054
+          "mrr@10": 0.2,
+          "ndcg@10": 0.2811463015585058
         }
       }
     },
@@ -3087,27 +3086,27 @@
       "rankings": {
         "dense": [
           "hotel_062",
-          "hotel_022",
           "hotel_071",
+          "hotel_070",
           "hotel_072",
+          "hotel_107",
           "hotel_019",
           "hotel_012",
-          "hotel_004",
-          "hotel_068",
-          "hotel_009",
-          "hotel_097"
+          "hotel_111",
+          "hotel_125",
+          "hotel_004"
         ],
         "bm25": [
           "hotel_071",
           "hotel_114",
-          "hotel_042",
           "hotel_072",
+          "hotel_069",
+          "hotel_042",
           "hotel_012",
-          "hotel_030",
           "hotel_111",
           "hotel_019",
-          "hotel_069",
-          "hotel_018"
+          "hotel_044",
+          "hotel_010"
         ],
         "rrf": [
           "hotel_071",
@@ -3115,23 +3114,23 @@
           "hotel_012",
           "hotel_019",
           "hotel_009",
+          "hotel_107",
           "hotel_068",
-          "hotel_111",
-          "hotel_070",
-          "hotel_030",
-          "hotel_129"
+          "hotel_129",
+          "hotel_101",
+          "hotel_062"
         ],
         "rrf_support": [
           "hotel_010",
           "hotel_011",
           "hotel_013",
+          "hotel_070",
           "hotel_071",
           "hotel_072",
           "hotel_012",
           "hotel_019",
           "hotel_009",
-          "hotel_068",
-          "hotel_111"
+          "hotel_107"
         ]
       },
       "scores": {
@@ -3140,32 +3139,32 @@
           "recall@10": 0.2,
           "hit@5": 0.0,
           "hit@10": 1.0,
-          "mrr@10": 0.1111111111111111,
-          "ndcg@10": 0.10209739512291163
+          "mrr@10": 0.125,
+          "ndcg@10": 0.10699313236726378
         },
         "bm25": {
           "recall@5": 0.0,
-          "recall@10": 0.2,
+          "recall@10": 0.4,
           "hit@5": 0.0,
           "hit@10": 1.0,
           "mrr@10": 0.14285714285714285,
-          "ndcg@10": 0.11305340175787204
+          "ndcg@10": 0.21109268758922906
         },
         "rrf": {
           "recall@5": 0.2,
-          "recall@10": 0.4,
+          "recall@10": 0.2,
           "hit@5": 1.0,
           "hit@10": 1.0,
           "mrr@10": 0.2,
-          "ndcg@10": 0.2442584792702138
+          "ndcg@10": 0.13120507751234178
         },
         "rrf_support": {
           "recall@5": 0.6,
-          "recall@10": 1.0,
+          "recall@10": 0.8,
           "hit@5": 1.0,
           "hit@10": 1.0,
           "mrr@10": 1.0,
-          "ndcg@10": 0.9277589908435726
+          "ndcg@10": 0.8248239677678635
         }
       }
     },
@@ -3188,86 +3187,86 @@
       ],
       "rankings": {
         "dense": [
-          "hotel_132",
-          "hotel_102",
           "hotel_120",
-          "hotel_107",
-          "hotel_062",
+          "hotel_102",
+          "hotel_125",
+          "hotel_124",
           "hotel_128",
           "hotel_136",
-          "hotel_031",
+          "hotel_104",
+          "hotel_062",
           "hotel_138",
-          "hotel_124"
+          "hotel_012"
         ],
         "bm25": [
           "hotel_111",
           "hotel_114",
-          "hotel_102",
           "hotel_117",
-          "hotel_132",
-          "hotel_094",
+          "hotel_102",
           "hotel_071",
+          "hotel_094",
+          "hotel_074",
           "hotel_129",
-          "hotel_138",
-          "hotel_025"
+          "hotel_132",
+          "hotel_138"
         ],
         "rrf": [
           "hotel_102",
-          "hotel_132",
+          "hotel_074",
           "hotel_138",
           "hotel_111",
-          "hotel_110",
-          "hotel_129",
           "hotel_012",
-          "hotel_002",
+          "hotel_110",
           "hotel_004",
-          "hotel_019"
+          "hotel_120",
+          "hotel_114",
+          "hotel_125"
         ],
         "rrf_support": [
+          "hotel_132",
           "hotel_114",
           "hotel_117",
+          "hotel_129",
+          "hotel_013",
           "hotel_103",
-          "hotel_105",
-          "hotel_101",
-          "hotel_094",
           "hotel_102",
-          "hotel_132",
+          "hotel_074",
           "hotel_138",
           "hotel_111"
         ]
       },
       "scores": {
         "dense": {
-          "recall@5": 0.2,
-          "recall@10": 0.3,
+          "recall@5": 0.1,
+          "recall@10": 0.2,
           "hit@5": 1.0,
           "hit@10": 1.0,
-          "mrr@10": 1.0,
-          "ndcg@10": 0.42520843362602373
+          "mrr@10": 0.5,
+          "ndcg@10": 0.2051166673279436
         },
         "bm25": {
-          "recall@5": 0.5,
+          "recall@5": 0.4,
           "recall@10": 0.6,
           "hit@5": 1.0,
           "hit@10": 1.0,
           "mrr@10": 1.0,
-          "ndcg@10": 0.7151857987862356
+          "ndcg@10": 0.6936634693435663
         },
         "rrf": {
-          "recall@5": 0.4,
+          "recall@5": 0.3,
           "recall@10": 0.4,
           "hit@5": 1.0,
           "hit@10": 1.0,
           "mrr@10": 1.0,
-          "ndcg@10": 0.5637884576902256
+          "ndcg@10": 0.49118023727106
         },
         "rrf_support": {
-          "recall@5": 0.3,
+          "recall@5": 0.4,
           "recall@10": 0.7,
           "hit@5": 1.0,
           "hit@10": 1.0,
           "mrr@10": 1.0,
-          "ndcg@10": 0.7264127302306637
+          "ndcg@10": 0.7573821447149967
         }
       }
     },
@@ -3286,15 +3285,15 @@
       "rankings": {
         "dense": [
           "hotel_020",
-          "hotel_062",
+          "hotel_130",
           "hotel_004",
+          "hotel_124",
+          "hotel_059",
           "hotel_054",
+          "hotel_062",
           "hotel_136",
           "hotel_134",
-          "hotel_120",
-          "hotel_050",
-          "hotel_130",
-          "hotel_124"
+          "hotel_120"
         ],
         "bm25": [
           "hotel_020",
@@ -3304,31 +3303,31 @@
           "hotel_059",
           "hotel_090",
           "hotel_051",
-          "hotel_068",
           "hotel_003",
-          "hotel_103"
+          "hotel_068",
+          "hotel_064"
         ],
         "rrf": [
           "hotel_020",
-          "hotel_054",
           "hotel_059",
+          "hotel_054",
           "hotel_090",
-          "hotel_020",
+          "hotel_051",
           "hotel_051",
           "hotel_019",
-          "hotel_051",
-          "hotel_002",
-          "hotel_062"
+          "hotel_128",
+          "hotel_130",
+          "hotel_075"
         ],
         "rrf_support": [
           "hotel_020",
-          "hotel_054",
           "hotel_059",
+          "hotel_054",
           "hotel_090",
-          "hotel_020",
+          "hotel_051",
           "hotel_051",
           "hotel_019",
-          "hotel_051"
+          "hotel_128"
         ]
       },
       "scores": {
@@ -3346,23 +3345,23 @@
           "hit@5": 1.0,
           "hit@10": 1.0,
           "mrr@10": 1.0,
-          "ndcg@10": 0.9143656167316339
+          "ndcg@10": 0.9192613539759861
         },
         "rrf": {
-          "recall@5": 0.2,
-          "recall@10": 0.4,
+          "recall@5": 0.4,
+          "recall@10": 0.6,
           "hit@5": 1.0,
           "hit@10": 1.0,
           "mrr@10": 1.0,
-          "ndcg@10": 0.4599715079731103
+          "ndcg@10": 0.5684045686173149
         },
         "rrf_support": {
-          "recall@5": 0.2,
+          "recall@5": 0.4,
           "recall@10": 0.4,
           "hit@5": 1.0,
           "hit@10": 1.0,
           "mrr@10": 1.0,
-          "ndcg@10": 0.4599715079731103
+          "ndcg@10": 0.4703652827859579
         }
       }
     },
@@ -3394,14 +3393,14 @@
         "bm25": [
           "hotel_058",
           "hotel_045",
-          "hotel_043",
           "hotel_029",
-          "hotel_052",
+          "hotel_043",
           "hotel_122",
+          "hotel_052",
           "hotel_016",
           "hotel_096",
-          "hotel_094",
-          "hotel_093"
+          "hotel_093",
+          "hotel_094"
         ],
         "rrf": [
           "hotel_058",
@@ -3436,12 +3435,12 @@
           "ndcg@10": 0.4973199614801841
         },
         "bm25": {
-          "recall@5": 0.6,
+          "recall@5": 0.4,
           "recall@10": 0.8,
           "hit@5": 1.0,
           "hit@10": 1.0,
           "mrr@10": 0.5,
-          "ndcg@10": 0.6043130938474478
+          "ndcg@10": 0.6174310718287018
         },
         "rrf": {
           "recall@5": 0.4,
@@ -3478,9 +3477,9 @@
           "hotel_090",
           "hotel_123",
           "hotel_092",
-          "hotel_107",
           "hotel_138",
           "hotel_104",
+          "hotel_125",
           "hotel_012",
           "hotel_038",
           "hotel_120",
@@ -3488,37 +3487,37 @@
         ],
         "bm25": [
           "hotel_090",
-          "hotel_123",
           "hotel_095",
+          "hotel_123",
+          "hotel_075",
           "hotel_063",
           "hotel_028",
-          "hotel_075",
-          "hotel_061",
-          "hotel_020",
           "hotel_097",
-          "hotel_027"
+          "hotel_075",
+          "hotel_020",
+          "hotel_003"
         ],
         "rrf": [
           "hotel_090",
           "hotel_123",
-          "hotel_092",
           "hotel_063",
           "hotel_120",
+          "hotel_092",
           "hotel_071",
           "hotel_095",
-          "hotel_107",
           "hotel_138",
-          "hotel_028"
+          "hotel_075",
+          "hotel_104"
         ],
         "rrf_support": [
           "hotel_090",
           "hotel_123",
-          "hotel_092",
           "hotel_063",
           "hotel_120",
+          "hotel_092",
           "hotel_071",
           "hotel_095",
-          "hotel_107"
+          "hotel_138"
         ]
       },
       "scores": {
@@ -3531,20 +3530,20 @@
           "ndcg@10": 0.5531464700081437
         },
         "bm25": {
-          "recall@5": 0.8,
+          "recall@5": 1.0,
           "recall@10": 1.0,
           "hit@5": 1.0,
           "hit@10": 1.0,
           "mrr@10": 1.0,
-          "ndcg@10": 0.9896062251871525
+          "ndcg@10": 1.0
         },
         "rrf": {
           "recall@5": 0.6,
-          "recall@10": 0.8,
+          "recall@10": 1.0,
           "hit@5": 1.0,
           "hit@10": 1.0,
           "mrr@10": 1.0,
-          "ndcg@10": 0.8122682216087223
+          "ndcg@10": 0.9378773695257355
         },
         "rrf_support": {
           "recall@5": 0.6,
@@ -3552,7 +3551,7 @@
           "hit@5": 1.0,
           "hit@10": 1.0,
           "mrr@10": 1.0,
-          "ndcg@10": 0.8122682216087223
+          "ndcg@10": 0.8357799744028239
         }
       }
     },
@@ -3571,39 +3570,39 @@
       "rankings": {
         "dense": [
           "hotel_094",
+          "hotel_102",
+          "hotel_074",
           "hotel_089",
           "hotel_002",
-          "hotel_102",
           "hotel_010",
           "hotel_017",
+          "hotel_030",
           "hotel_072",
-          "hotel_008",
-          "hotel_025",
-          "hotel_040"
+          "hotel_059"
         ],
         "bm25": [
           "hotel_002",
           "hotel_089",
           "hotel_010",
-          "hotel_059",
+          "hotel_094",
           "hotel_102",
+          "hotel_059",
           "hotel_040",
-          "hotel_018",
           "hotel_119",
-          "hotel_111",
-          "hotel_068"
+          "hotel_018",
+          "hotel_042"
         ],
         "rrf": [
+          "hotel_094",
           "hotel_002",
           "hotel_089",
-          "hotel_010",
           "hotel_102",
-          "hotel_094",
+          "hotel_010",
           "hotel_040",
           "hotel_059",
           "hotel_072",
           "hotel_017",
-          "hotel_030"
+          "hotel_059"
         ],
         "rrf_support": [
           "hotel_109",
@@ -3611,29 +3610,29 @@
           "hotel_140",
           "hotel_123",
           "hotel_136",
+          "hotel_094",
           "hotel_002",
           "hotel_089",
-          "hotel_010",
           "hotel_102",
-          "hotel_094"
+          "hotel_010"
         ]
       },
       "scores": {
         "dense": {
+          "recall@5": 0.8,
+          "recall@10": 1.0,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 1.0,
+          "ndcg@10": 0.9747429528567879
+        },
+        "bm25": {
           "recall@5": 0.8,
           "recall@10": 0.8,
           "hit@5": 1.0,
           "hit@10": 1.0,
           "mrr@10": 1.0,
           "ndcg@10": 0.7860137352654724
-        },
-        "bm25": {
-          "recall@5": 0.6,
-          "recall@10": 0.6,
-          "hit@5": 1.0,
-          "hit@10": 1.0,
-          "mrr@10": 1.0,
-          "ndcg@10": 0.639945385422766
         },
         "rrf": {
           "recall@5": 0.8,
@@ -3641,7 +3640,7 @@
           "hit@5": 1.0,
           "hit@10": 1.0,
           "mrr@10": 1.0,
-          "ndcg@10": 0.7860137352654724
+          "ndcg@10": 0.830419897363192
         },
         "rrf_support": {
           "recall@5": 0.0,
@@ -3649,7 +3648,7 @@
           "hit@5": 0.0,
           "hit@10": 1.0,
           "mrr@10": 0.16666666666666666,
-          "ndcg@10": 0.4279411160210267
+          "ndcg@10": 0.4340013854116349
         }
       }
     },
@@ -3671,47 +3670,47 @@
         "dense": [
           "hotel_025",
           "hotel_034",
-          "hotel_095",
+          "hotel_093",
           "hotel_094",
-          "hotel_022",
-          "hotel_074",
-          "hotel_072",
-          "hotel_019",
           "hotel_095",
-          "hotel_090"
+          "hotel_035",
+          "hotel_022",
+          "hotel_030",
+          "hotel_072",
+          "hotel_019"
         ],
         "bm25": [
-          "hotel_019",
           "hotel_008",
           "hotel_103",
-          "hotel_119",
-          "hotel_090",
+          "hotel_019",
+          "hotel_025",
+          "hotel_070",
           "hotel_065",
           "hotel_079",
-          "hotel_072",
-          "hotel_113",
-          "hotel_034"
+          "hotel_119",
+          "hotel_090",
+          "hotel_113"
         ],
         "rrf": [
+          "hotel_025",
           "hotel_019",
           "hotel_034",
-          "hotel_025",
           "hotel_072",
           "hotel_103",
           "hotel_021",
-          "hotel_074",
+          "hotel_091",
           "hotel_106",
           "hotel_069",
           "hotel_093"
         ],
         "rrf_support": [
+          "hotel_025",
           "hotel_019",
           "hotel_034",
-          "hotel_025",
           "hotel_072",
           "hotel_103",
           "hotel_021",
-          "hotel_074",
+          "hotel_091",
           "hotel_106"
         ]
       },
@@ -3721,16 +3720,16 @@
           "recall@10": 0.14285714285714285,
           "hit@5": 0.0,
           "hit@10": 1.0,
-          "mrr@10": 0.14285714285714285,
-          "ndcg@10": 0.09162544430476362
+          "mrr@10": 0.1111111111111111,
+          "ndcg@10": 0.08274602130532002
         },
         "bm25": {
           "recall@5": 0.0,
-          "recall@10": 0.14285714285714285,
+          "recall@10": 0.0,
           "hit@5": 0.0,
-          "hit@10": 1.0,
-          "mrr@10": 0.125,
-          "ndcg@10": 0.08671382849411972
+          "hit@10": 0.0,
+          "mrr@10": 0.0,
+          "ndcg@10": 0.0
         },
         "rrf": {
           "recall@5": 0.14285714285714285,
@@ -3766,83 +3765,83 @@
       "rankings": {
         "dense": [
           "hotel_093",
+          "hotel_001",
           "hotel_047",
           "hotel_046",
-          "hotel_001",
-          "hotel_014",
           "hotel_070",
-          "hotel_051",
-          "hotel_049",
           "hotel_006",
-          "hotel_055"
+          "hotel_051",
+          "hotel_014",
+          "hotel_049",
+          "hotel_093"
         ],
         "bm25": [
           "hotel_022",
           "hotel_071",
           "hotel_053",
           "hotel_070",
-          "hotel_001",
           "hotel_046",
+          "hotel_001",
           "hotel_051",
           "hotel_088",
           "hotel_093",
-          "hotel_038"
+          "hotel_014"
         ],
         "rrf": [
-          "hotel_046",
           "hotel_001",
-          "hotel_093",
+          "hotel_046",
           "hotel_070",
+          "hotel_093",
           "hotel_051",
-          "hotel_014",
           "hotel_071",
-          "hotel_022",
+          "hotel_014",
+          "hotel_006",
           "hotel_088",
           "hotel_053"
         ],
         "rrf_support": [
-          "hotel_046",
           "hotel_001",
-          "hotel_093",
+          "hotel_046",
           "hotel_070",
+          "hotel_093",
           "hotel_051",
-          "hotel_014",
           "hotel_071",
-          "hotel_022"
+          "hotel_014",
+          "hotel_006"
         ]
       },
       "scores": {
         "dense": {
-          "recall@5": 0.3333333333333333,
+          "recall@5": 0.16666666666666666,
           "recall@10": 0.3333333333333333,
           "hit@5": 1.0,
           "hit@10": 1.0,
-          "mrr@10": 0.3333333333333333,
-          "ndcg@10": 0.26836379988737025
+          "mrr@10": 0.25,
+          "ndcg@10": 0.22578419899983795
         },
         "bm25": {
-          "recall@5": 0.3333333333333333,
+          "recall@5": 0.5,
           "recall@10": 0.6666666666666666,
           "hit@5": 1.0,
           "hit@10": 1.0,
           "mrr@10": 0.5,
-          "ndcg@10": 0.5374829415542605
+          "ndcg@10": 0.5467563801677131
         },
         "rrf": {
           "recall@5": 0.16666666666666666,
           "recall@10": 0.6666666666666666,
           "hit@5": 1.0,
           "hit@10": 1.0,
-          "mrr@10": 1.0,
-          "ndcg@10": 0.5987307532910037
+          "mrr@10": 0.5,
+          "ndcg@10": 0.4870492059711249
         },
         "rrf_support": {
           "recall@5": 0.16666666666666666,
           "recall@10": 0.5,
           "hit@5": 1.0,
           "hit@10": 1.0,
-          "mrr@10": 1.0,
-          "ndcg@10": 0.5112590391895955
+          "mrr@10": 0.5,
+          "ndcg@10": 0.3995774918697167
         }
       }
     },
@@ -3859,49 +3858,49 @@
       "rankings": {
         "dense": [
           "hotel_091",
+          "hotel_076",
           "hotel_126",
-          "hotel_076",
-          "hotel_076",
           "hotel_058",
-          "hotel_124",
           "hotel_136",
+          "hotel_124",
           "hotel_052",
+          "hotel_076",
           "hotel_124",
           "hotel_127"
         ],
         "bm25": [
           "hotel_091",
           "hotel_076",
-          "hotel_076",
           "hotel_126",
+          "hotel_076",
           "hotel_124",
           "hotel_004",
-          "hotel_019",
           "hotel_086",
+          "hotel_019",
           "hotel_054",
-          "hotel_052"
+          "hotel_015"
         ],
         "rrf": [
           "hotel_091",
           "hotel_076",
           "hotel_126",
-          "hotel_076",
           "hotel_124",
+          "hotel_076",
           "hotel_004",
-          "hotel_058",
           "hotel_052",
-          "hotel_019",
-          "hotel_136"
+          "hotel_058",
+          "hotel_136",
+          "hotel_019"
         ],
         "rrf_support": [
           "hotel_091",
           "hotel_076",
           "hotel_126",
-          "hotel_076",
           "hotel_124",
+          "hotel_076",
           "hotel_004",
-          "hotel_058",
-          "hotel_052"
+          "hotel_052",
+          "hotel_058"
         ]
       },
       "scores": {
@@ -3919,7 +3918,7 @@
           "hit@5": 1.0,
           "hit@10": 1.0,
           "mrr@10": 0.5,
-          "ndcg@10": 0.6797310500037655
+          "ndcg@10": 0.7122630665145961
         },
         "rrf": {
           "recall@5": 1.0,
@@ -3927,7 +3926,7 @@
           "hit@5": 1.0,
           "hit@10": 1.0,
           "mrr@10": 0.5,
-          "ndcg@10": 0.7122630665145961
+          "ndcg@10": 0.7328286204777911
         },
         "rrf_support": {
           "recall@5": 1.0,
@@ -3935,7 +3934,7 @@
           "hit@5": 1.0,
           "hit@10": 1.0,
           "mrr@10": 0.5,
-          "ndcg@10": 0.7122630665145961
+          "ndcg@10": 0.7328286204777911
         }
       }
     },
@@ -3955,25 +3954,25 @@
         "dense": [
           "hotel_020",
           "hotel_120",
+          "hotel_124",
           "hotel_011",
           "hotel_008",
-          "hotel_124",
-          "hotel_125",
-          "hotel_095",
           "hotel_094",
-          "hotel_001",
-          "hotel_135"
+          "hotel_125",
+          "hotel_043",
+          "hotel_130",
+          "hotel_095"
         ],
         "bm25": [
           "hotel_095",
+          "hotel_069",
           "hotel_020",
           "hotel_101",
           "hotel_003",
-          "hotel_052",
           "hotel_074",
-          "hotel_069",
+          "hotel_052",
           "hotel_075",
-          "hotel_103",
+          "hotel_003",
           "hotel_090"
         ],
         "rrf": [
@@ -3981,32 +3980,32 @@
           "hotel_020",
           "hotel_052",
           "hotel_020",
+          "hotel_003",
           "hotel_019",
           "hotel_090",
           "hotel_073",
           "hotel_010",
-          "hotel_043",
-          "hotel_103"
+          "hotel_043"
         ],
         "rrf_support": [
           "hotel_095",
           "hotel_020",
           "hotel_052",
           "hotel_020",
+          "hotel_003",
           "hotel_019",
           "hotel_090",
-          "hotel_073",
-          "hotel_010"
+          "hotel_073"
         ]
       },
       "scores": {
         "dense": {
           "recall@5": 0.2,
-          "recall@10": 0.4,
+          "recall@10": 0.6,
           "hit@5": 1.0,
           "hit@10": 1.0,
-          "mrr@10": 0.3333333333333333,
-          "ndcg@10": 0.2826335043946801
+          "mrr@10": 0.25,
+          "ndcg@10": 0.3511007680413272
         },
         "bm25": {
           "recall@5": 0.4,
@@ -4014,23 +4013,23 @@
           "hit@5": 1.0,
           "hit@10": 1.0,
           "mrr@10": 1.0,
-          "ndcg@10": 0.5922216874835863
+          "ndcg@10": 0.5773584151532217
         },
         "rrf": {
-          "recall@5": 0.2,
+          "recall@5": 0.4,
+          "recall@10": 0.6,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 1.0,
+          "ndcg@10": 0.5684045686173149
+        },
+        "rrf_support": {
+          "recall@5": 0.4,
           "recall@10": 0.4,
           "hit@5": 1.0,
           "hit@10": 1.0,
           "mrr@10": 1.0,
-          "ndcg@10": 0.4412576003965278
-        },
-        "rrf_support": {
-          "recall@5": 0.2,
-          "recall@10": 0.2,
-          "hit@5": 1.0,
-          "hit@10": 1.0,
-          "mrr@10": 1.0,
-          "ndcg@10": 0.3391602052736161
+          "ndcg@10": 0.4703652827859579
         }
       }
     },
@@ -4046,27 +4045,27 @@
       "rankings": {
         "dense": [
           "hotel_037",
-          "hotel_103",
           "hotel_039",
+          "hotel_103",
           "hotel_073",
+          "hotel_111",
           "hotel_093",
           "hotel_125",
           "hotel_113",
           "hotel_101",
-          "hotel_064",
-          "hotel_019"
+          "hotel_064"
         ],
         "bm25": [
           "hotel_113",
           "hotel_114",
           "hotel_101",
+          "hotel_115",
           "hotel_104",
           "hotel_105",
           "hotel_073",
           "hotel_103",
           "hotel_136",
-          "hotel_096",
-          "hotel_093"
+          "hotel_096"
         ],
         "rrf": [
           "hotel_113",
@@ -4074,21 +4073,21 @@
           "hotel_037",
           "hotel_101",
           "hotel_039",
-          "hotel_093",
           "hotel_096",
+          "hotel_093",
           "hotel_064",
-          "hotel_019",
-          "hotel_014"
+          "hotel_014",
+          "hotel_019"
         ],
         "rrf_support": [
           "hotel_103",
           "hotel_104",
           "hotel_105",
+          "hotel_102",
           "hotel_137",
           "hotel_136",
-          "hotel_130",
           "hotel_114",
-          "hotel_114",
+          "hotel_115",
           "hotel_009",
           "hotel_014"
         ]
@@ -4099,8 +4098,8 @@
           "recall@10": 0.5,
           "hit@5": 0.0,
           "hit@10": 1.0,
-          "mrr@10": 0.125,
-          "ndcg@10": 0.19342640361727081
+          "mrr@10": 0.1111111111111111,
+          "ndcg@10": 0.18457569677956817
         },
         "bm25": {
           "recall@5": 1.0,
@@ -4143,37 +4142,37 @@
           "hotel_066",
           "hotel_029",
           "hotel_096",
-          "hotel_093",
+          "hotel_027",
           "hotel_093",
           "hotel_004",
           "hotel_039",
           "hotel_073",
-          "hotel_001",
+          "hotel_093",
           "hotel_096"
         ],
         "bm25": [
           "hotel_096",
-          "hotel_093",
           "hotel_066",
+          "hotel_093",
           "hotel_028",
           "hotel_083",
           "hotel_029",
           "hotel_034",
           "hotel_004",
-          "hotel_039",
-          "hotel_073"
+          "hotel_066",
+          "hotel_001"
         ],
         "rrf": [
           "hotel_066",
           "hotel_096",
-          "hotel_093",
           "hotel_029",
+          "hotel_093",
           "hotel_004",
           "hotel_039",
+          "hotel_001",
           "hotel_073",
-          "hotel_001",
-          "hotel_001",
-          "hotel_066"
+          "hotel_066",
+          "hotel_054"
         ],
         "rrf_support": [
           "hotel_009",
@@ -4182,28 +4181,28 @@
           "hotel_104",
           "hotel_066",
           "hotel_096",
-          "hotel_093",
           "hotel_029",
+          "hotel_093",
           "hotel_004",
           "hotel_039"
         ]
       },
       "scores": {
         "dense": {
-          "recall@5": 0.6666666666666666,
-          "recall@10": 0.6666666666666666,
+          "recall@5": 1.0,
+          "recall@10": 1.0,
           "hit@5": 1.0,
           "hit@10": 1.0,
           "mrr@10": 1.0,
-          "ndcg@10": 0.7653606369886217
+          "ndcg@10": 0.9674679834891693
         },
         "bm25": {
           "recall@5": 0.3333333333333333,
           "recall@10": 0.6666666666666666,
           "hit@5": 1.0,
           "hit@10": 1.0,
-          "mrr@10": 0.3333333333333333,
-          "ndcg@10": 0.40179981797758046
+          "mrr@10": 0.5,
+          "ndcg@10": 0.4632423659320675
         },
         "rrf": {
           "recall@5": 0.6666666666666666,
@@ -4211,7 +4210,7 @@
           "hit@5": 1.0,
           "hit@10": 1.0,
           "mrr@10": 1.0,
-          "ndcg@10": 0.6713860725233041
+          "ndcg@10": 0.7039180890341347
         },
         "rrf_support": {
           "recall@5": 0.3333333333333333,
@@ -4219,7 +4218,7 @@
           "hit@5": 1.0,
           "hit@10": 1.0,
           "mrr@10": 0.2,
-          "ndcg@10": 0.3295827480202853
+          "ndcg@10": 0.3379680345449381
         }
       }
     },
@@ -4254,8 +4253,8 @@
           "hotel_037",
           "hotel_083",
           "hotel_034",
-          "hotel_109",
-          "hotel_088"
+          "hotel_088",
+          "hotel_109"
         ],
         "rrf": [
           "hotel_096",
@@ -4265,13 +4264,13 @@
           "hotel_022",
           "hotel_037",
           "hotel_093",
-          "hotel_073",
           "hotel_004",
+          "hotel_073",
           "hotel_034"
         ],
         "rrf_support": [
           "hotel_014",
-          "hotel_045",
+          "hotel_041",
           "hotel_012",
           "hotel_016",
           "hotel_096",
@@ -4340,39 +4339,39 @@
           "hotel_002"
         ],
         "bm25": [
-          "hotel_095",
           "hotel_097",
+          "hotel_095",
           "hotel_094",
+          "hotel_044",
           "hotel_060",
           "hotel_058",
-          "hotel_044",
+          "hotel_084",
           "hotel_002",
           "hotel_059",
-          "hotel_094",
-          "hotel_032"
+          "hotel_065"
         ],
         "rrf": [
           "hotel_095",
           "hotel_097",
           "hotel_094",
-          "hotel_094",
           "hotel_059",
+          "hotel_094",
           "hotel_002",
           "hotel_005",
           "hotel_065",
-          "hotel_058",
-          "hotel_018"
+          "hotel_018",
+          "hotel_058"
         ],
         "rrf_support": [
           "hotel_057",
           "hotel_013",
+          "hotel_048",
           "hotel_058",
-          "hotel_074",
           "hotel_095",
           "hotel_097",
           "hotel_094",
-          "hotel_094",
           "hotel_059",
+          "hotel_094",
           "hotel_002"
         ]
       },
@@ -4390,8 +4389,8 @@
           "recall@10": 1.0,
           "hit@5": 1.0,
           "hit@10": 1.0,
-          "mrr@10": 0.5,
-          "ndcg@10": 0.6934264036172708
+          "mrr@10": 1.0,
+          "ndcg@10": 0.9197207891481876
         },
         "rrf": {
           "recall@5": 1.0,
@@ -4438,38 +4437,38 @@
         "bm25": [
           "hotel_095",
           "hotel_051",
-          "hotel_059",
+          "hotel_085",
           "hotel_075",
-          "hotel_020",
           "hotel_035",
+          "hotel_020",
+          "hotel_059",
           "hotel_003",
           "hotel_021",
-          "hotel_050",
-          "hotel_095"
+          "hotel_050"
         ],
         "rrf": [
           "hotel_095",
-          "hotel_020",
           "hotel_051",
+          "hotel_020",
           "hotel_003",
           "hotel_095",
-          "hotel_059",
           "hotel_021",
           "hotel_018",
-          "hotel_035",
-          "hotel_075"
+          "hotel_059",
+          "hotel_085",
+          "hotel_035"
         ],
         "rrf_support": [
           "hotel_075",
           "hotel_011",
+          "hotel_048",
           "hotel_010",
-          "hotel_058",
           "hotel_095",
-          "hotel_020",
           "hotel_051",
+          "hotel_020",
           "hotel_003",
           "hotel_095",
-          "hotel_059"
+          "hotel_021"
         ]
       },
       "scores": {
@@ -4482,12 +4481,12 @@
           "ndcg@10": 0.6380228380792293
         },
         "bm25": {
-          "recall@5": 0.75,
+          "recall@5": 0.5,
           "recall@10": 0.75,
           "hit@5": 1.0,
           "hit@10": 1.0,
           "mrr@10": 1.0,
-          "ndcg@10": 0.8318724637288826
+          "ndcg@10": 0.7668091220635322
         },
         "rrf": {
           "recall@5": 0.5,
@@ -4495,15 +4494,15 @@
           "hit@5": 1.0,
           "hit@10": 1.0,
           "mrr@10": 1.0,
-          "ndcg@10": 0.7246262544989281
+          "ndcg@10": 0.7598336331031966
         },
         "rrf_support": {
           "recall@5": 0.25,
-          "recall@10": 0.75,
+          "recall@10": 0.5,
           "hit@5": 1.0,
           "hit@10": 1.0,
           "mrr@10": 0.2,
-          "ndcg@10": 0.39399144290744104
+          "ndcg@10": 0.29007579773858083
         }
       }
     },
@@ -4522,38 +4521,38 @@
         "dense": [
           "hotel_057",
           "hotel_105",
+          "hotel_135",
           "hotel_111",
+          "hotel_087",
           "hotel_062",
           "hotel_068",
           "hotel_104",
           "hotel_129",
-          "hotel_012",
-          "hotel_101",
-          "hotel_097"
+          "hotel_012"
         ],
         "bm25": [
           "hotel_134",
           "hotel_057",
+          "hotel_135",
           "hotel_136",
           "hotel_105",
           "hotel_104",
-          "hotel_065",
           "hotel_056",
+          "hotel_065",
           "hotel_028",
-          "hotel_044",
-          "hotel_055"
+          "hotel_044"
         ],
         "rrf": [
           "hotel_057",
+          "hotel_135",
           "hotel_105",
           "hotel_104",
           "hotel_062",
-          "hotel_136",
           "hotel_111",
+          "hotel_136",
           "hotel_097",
-          "hotel_056",
-          "hotel_013",
-          "hotel_068"
+          "hotel_087",
+          "hotel_056"
         ],
         "rrf_support": [
           "hotel_135",
@@ -4561,37 +4560,37 @@
           "hotel_013",
           "hotel_055",
           "hotel_057",
+          "hotel_135",
           "hotel_105",
           "hotel_104",
           "hotel_062",
-          "hotel_136",
           "hotel_111"
         ]
       },
       "scores": {
         "dense": {
-          "recall@5": 0.5,
-          "recall@10": 0.5,
-          "hit@5": 1.0,
-          "hit@10": 1.0,
-          "mrr@10": 1.0,
-          "ndcg@10": 0.6366824387328317
-        },
-        "bm25": {
-          "recall@5": 0.5,
-          "recall@10": 0.5,
-          "hit@5": 1.0,
-          "hit@10": 1.0,
-          "mrr@10": 0.5,
-          "ndcg@10": 0.4144299250118475
-        },
-        "rrf": {
-          "recall@5": 0.5,
+          "recall@5": 0.75,
           "recall@10": 0.75,
           "hit@5": 1.0,
           "hit@10": 1.0,
           "mrr@10": 1.0,
-          "ndcg@10": 0.7541985434892589
+          "ndcg@10": 0.8318724637288826
+        },
+        "bm25": {
+          "recall@5": 0.75,
+          "recall@10": 0.75,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 0.5,
+          "ndcg@10": 0.592512031964586
+        },
+        "rrf": {
+          "recall@5": 0.75,
+          "recall@10": 0.75,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 1.0,
+          "ndcg@10": 0.8318724637288826
         },
         "rrf_support": {
           "recall@5": 0.75,
@@ -4599,7 +4598,7 @@
           "hit@5": 1.0,
           "hit@10": 1.0,
           "mrr@10": 1.0,
-          "ndcg@10": 0.8756458727267334
+          "ndcg@10": 0.8667163765466583
         }
       }
     },
@@ -4623,7 +4622,7 @@
           "hotel_012",
           "hotel_004",
           "hotel_096",
-          "hotel_001",
+          "hotel_078",
           "hotel_068",
           "hotel_039"
         ],
@@ -4631,12 +4630,12 @@
           "hotel_096",
           "hotel_093",
           "hotel_070",
-          "hotel_083",
           "hotel_062",
-          "hotel_052",
+          "hotel_083",
           "hotel_047",
           "hotel_034",
           "hotel_034",
+          "hotel_052",
           "hotel_052"
         ],
         "rrf": [
@@ -4645,19 +4644,19 @@
           "hotel_073",
           "hotel_004",
           "hotel_062",
-          "hotel_083",
           "hotel_052",
-          "hotel_070",
           "hotel_039",
-          "hotel_034"
+          "hotel_083",
+          "hotel_093",
+          "hotel_070"
         ],
         "rrf_support": [
+          "hotel_012",
           "hotel_052",
+          "hotel_107",
           "hotel_009",
-          "hotel_045",
           "hotel_047",
           "hotel_050",
-          "hotel_055",
           "hotel_045",
           "hotel_009",
           "hotel_104",
@@ -4678,16 +4677,16 @@
           "recall@10": 0.25,
           "hit@5": 0.0,
           "hit@10": 1.0,
-          "mrr@10": 0.16666666666666666,
-          "ndcg@10": 0.13905617951077562
+          "mrr@10": 0.1111111111111111,
+          "ndcg@10": 0.11751610475642714
         },
         "rrf": {
           "recall@5": 0.0,
           "recall@10": 0.25,
           "hit@5": 0.0,
           "hit@10": 1.0,
-          "mrr@10": 0.14285714285714285,
-          "ndcg@10": 0.13012668333070054
+          "mrr@10": 0.16666666666666666,
+          "ndcg@10": 0.13905617951077562
         },
         "rrf_support": {
           "recall@5": 0.75,
@@ -4695,7 +4694,7 @@
           "hit@5": 1.0,
           "hit@10": 1.0,
           "mrr@10": 1.0,
-          "ndcg@10": 0.9447176050778178
+          "ndcg@10": 0.9349366583346498
         }
       }
     },
@@ -4718,8 +4717,8 @@
           "hotel_004",
           "hotel_096",
           "hotel_076",
-          "hotel_101",
-          "hotel_022"
+          "hotel_063",
+          "hotel_101"
         ],
         "bm25": [
           "hotel_063",
@@ -4740,10 +4739,10 @@
           "hotel_076",
           "hotel_063",
           "hotel_095",
-          "hotel_136",
           "hotel_068",
+          "hotel_136",
           "hotel_069",
-          "hotel_021"
+          "hotel_054"
         ],
         "rrf_support": [
           "hotel_123",
@@ -4811,34 +4810,34 @@
           "hotel_073",
           "hotel_096",
           "hotel_039",
+          "hotel_093",
           "hotel_096",
           "hotel_043",
-          "hotel_001",
-          "hotel_060"
+          "hotel_001"
         ],
         "bm25": [
           "hotel_043",
           "hotel_096",
-          "hotel_093",
           "hotel_031",
-          "hotel_035",
+          "hotel_093",
           "hotel_003",
-          "hotel_095",
+          "hotel_035",
           "hotel_051",
-          "hotel_050",
-          "hotel_063"
+          "hotel_083",
+          "hotel_090",
+          "hotel_001"
         ],
         "rrf": [
           "hotel_031",
           "hotel_043",
           "hotel_096",
           "hotel_093",
+          "hotel_001",
           "hotel_031",
           "hotel_093",
           "hotel_095",
-          "hotel_001",
-          "hotel_073",
-          "hotel_039"
+          "hotel_003",
+          "hotel_090"
         ],
         "rrf_support": [
           "hotel_049",
@@ -4860,7 +4859,7 @@
           "hit@5": 1.0,
           "hit@10": 1.0,
           "mrr@10": 0.5,
-          "ndcg@10": 0.4441228664487979
+          "ndcg@10": 0.43734888382569426
         },
         "bm25": {
           "recall@5": 0.6666666666666666,
@@ -4868,7 +4867,7 @@
           "hit@5": 1.0,
           "hit@10": 1.0,
           "mrr@10": 1.0,
-          "ndcg@10": 0.6713860725233041
+          "ndcg@10": 0.7039180890341347
         },
         "rrf": {
           "recall@5": 0.6666666666666666,
@@ -4904,23 +4903,23 @@
           "hotel_096",
           "hotel_029",
           "hotel_029",
-          "hotel_089",
           "hotel_060",
+          "hotel_133",
+          "hotel_089",
           "hotel_044",
-          "hotel_054",
-          "hotel_108"
+          "hotel_060"
         ],
         "bm25": [
           "hotel_031",
           "hotel_031",
           "hotel_022",
-          "hotel_044",
           "hotel_029",
+          "hotel_044",
           "hotel_038",
+          "hotel_070",
           "hotel_086",
           "hotel_036",
-          "hotel_093",
-          "hotel_070"
+          "hotel_093"
         ],
         "rrf": [
           "hotel_031",
@@ -4929,10 +4928,10 @@
           "hotel_044",
           "hotel_060",
           "hotel_096",
-          "hotel_054",
-          "hotel_052",
+          "hotel_043",
+          "hotel_096",
           "hotel_036",
-          "hotel_043"
+          "hotel_052"
         ],
         "rrf_support": [
           "hotel_053",
@@ -4943,8 +4942,8 @@
           "hotel_044",
           "hotel_060",
           "hotel_096",
-          "hotel_054",
-          "hotel_052"
+          "hotel_043",
+          "hotel_096"
         ]
       },
       "scores": {
@@ -4999,43 +4998,43 @@
           "hotel_137",
           "hotel_139",
           "hotel_140",
+          "hotel_031",
           "hotel_115",
-          "hotel_063",
-          "hotel_026",
-          "hotel_042"
+          "hotel_138",
+          "hotel_063"
         ],
         "bm25": [
           "hotel_140",
           "hotel_139",
           "hotel_137",
           "hotel_138",
-          "hotel_042",
-          "hotel_026",
-          "hotel_063",
           "hotel_027",
-          "hotel_061",
-          "hotel_041"
+          "hotel_042",
+          "hotel_139",
+          "hotel_063",
+          "hotel_136",
+          "hotel_026"
         ],
         "rrf": [
           "hotel_139",
           "hotel_138",
           "hotel_137",
           "hotel_140",
-          "hotel_026",
+          "hotel_139",
           "hotel_063",
           "hotel_042",
           "hotel_115",
-          "hotel_139",
+          "hotel_026",
           "hotel_027"
         ],
         "rrf_support": [
           "hotel_138",
-          "hotel_139",
+          "hotel_137",
           "hotel_139",
           "hotel_138",
           "hotel_137",
           "hotel_140",
-          "hotel_026",
+          "hotel_139",
           "hotel_063",
           "hotel_042",
           "hotel_115"
@@ -5071,8 +5070,8 @@
           "recall@10": 1.0,
           "hit@5": 1.0,
           "hit@10": 1.0,
-          "mrr@10": 0.5,
-          "ndcg@10": 0.6052602440527057
+          "mrr@10": 0.3333333333333333,
+          "ndcg@10": 0.5249810332008933
         }
       }
     },
@@ -5087,50 +5086,50 @@
       "rankings": {
         "dense": [
           "hotel_120",
-          "hotel_121",
-          "hotel_123",
-          "hotel_120",
           "hotel_122",
+          "hotel_123",
+          "hotel_121",
+          "hotel_120",
           "hotel_080",
           "hotel_034",
+          "hotel_083",
           "hotel_035",
-          "hotel_015",
-          "hotel_079"
+          "hotel_015"
         ],
         "bm25": [
+          "hotel_122",
           "hotel_121",
           "hotel_120",
           "hotel_126",
-          "hotel_122",
-          "hotel_123",
           "hotel_133",
+          "hotel_123",
           "hotel_025",
-          "hotel_022",
-          "hotel_136",
-          "hotel_120"
+          "hotel_114",
+          "hotel_078",
+          "hotel_080"
         ],
         "rrf": [
+          "hotel_122",
           "hotel_120",
           "hotel_121",
           "hotel_123",
-          "hotel_122",
-          "hotel_120",
           "hotel_080",
+          "hotel_120",
+          "hotel_078",
           "hotel_079",
           "hotel_113",
-          "hotel_078",
           "hotel_128"
         ],
         "rrf_support": [
           "hotel_121",
+          "hotel_122",
           "hotel_120",
           "hotel_121",
           "hotel_123",
-          "hotel_122",
-          "hotel_120",
           "hotel_080",
-          "hotel_079",
-          "hotel_113"
+          "hotel_120",
+          "hotel_078",
+          "hotel_079"
         ]
       },
       "scores": {
@@ -5139,100 +5138,8 @@
           "recall@10": 1.0,
           "hit@5": 1.0,
           "hit@10": 1.0,
-          "mrr@10": 0.2,
-          "ndcg@10": 0.38685280723454163
-        },
-        "bm25": {
-          "recall@5": 1.0,
-          "recall@10": 1.0,
-          "hit@5": 1.0,
-          "hit@10": 1.0,
-          "mrr@10": 0.25,
-          "ndcg@10": 0.43067655807339306
-        },
-        "rrf": {
-          "recall@5": 1.0,
-          "recall@10": 1.0,
-          "hit@5": 1.0,
-          "hit@10": 1.0,
-          "mrr@10": 0.25,
-          "ndcg@10": 0.43067655807339306
-        },
-        "rrf_support": {
-          "recall@5": 1.0,
-          "recall@10": 1.0,
-          "hit@5": 1.0,
-          "hit@10": 1.0,
-          "mrr@10": 0.2,
-          "ndcg@10": 0.38685280723454163
-        }
-      }
-    },
-    {
-      "id": "l04",
-      "type": "policy",
-      "query": "Do I get a refund at Glacier Edge Mountain Lodge if the road closes because of an avalanche?",
-      "tuned_on": false,
-      "relevant_docs": [
-        "hotel_133"
-      ],
-      "rankings": {
-        "dense": [
-          "hotel_133",
-          "hotel_131",
-          "hotel_029",
-          "hotel_066",
-          "hotel_067",
-          "hotel_028",
-          "hotel_067",
-          "hotel_026",
-          "hotel_066",
-          "hotel_081"
-        ],
-        "bm25": [
-          "hotel_133",
-          "hotel_131",
-          "hotel_133",
-          "hotel_119",
-          "hotel_018",
-          "hotel_132",
-          "hotel_084",
-          "hotel_023",
-          "hotel_025",
-          "hotel_088"
-        ],
-        "rrf": [
-          "hotel_133",
-          "hotel_131",
-          "hotel_088",
-          "hotel_114",
-          "hotel_029",
-          "hotel_133",
-          "hotel_066",
-          "hotel_119",
-          "hotel_067",
-          "hotel_018"
-        ],
-        "rrf_support": [
-          "hotel_132",
-          "hotel_133",
-          "hotel_131",
-          "hotel_088",
-          "hotel_114",
-          "hotel_029",
-          "hotel_133",
-          "hotel_066",
-          "hotel_119"
-        ]
-      },
-      "scores": {
-        "dense": {
-          "recall@5": 1.0,
-          "recall@10": 1.0,
-          "hit@5": 1.0,
-          "hit@10": 1.0,
-          "mrr@10": 1.0,
-          "ndcg@10": 1.0
+          "mrr@10": 0.5,
+          "ndcg@10": 0.6309297535714575
         },
         "bm25": {
           "recall@5": 1.0,
@@ -5261,6 +5168,97 @@
       }
     },
     {
+      "id": "l04",
+      "type": "policy",
+      "query": "Do I get a refund at Glacier Edge Mountain Lodge if the road closes because of an avalanche?",
+      "tuned_on": false,
+      "relevant_docs": [
+        "hotel_133"
+      ],
+      "rankings": {
+        "dense": [
+          "hotel_133",
+          "hotel_131",
+          "hotel_132",
+          "hotel_027",
+          "hotel_118",
+          "hotel_029",
+          "hotel_066",
+          "hotel_067",
+          "hotel_028",
+          "hotel_067"
+        ],
+        "bm25": [
+          "hotel_133",
+          "hotel_131",
+          "hotel_132",
+          "hotel_133",
+          "hotel_018",
+          "hotel_118",
+          "hotel_023",
+          "hotel_119",
+          "hotel_088",
+          "hotel_079"
+        ],
+        "rrf": [
+          "hotel_133",
+          "hotel_131",
+          "hotel_132",
+          "hotel_118",
+          "hotel_133",
+          "hotel_029",
+          "hotel_079",
+          "hotel_114",
+          "hotel_027",
+          "hotel_018"
+        ],
+        "rrf_support": [
+          "hotel_133",
+          "hotel_131",
+          "hotel_132",
+          "hotel_118",
+          "hotel_133",
+          "hotel_029",
+          "hotel_079",
+          "hotel_114"
+        ]
+      },
+      "scores": {
+        "dense": {
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 1.0,
+          "ndcg@10": 1.0
+        },
+        "bm25": {
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 1.0,
+          "ndcg@10": 1.0
+        },
+        "rrf": {
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 1.0,
+          "ndcg@10": 1.0
+        },
+        "rrf_support": {
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 1.0,
+          "ndcg@10": 1.0
+        }
+      }
+    },
+    {
       "id": "l05",
       "type": "policy",
       "query": "What is the minimum guest age at Serenity Palms Resort?",
@@ -5277,12 +5275,12 @@
           "hotel_065",
           "hotel_028",
           "hotel_044",
+          "hotel_097",
           "hotel_008",
           "hotel_065",
           "hotel_055",
-          "hotel_094",
-          "hotel_056",
-          "hotel_013"
+          "hotel_005",
+          "hotel_056"
         ],
         "bm25": [
           "hotel_065",
@@ -5305,8 +5303,8 @@
           "hotel_025",
           "hotel_056",
           "hotel_033",
-          "hotel_105",
-          "hotel_008"
+          "hotel_097",
+          "hotel_005"
         ],
         "rrf_support": [
           "hotel_013",
@@ -5323,12 +5321,12 @@
       },
       "scores": {
         "dense": {
-          "recall@5": 0.75,
-          "recall@10": 0.75,
+          "recall@5": 1.0,
+          "recall@10": 1.0,
           "hit@5": 1.0,
           "hit@10": 1.0,
           "mrr@10": 1.0,
-          "ndcg@10": 0.8048099750039491
+          "ndcg@10": 0.9558295932317544
         },
         "bm25": {
           "recall@5": 0.75,
@@ -5340,11 +5338,11 @@
         },
         "rrf": {
           "recall@5": 0.75,
-          "recall@10": 0.75,
+          "recall@10": 1.0,
           "hit@5": 1.0,
           "hit@10": 1.0,
           "mrr@10": 1.0,
-          "ndcg@10": 0.8318724637288826
+          "ndcg@10": 0.9493885684853097
         },
         "rrf_support": {
           "recall@5": 0.75,
@@ -5368,38 +5366,38 @@
         "dense": [
           "hotel_041",
           "hotel_029",
-          "hotel_027",
+          "hotel_078",
           "hotel_063",
+          "hotel_027",
           "hotel_066",
           "hotel_026",
           "hotel_064",
           "hotel_061",
-          "hotel_009",
-          "hotel_001"
+          "hotel_098"
         ],
         "bm25": [
           "hotel_041",
           "hotel_042",
+          "hotel_070",
           "hotel_063",
           "hotel_026",
-          "hotel_070",
           "hotel_027",
           "hotel_061",
-          "hotel_045",
-          "hotel_096",
-          "hotel_093"
+          "hotel_098",
+          "hotel_078",
+          "hotel_045"
         ],
         "rrf": [
           "hotel_041",
           "hotel_063",
           "hotel_027",
+          "hotel_078",
           "hotel_026",
           "hotel_029",
           "hotel_042",
           "hotel_061",
-          "hotel_066",
-          "hotel_064",
-          "hotel_070"
+          "hotel_098",
+          "hotel_066"
         ],
         "rrf_support": [
           "hotel_045",
@@ -5407,11 +5405,11 @@
           "hotel_041",
           "hotel_063",
           "hotel_027",
+          "hotel_078",
           "hotel_026",
           "hotel_029",
           "hotel_042",
-          "hotel_061",
-          "hotel_066"
+          "hotel_061"
         ]
       },
       "scores": {
@@ -5463,53 +5461,61 @@
           "hotel_050",
           "hotel_063",
           "hotel_090",
+          "hotel_085",
           "hotel_020",
+          "hotel_080",
           "hotel_011",
           "hotel_049",
           "hotel_043",
-          "hotel_075",
-          "hotel_103",
-          "hotel_095"
+          "hotel_075"
         ],
         "bm25": [
           "hotel_063",
           "hotel_050",
           "hotel_035",
+          "hotel_085",
           "hotel_051",
           "hotel_015",
+          "hotel_080",
           "hotel_021",
           "hotel_050",
-          "hotel_003",
-          "hotel_049",
-          "hotel_103"
+          "hotel_049"
         ],
         "rrf": [
           "hotel_050",
           "hotel_063",
+          "hotel_085",
+          "hotel_080",
           "hotel_049",
           "hotel_035",
-          "hotel_015",
           "hotel_090",
+          "hotel_015",
           "hotel_051",
-          "hotel_003",
-          "hotel_103",
-          "hotel_011"
+          "hotel_103"
         ],
         "rrf_support": [
           "hotel_050",
           "hotel_075",
           "hotel_050",
           "hotel_063",
+          "hotel_085",
+          "hotel_080",
           "hotel_049",
           "hotel_035",
-          "hotel_015",
           "hotel_090",
-          "hotel_051",
-          "hotel_003"
+          "hotel_015"
         ]
       },
       "scores": {
         "dense": {
+          "recall@5": 0.0,
+          "recall@10": 1.0,
+          "hit@5": 0.0,
+          "hit@10": 1.0,
+          "mrr@10": 0.16666666666666666,
+          "ndcg@10": 0.40298313359773236
+        },
+        "bm25": {
           "recall@5": 0.0,
           "recall@10": 0.5,
           "hit@5": 0.0,
@@ -5517,29 +5523,21 @@
           "mrr@10": 0.14285714285714285,
           "ndcg@10": 0.20438239758848611
         },
-        "bm25": {
-          "recall@5": 0.0,
-          "recall@10": 0.0,
-          "hit@5": 0.0,
-          "hit@10": 0.0,
-          "mrr@10": 0.0,
-          "ndcg@10": 0.0
-        },
         "rrf": {
-          "recall@5": 0.0,
-          "recall@10": 0.0,
-          "hit@5": 0.0,
-          "hit@10": 0.0,
-          "mrr@10": 0.0,
-          "ndcg@10": 0.0
+          "recall@5": 0.5,
+          "recall@10": 0.5,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 0.25,
+          "ndcg@10": 0.2640681225725909
         },
         "rrf_support": {
           "recall@5": 0.0,
-          "recall@10": 0.0,
+          "recall@10": 0.5,
           "hit@5": 0.0,
-          "hit@10": 0.0,
-          "mrr@10": 0.0,
-          "ndcg@10": 0.0
+          "hit@10": 1.0,
+          "mrr@10": 0.16666666666666666,
+          "ndcg@10": 0.21840743681816419
         }
       }
     },
@@ -5559,10 +5557,10 @@
           "hotel_119",
           "hotel_133",
           "hotel_051",
+          "hotel_092",
           "hotel_065",
-          "hotel_030",
-          "hotel_065",
-          "hotel_092"
+          "hotel_119",
+          "hotel_059"
         ],
         "bm25": [
           "hotel_117",
@@ -5572,9 +5570,9 @@
           "hotel_062",
           "hotel_075",
           "hotel_059",
-          "hotel_074",
-          "hotel_054",
-          "hotel_097"
+          "hotel_059",
+          "hotel_139",
+          "hotel_074"
         ],
         "rrf": [
           "hotel_118",
@@ -5582,11 +5580,11 @@
           "hotel_116",
           "hotel_119",
           "hotel_059",
+          "hotel_059",
+          "hotel_139",
           "hotel_133",
           "hotel_065",
-          "hotel_094",
-          "hotel_051",
-          "hotel_062"
+          "hotel_051"
         ],
         "rrf_support": [
           "hotel_075",
@@ -5596,7 +5594,7 @@
           "hotel_051",
           "hotel_051",
           "hotel_117",
-          "hotel_119",
+          "hotel_118",
           "hotel_118",
           "hotel_117"
         ]
@@ -5631,8 +5629,8 @@
           "recall@10": 1.0,
           "hit@5": 0.0,
           "hit@10": 1.0,
-          "mrr@10": 0.1111111111111111,
-          "ndcg@10": 0.3010299956639812
+          "mrr@10": 0.125,
+          "ndcg@10": 0.31546487678572877
         }
       }
     },
@@ -5646,16 +5644,16 @@
       ],
       "rankings": {
         "dense": [
+          "hotel_078",
           "hotel_001",
           "hotel_034",
           "hotel_029",
+          "hotel_041",
           "hotel_066",
-          "hotel_096",
           "hotel_001",
+          "hotel_096",
           "hotel_073",
-          "hotel_029",
-          "hotel_093",
-          "hotel_039"
+          "hotel_029"
         ],
         "bm25": [
           "hotel_078",
@@ -5666,42 +5664,42 @@
           "hotel_044",
           "hotel_096",
           "hotel_081",
-          "hotel_093",
-          "hotel_017"
+          "hotel_017",
+          "hotel_093"
         ],
         "rrf": [
+          "hotel_078",
           "hotel_029",
           "hotel_096",
           "hotel_034",
           "hotel_001",
           "hotel_088",
           "hotel_066",
+          "hotel_041",
           "hotel_039",
-          "hotel_078",
-          "hotel_081",
-          "hotel_031"
+          "hotel_081"
         ],
         "rrf_support": [
           "hotel_064",
           "hotel_009",
+          "hotel_078",
           "hotel_029",
           "hotel_096",
           "hotel_034",
           "hotel_001",
           "hotel_088",
           "hotel_066",
-          "hotel_039",
-          "hotel_078"
+          "hotel_041"
         ]
       },
       "scores": {
         "dense": {
-          "recall@5": 0.0,
-          "recall@10": 0.0,
-          "hit@5": 0.0,
-          "hit@10": 0.0,
-          "mrr@10": 0.0,
-          "ndcg@10": 0.0
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 1.0,
+          "ndcg@10": 1.0
         },
         "bm25": {
           "recall@5": 1.0,
@@ -5712,20 +5710,20 @@
           "ndcg@10": 1.0
         },
         "rrf": {
-          "recall@5": 0.0,
+          "recall@5": 1.0,
           "recall@10": 1.0,
-          "hit@5": 0.0,
+          "hit@5": 1.0,
           "hit@10": 1.0,
-          "mrr@10": 0.125,
-          "ndcg@10": 0.31546487678572877
+          "mrr@10": 1.0,
+          "ndcg@10": 1.0
         },
         "rrf_support": {
-          "recall@5": 0.0,
+          "recall@5": 1.0,
           "recall@10": 1.0,
-          "hit@5": 0.0,
+          "hit@5": 1.0,
           "hit@10": 1.0,
-          "mrr@10": 0.1,
-          "ndcg@10": 0.2890648263178879
+          "mrr@10": 0.3333333333333333,
+          "ndcg@10": 0.5
         }
       }
     },
@@ -5743,22 +5741,22 @@
           "hotel_109",
           "hotel_106",
           "hotel_106",
+          "hotel_107",
           "hotel_028",
           "hotel_067",
-          "hotel_026",
-          "hotel_027",
           "hotel_066",
-          "hotel_030"
+          "hotel_027",
+          "hotel_098"
         ],
         "bm25": [
           "hotel_109",
           "hotel_108",
           "hotel_018",
           "hotel_109",
-          "hotel_106",
           "hotel_038",
-          "hotel_022",
+          "hotel_106",
           "hotel_140",
+          "hotel_022",
           "hotel_017",
           "hotel_106"
         ],
@@ -5767,21 +5765,21 @@
           "hotel_109",
           "hotel_106",
           "hotel_106",
+          "hotel_027",
+          "hotel_107",
           "hotel_030",
           "hotel_067",
           "hotel_018",
-          "hotel_109",
-          "hotel_028",
-          "hotel_067"
+          "hotel_109"
         ],
         "rrf_support": [
           "hotel_009",
+          "hotel_016",
           "hotel_052",
+          "hotel_012",
           "hotel_056",
           "hotel_058",
-          "hotel_050",
-          "hotel_127",
-          "hotel_107",
+          "hotel_109",
           "hotel_107",
           "hotel_108",
           "hotel_109"
@@ -5835,38 +5833,38 @@
         "dense": [
           "hotel_073",
           "hotel_088",
+          "hotel_088",
+          "hotel_031",
           "hotel_093",
           "hotel_073",
           "hotel_046",
-          "hotel_031",
           "hotel_093",
-          "hotel_096",
           "hotel_001",
-          "hotel_045"
+          "hotel_096"
         ],
         "bm25": [
           "hotel_088",
           "hotel_073",
           "hotel_093",
           "hotel_019",
+          "hotel_065",
           "hotel_062",
           "hotel_096",
-          "hotel_065",
+          "hotel_113",
           "hotel_088",
-          "hotel_093",
-          "hotel_113"
+          "hotel_045"
         ],
         "rrf": [
           "hotel_073",
           "hotel_088",
           "hotel_093",
+          "hotel_088",
+          "hotel_031",
           "hotel_096",
           "hotel_093",
-          "hotel_088",
           "hotel_045",
           "hotel_019",
-          "hotel_062",
-          "hotel_039"
+          "hotel_062"
         ],
         "rrf_support": [
           "hotel_014",
@@ -5874,11 +5872,11 @@
           "hotel_073",
           "hotel_088",
           "hotel_093",
+          "hotel_088",
+          "hotel_031",
           "hotel_096",
           "hotel_093",
-          "hotel_088",
-          "hotel_045",
-          "hotel_019"
+          "hotel_045"
         ]
       },
       "scores": {
@@ -5932,20 +5930,20 @@
           "hotel_012",
           "hotel_004",
           "hotel_036",
+          "hotel_027",
           "hotel_007",
-          "hotel_061",
           "hotel_007",
-          "hotel_054"
+          "hotel_061"
         ],
         "bm25": [
           "hotel_081",
           "hotel_081",
           "hotel_022",
           "hotel_071",
-          "hotel_054",
           "hotel_031",
-          "hotel_038",
+          "hotel_054",
           "hotel_076",
+          "hotel_038",
           "hotel_064",
           "hotel_078"
         ],
@@ -5954,12 +5952,12 @@
           "hotel_081",
           "hotel_054",
           "hotel_004",
+          "hotel_027",
           "hotel_076",
           "hotel_031",
-          "hotel_078",
           "hotel_036",
-          "hotel_007",
-          "hotel_012"
+          "hotel_078",
+          "hotel_007"
         ],
         "rrf_support": [
           "hotel_012",
@@ -5968,9 +5966,9 @@
           "hotel_081",
           "hotel_054",
           "hotel_004",
+          "hotel_027",
           "hotel_076",
           "hotel_031",
-          "hotel_078",
           "hotel_036"
         ]
       },
@@ -6021,55 +6019,63 @@
       "rankings": {
         "dense": [
           "hotel_079",
+          "hotel_079",
+          "hotel_030",
           "hotel_059",
           "hotel_043",
           "hotel_089",
           "hotel_072",
           "hotel_010",
           "hotel_060",
-          "hotel_074",
-          "hotel_094",
-          "hotel_002"
+          "hotel_074"
         ],
         "bm25": [
-          "hotel_095",
+          "hotel_030",
+          "hotel_028",
           "hotel_094",
           "hotel_058",
+          "hotel_095",
           "hotel_074",
           "hotel_097",
-          "hotel_060",
-          "hotel_018",
-          "hotel_059",
-          "hotel_047",
-          "hotel_028"
+          "hotel_084",
+          "hotel_042",
+          "hotel_018"
         ],
         "rrf": [
-          "hotel_059",
+          "hotel_030",
           "hotel_094",
+          "hotel_028",
           "hotel_074",
-          "hotel_060",
-          "hotel_043",
+          "hotel_059",
           "hotel_079",
-          "hotel_089",
-          "hotel_058",
-          "hotel_018",
-          "hotel_095"
+          "hotel_079",
+          "hotel_043",
+          "hotel_060",
+          "hotel_042"
         ],
         "rrf_support": [
           "hotel_010",
           "hotel_047",
-          "hotel_059",
+          "hotel_030",
           "hotel_094",
+          "hotel_028",
           "hotel_074",
-          "hotel_060",
-          "hotel_043",
+          "hotel_059",
           "hotel_079",
-          "hotel_089",
-          "hotel_058"
+          "hotel_079",
+          "hotel_043"
         ]
       },
       "scores": {
         "dense": {
+          "recall@5": 1.0,
+          "recall@10": 1.0,
+          "hit@5": 1.0,
+          "hit@10": 1.0,
+          "mrr@10": 1.0,
+          "ndcg@10": 0.9197207891481876
+        },
+        "bm25": {
           "recall@5": 0.5,
           "recall@10": 0.5,
           "hit@5": 1.0,
@@ -6077,29 +6083,21 @@
           "mrr@10": 1.0,
           "ndcg@10": 0.6131471927654584
         },
-        "bm25": {
-          "recall@5": 0.0,
-          "recall@10": 0.0,
-          "hit@5": 0.0,
-          "hit@10": 0.0,
-          "mrr@10": 0.0,
-          "ndcg@10": 0.0
-        },
         "rrf": {
-          "recall@5": 0.0,
-          "recall@10": 0.5,
-          "hit@5": 0.0,
+          "recall@5": 0.5,
+          "recall@10": 1.0,
+          "hit@5": 1.0,
           "hit@10": 1.0,
-          "mrr@10": 0.16666666666666666,
-          "ndcg@10": 0.21840743681816419
+          "mrr@10": 1.0,
+          "ndcg@10": 0.8315546295836225
         },
         "rrf_support": {
-          "recall@5": 0.0,
-          "recall@10": 0.5,
-          "hit@5": 0.0,
+          "recall@5": 0.5,
+          "recall@10": 1.0,
+          "hit@5": 1.0,
           "hit@10": 1.0,
-          "mrr@10": 0.125,
-          "ndcg@10": 0.19342640361727081
+          "mrr@10": 0.3333333333333333,
+          "ndcg@10": 0.5
         }
       }
     },
@@ -6115,15 +6113,15 @@
       "rankings": {
         "dense": [
           "hotel_063",
+          "hotel_080",
           "hotel_050",
+          "hotel_026",
           "hotel_063",
           "hotel_043",
           "hotel_075",
           "hotel_011",
           "hotel_042",
-          "hotel_095",
-          "hotel_103",
-          "hotel_049"
+          "hotel_095"
         ],
         "bm25": [
           "hotel_063",
@@ -6131,45 +6129,45 @@
           "hotel_015",
           "hotel_022",
           "hotel_051",
+          "hotel_027",
           "hotel_103",
           "hotel_003",
-          "hotel_069",
-          "hotel_095",
-          "hotel_021"
+          "hotel_021",
+          "hotel_069"
         ],
         "rrf": [
           "hotel_063",
           "hotel_050",
+          "hotel_080",
+          "hotel_026",
           "hotel_063",
           "hotel_103",
           "hotel_043",
-          "hotel_075",
           "hotel_015",
-          "hotel_026",
-          "hotel_003",
-          "hotel_011"
+          "hotel_085",
+          "hotel_075"
         ],
         "rrf_support": [
           "hotel_011",
           "hotel_049",
           "hotel_063",
           "hotel_050",
+          "hotel_080",
+          "hotel_026",
           "hotel_063",
           "hotel_103",
           "hotel_043",
-          "hotel_075",
-          "hotel_015",
-          "hotel_026"
+          "hotel_015"
         ]
       },
       "scores": {
         "dense": {
-          "recall@5": 0.5,
-          "recall@10": 0.5,
+          "recall@5": 1.0,
+          "recall@10": 1.0,
           "hit@5": 1.0,
           "hit@10": 1.0,
           "mrr@10": 1.0,
-          "ndcg@10": 0.6131471927654584
+          "ndcg@10": 0.8772153153380493
         },
         "bm25": {
           "recall@5": 0.5,
@@ -6180,12 +6178,12 @@
           "ndcg@10": 0.6131471927654584
         },
         "rrf": {
-          "recall@5": 0.5,
+          "recall@5": 1.0,
           "recall@10": 1.0,
           "hit@5": 1.0,
           "hit@10": 1.0,
           "mrr@10": 1.0,
-          "ndcg@10": 0.8065735963827293
+          "ndcg@10": 0.8772153153380493
         },
         "rrf_support": {
           "recall@5": 0.5,
@@ -6193,7 +6191,7 @@
           "hit@5": 1.0,
           "hit@10": 1.0,
           "mrr@10": 0.3333333333333333,
-          "ndcg@10": 0.48381288316677695
+          "ndcg@10": 0.5249810332008933
         }
       }
     }
