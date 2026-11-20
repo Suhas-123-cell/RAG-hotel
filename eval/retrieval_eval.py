@@ -27,6 +27,7 @@ EVAL_DIR = Path(__file__).parent
 LABELS_PATH = EVAL_DIR / "labels.jsonl"
 RESULTS_JSON = EVAL_DIR / "results.json"
 RESULTS_MD = EVAL_DIR / "results.md"
+BASELINE_JSON = EVAL_DIR / "results_before_chunk_fix.json"
 
 TOP_K = 10
 METHODS = {
@@ -171,6 +172,22 @@ def render_markdown(results: dict) -> str:
             continue
         n = sum(1 for q in results["per_query"] if q["type"] == t)
         lines += [f"### {t} ({n} queries)", "", _table("Method", [(METHODS[m], agg[m]["by_type"][t]) for m in METHODS]), ""]
+    if BASELINE_JSON.exists():
+        base = json.loads(BASELINE_JSON.read_text(encoding="utf-8"))
+        lines += [
+            "## Before the chunking fix",
+            "",
+            "The first run of this evaluation exposed a bug: the semantic chunker discarded every segment "
+            "shorter than `MIN_CHUNK_TOKENS`, which silently removed about 9% of the corpus text "
+            "(for example the sentence saying Coral Bay Suites allows free cancellation up to seven days "
+            "before arrival). Short segments are now merged into a neighbouring chunk. "
+            f"The same labels scored as follows on the old code ({base['meta']['n_chunks']} chunks, "
+            f"raw numbers in `{BASELINE_JSON.name}`). The fix came from reading a failed query, not from "
+            "tuning against the metric.",
+            "",
+            _table("Method", [(METHODS[m], base["aggregate"][m]["overall"]) for m in METHODS]),
+            "",
+        ]
     lines += ["## Queries with no relevant document in the top 5", ""]
     for m in METHODS:
         misses = [q for q in results["per_query"] if q["scores"][m]["hit@5"] == 0.0]
